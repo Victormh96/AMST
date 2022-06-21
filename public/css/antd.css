@@ -10,23 +10,23 @@
 /* stylelint-disable no-duplicate-selectors */
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
-[class^="ant-"]::-ms-clear,
-[class*="ant-"]::-ms-clear,
-[class^="ant-"] input::-ms-clear,
-[class*="ant-"] input::-ms-clear,
-[class^="ant-"] input::-ms-reveal,
-[class*="ant-"] input::-ms-reveal {
+[class^=ant-]::-ms-clear,
+[class*=ant-]::-ms-clear,
+[class^=ant-] input::-ms-clear,
+[class*=ant-] input::-ms-clear,
+[class^=ant-] input::-ms-reveal,
+[class*=ant-] input::-ms-reveal {
     display: none;
 }
 
-[class^="ant-"],
-[class*="ant-"],
-[class^="ant-"] *,
-[class*="ant-"] *,
-[class^="ant-"] *::before,
-[class*="ant-"] *::before,
-[class^="ant-"] *::after,
-[class*="ant-"] *::after {
+[class^=ant-],
+[class*=ant-],
+[class^=ant-] *,
+[class*=ant-] *,
+[class^=ant-] *::before,
+[class*=ant-] *::before,
+[class^=ant-] *::after,
+[class*=ant-] *::after {
     box-sizing: border-box;
 }
 
@@ -61,13 +61,13 @@
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1140px;
+        max-width: 1300px;
     }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
     .container {
-        max-width: 1320px;
+        max-width: 1500px;
     }
 }
 
@@ -110,83 +110,103 @@
 }
 
 .pb-0 {
-    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .pb-1 {
-    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
 }
 
 .pb-2 {
-    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .pb-3 {
-    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .pb-4 {
-    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .pb-5 {
-    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 /* Margin */
+.m-auto {
+    margin: auto;
+}
+
 .mt-0 {
-    padding-top: 0;
+    margin-top: 0;
 }
 
 .mt-1 {
-    padding-top: 0.25rem;
+    margin-top: 0.25rem;
 }
 
 .mt-2 {
-    padding-top: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .mt-3 {
-    padding-top: 1rem;
+    margin-top: 1rem;
 }
 
 .mt-4 {
-    padding-top: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .mt-5 {
-    padding-top: 2rem;
+    margin-top: 2rem;
 }
 
 .mb-0 {
-    padding-top: 0;
+    margin-bottom: 0;
 }
 
 .mb-1 {
-    padding-top: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .mb-2 {
-    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .mb-3 {
-    padding-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .mb-4 {
-    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .mb-5 {
-    padding-top: 2rem;
+    margin-bottom: 2rem;
 }
+
 
 /* stylelint-disable at-rule-no-unknown */
 html,
 body {
     width: 100%;
-    height: 100%;
+    height: auto;
+}
+
+body:after {
+    content: "";
+    position: absolute;
+    top: 150px;
+    right: 0;
+    background: url(../img/assets/shapex2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 230px;
+    height: 465px;
+    filter: invert(var(--filter));
+    opacity: .1;
+    z-index: -1;
 }
 
 input::-ms-clear,
@@ -207,6 +227,12 @@ html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+@media (min-width: 1600px) {
+    html {
+        font-size: 115%;
+    }
+}
+
 @-ms-viewport {
     width: device-width;
 }
@@ -214,11 +240,11 @@ html {
 body {
     margin: 0;
     color: rgba(0, 0, 0, 0.85);
-    font-family: "Poppins", sans-serif !important;
-    background-color: var(--blue);
+    font-family: 'Poppins', sans-serif !important;
+    background-color: var(--body);
 }
 
-[tabindex="-1"]:focus {
+[tabindex='-1']:focus {
     outline: none !important;
 }
 
@@ -260,9 +286,9 @@ address {
     line-height: inherit;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="number"],
+input[type='text'],
+input[type='password'],
+input[type='number'],
 textarea {
     -webkit-appearance: none;
 }
@@ -362,8 +388,7 @@ code,
 kbd,
 samp {
     font-size: 1em;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-        monospace;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
 pre {
@@ -388,8 +413,8 @@ svg:not(:root) {
 a,
 area,
 button,
-[role="button"],
-input:not([type="range"]),
+[role='button'],
+input:not([type='range']),
 label,
 select,
 summary,
@@ -443,23 +468,23 @@ html [type="button"],
 }
 
 button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
     padding: 0;
     border-style: none;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
+input[type='radio'],
+input[type='checkbox'] {
     box-sizing: border-box;
     padding: 0;
 }
 
-input[type="date"],
-input[type="time"],
-input[type="datetime-local"],
-input[type="month"] {
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='month'] {
     -webkit-appearance: listbox;
 }
 
@@ -491,18 +516,18 @@ progress {
     vertical-align: baseline;
 }
 
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
     height: auto;
 }
 
-[type="search"] {
+[type='search'] {
     outline-offset: -2px;
     -webkit-appearance: none;
 }
 
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
@@ -545,7 +570,7 @@ mark {
 .clearfix::before,
 .clearfix::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .clearfix::after {
@@ -1343,8 +1368,8 @@ mark {
     }
 }
 
-[ant-click-animating="true"],
-[ant-click-animating-without-extra-node="true"] {
+[ant-click-animating='true'],
+[ant-click-animating-without-extra-node='true'] {
     position: relative;
 }
 
@@ -1353,7 +1378,7 @@ html {
     --scroll-bar: 0;
 }
 
-[ant-click-animating-without-extra-node="true"]::after,
+[ant-click-animating-without-extra-node='true']::after,
 .ant-click-animating-node {
     position: absolute;
     top: 0;
@@ -1365,13 +1390,11 @@ html {
     box-shadow: 0 0 0 0 #1890ff;
     box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);
     opacity: 0.2;
-    -webkit-animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1),
-        waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
-    animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1),
-        waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
+    -webkit-animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1), waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
+    animation: fadeEffect 2s cubic-bezier(0.08, 0.82, 0.17, 1), waveEffect 0.4s cubic-bezier(0.08, 0.82, 0.17, 1);
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-    content: "";
+    content: '';
     pointer-events: none;
 }
 
@@ -3058,14 +3081,12 @@ html {
 }
 
 .ant-motion-collapse-legacy-active {
-    transition: height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
-        opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+    transition: height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
 }
 
 .ant-motion-collapse {
     overflow: hidden;
-    transition: height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
-        opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+    transition: height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
 }
 
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
@@ -3090,7 +3111,7 @@ html {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: flex;
     align-items: center;
@@ -3300,7 +3321,7 @@ html {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     padding-left: 2px;
 }
@@ -3326,7 +3347,7 @@ html {
     height: 100%;
     margin: 0 auto;
     background-color: #f0f0f0;
-    content: " ";
+    content: ' ';
 }
 
 .ant-anchor-ink-ball {
@@ -3418,7 +3439,7 @@ html {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-select-auto-complete .ant-select-clear {
@@ -3478,7 +3499,7 @@ html {
     display: inline-block;
     width: 0;
     visibility: hidden;
-    content: "\a0";
+    content: '\a0';
 }
 
 .ant-select-single.ant-select-show-arrow .ant-select-selection-search {
@@ -3617,7 +3638,7 @@ html {
     width: 0;
     margin: 2px 0;
     line-height: 24px;
-    content: "\a0";
+    content: '\a0';
 }
 
 .ant-select-multiple.ant-select-show-arrow .ant-select-selector,
@@ -3725,9 +3746,7 @@ html {
 .ant-select-multiple .ant-select-selection-search-input,
 .ant-select-multiple .ant-select-selection-search-mirror {
     height: 24px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     line-height: 24px;
     transition: all 0.3s;
 }
@@ -3823,7 +3842,7 @@ html {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     cursor: pointer;
@@ -4020,7 +4039,7 @@ html {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     top: -9999px;
     left: -9999px;
@@ -4434,7 +4453,7 @@ textarea.ant-input-affix-wrapper {
 .ant-input-affix-wrapper::before {
     width: 0;
     visibility: hidden;
-    content: "\a0";
+    content: '\a0';
 }
 
 .ant-input-prefix,
@@ -4458,7 +4477,7 @@ textarea.ant-input-affix-wrapper {
     padding: 0;
     font-variant: tabular-nums;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     width: 100%;
@@ -4560,7 +4579,7 @@ textarea.ant-input {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: table;
     width: 100%;
@@ -4568,17 +4587,17 @@ textarea.ant-input {
     border-spacing: 0;
 }
 
-.ant-input-group[class*="col-"] {
+.ant-input-group[class*='col-'] {
     float: none;
     padding-right: 0;
     padding-left: 0;
 }
 
-.ant-input-group>[class*="col-"] {
+.ant-input-group>[class*='col-'] {
     padding-right: 8px;
 }
 
-.ant-input-group>[class*="col-"]:last-child {
+.ant-input-group>[class*='col-']:last-child {
     padding-right: 0;
 }
 
@@ -4656,7 +4675,7 @@ textarea.ant-input {
     right: 0;
     bottom: 0;
     left: 0;
-    content: "";
+    content: '';
 }
 
 .ant-input-group>.ant-input:first-child,
@@ -4727,7 +4746,7 @@ textarea.ant-input {
 .ant-input-group.ant-input-group-compact::before,
 .ant-input-group.ant-input-group-compact::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-input-group.ant-input-group-compact::after {
@@ -4848,7 +4867,7 @@ textarea.ant-input {
     padding: 0;
     font-variant: tabular-nums;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-flex;
     border: 1px solid #d9d9d9;
@@ -5121,7 +5140,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn:hover,
@@ -5144,7 +5163,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn:active {
@@ -5164,7 +5183,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn[disabled],
@@ -5195,7 +5214,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn:hover,
@@ -5228,7 +5247,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-primary:hover,
@@ -5251,7 +5270,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-primary:active {
@@ -5271,7 +5290,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-primary[disabled],
@@ -5302,7 +5321,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-group .ant-btn-primary:not(:first-child):not(:last-child) {
@@ -5349,7 +5368,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-ghost:hover,
@@ -5372,7 +5391,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-ghost:active {
@@ -5392,7 +5411,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-ghost[disabled],
@@ -5423,7 +5442,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dashed {
@@ -5444,7 +5463,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dashed:hover,
@@ -5467,7 +5486,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dashed:active {
@@ -5487,7 +5506,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dashed[disabled],
@@ -5518,7 +5537,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-danger {
@@ -5540,7 +5559,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-danger:hover,
@@ -5563,7 +5582,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-danger:active {
@@ -5583,7 +5602,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-danger[disabled],
@@ -5614,7 +5633,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-link {
@@ -5635,7 +5654,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-link:hover,
@@ -5658,7 +5677,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-link:active {
@@ -5678,7 +5697,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-link[disabled],
@@ -5709,7 +5728,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-link:hover {
@@ -5750,7 +5769,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-text {
@@ -5771,7 +5790,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-text:hover,
@@ -5794,7 +5813,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-text:active {
@@ -5814,7 +5833,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-text[disabled],
@@ -5845,7 +5864,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-text:hover,
@@ -5889,7 +5908,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous {
@@ -5909,7 +5928,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous:hover,
@@ -5932,7 +5951,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous:active {
@@ -5952,7 +5971,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous[disabled],
@@ -5983,7 +6002,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-primary {
@@ -6005,7 +6024,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-primary:hover,
@@ -6028,7 +6047,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-primary:active {
@@ -6048,7 +6067,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-primary[disabled],
@@ -6079,7 +6098,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-link {
@@ -6100,7 +6119,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-link:hover,
@@ -6123,7 +6142,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-link:active {
@@ -6143,7 +6162,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-link[disabled],
@@ -6174,7 +6193,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-link:hover,
@@ -6197,7 +6216,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-link:active {
@@ -6217,7 +6236,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-link[disabled],
@@ -6248,7 +6267,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-text {
@@ -6269,7 +6288,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-text:hover,
@@ -6292,7 +6311,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-text:active {
@@ -6312,7 +6331,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-text[disabled],
@@ -6343,7 +6362,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-text:hover,
@@ -6366,7 +6385,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-text:active {
@@ -6386,7 +6405,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-dangerous.ant-btn-text[disabled],
@@ -6417,7 +6436,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-icon-only {
@@ -6512,7 +6531,7 @@ textarea.ant-input {
     border-radius: inherit;
     opacity: 0.35;
     transition: opacity 0.2s;
-    content: "";
+    content: '';
     pointer-events: none;
 }
 
@@ -6787,7 +6806,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-primary:hover,
@@ -6810,7 +6829,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-primary:active {
@@ -6830,7 +6849,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-primary[disabled],
@@ -6861,7 +6880,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-danger {
@@ -6882,7 +6901,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-danger:hover,
@@ -6905,7 +6924,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-danger:active {
@@ -6925,7 +6944,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-danger[disabled],
@@ -6956,7 +6975,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous {
@@ -6977,7 +6996,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous:hover,
@@ -7000,7 +7019,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous:active {
@@ -7020,7 +7039,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous[disabled],
@@ -7051,7 +7070,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous.ant-btn-link {
@@ -7072,7 +7091,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous.ant-btn-link:hover,
@@ -7095,7 +7114,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous.ant-btn-link:active {
@@ -7115,7 +7134,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-background-ghost.ant-btn-dangerous.ant-btn-link[disabled],
@@ -7146,7 +7165,7 @@ textarea.ant-input {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-btn-two-chinese-chars::first-letter {
@@ -7166,7 +7185,7 @@ textarea.ant-input {
     display: inline-block;
     width: 0;
     visibility: hidden;
-    content: "\a0";
+    content: '\a0';
 }
 
 a.ant-btn {
@@ -7227,7 +7246,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -7357,7 +7376,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: fixed;
     right: 100px;
     bottom: 50px;
@@ -7423,7 +7442,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     line-height: 1;
@@ -7524,7 +7543,7 @@ a.ant-btn-sm {
     border-radius: 50%;
     -webkit-animation: antStatusProcessing 1.2s infinite ease-in-out;
     animation: antStatusProcessing 1.2s infinite ease-in-out;
-    content: "";
+    content: '';
 }
 
 .ant-badge-status-default {
@@ -7814,7 +7833,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     top: 8px;
     height: 22px;
@@ -7849,7 +7868,7 @@ a.ant-btn-sm {
     height: inherit;
     color: rgba(0, 0, 0, 0.25);
     border: inherit;
-    content: "";
+    content: '';
 }
 
 .ant-ribbon-color-pink {
@@ -8072,7 +8091,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     color: rgba(0, 0, 0, 0.45);
     font-size: 14px;
 }
@@ -8123,7 +8142,7 @@ a.ant-btn-sm {
 .ant-breadcrumb-rtl::before,
 .ant-breadcrumb-rtl::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-breadcrumb-rtl::after {
@@ -8197,11 +8216,11 @@ a.ant-btn-sm {
     border-radius: 5px 0 0 5px;
     font-variant: tabular-nums;
     line-height: 1.5715;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     margin-bottom: 0;
     padding-left: 0;
     color: var(--white);
-    font-size: 0.8rem;
+    font-size: .8rem;
     line-height: 0;
     text-align: left;
     list-style: none;
@@ -8214,7 +8233,7 @@ a.ant-btn-sm {
 .ant-menu::before,
 .ant-menu::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-menu::after {
@@ -8249,7 +8268,7 @@ a.ant-btn-sm {
     padding: 8px 16px;
     margin: 0 0 18px 0;
     color: var(--white);
-    font-size: 0.8rem;
+    font-size: .8rem;
     font-weight: 600;
     line-height: 1.5715;
     border-bottom: solid 3px;
@@ -8257,15 +8276,12 @@ a.ant-btn-sm {
 }
 
 .ant-menu-horizontal .ant-menu-submenu {
-    transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .ant-menu-submenu,
 .ant-menu-submenu-inline {
-    transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        padding 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), padding 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .ant-menu-submenu-selected {
@@ -8279,8 +8295,7 @@ a.ant-btn-sm {
 
 .ant-menu-submenu .ant-menu-sub {
     cursor: initial;
-    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .ant-menu-item a {
@@ -8340,9 +8355,9 @@ a.ant-btn-sm {
     border-right: 0;
 }
 
-.ant-menu-vertical.ant-menu-sub:not([class*="-active"]),
-.ant-menu-vertical-left.ant-menu-sub:not([class*="-active"]),
-.ant-menu-vertical-right.ant-menu-sub:not([class*="-active"]) {
+.ant-menu-vertical.ant-menu-sub:not([class*='-active']),
+.ant-menu-vertical-left.ant-menu-sub:not([class*='-active']),
+.ant-menu-vertical-right.ant-menu-sub:not([class*='-active']) {
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -8387,8 +8402,7 @@ a.ant-btn-sm {
     padding: 0 20px;
     white-space: nowrap;
     cursor: pointer;
-    transition: border-color 0.3s, background 0.3s,
-        padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: border-color 0.3s, background 0.3s, padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .ant-menu-item .ant-menu-item-icon,
@@ -8398,8 +8412,7 @@ a.ant-btn-sm {
     min-width: 14px;
     font-size: 28px;
     color: var(--white);
-    transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
-        margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
+    transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s;
 }
 
 .ant-menu-item .ant-menu-item-icon+span,
@@ -8408,8 +8421,7 @@ a.ant-btn-sm {
 .ant-menu-submenu-title .anticon+span {
     margin-left: 10px;
     opacity: 1;
-    transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), margin 0.3s,
-        color 0.3s;
+    transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), margin 0.3s, color 0.3s;
 }
 
 .ant-menu-item .ant-menu-item-icon.svg,
@@ -8459,7 +8471,7 @@ a.ant-btn-sm {
     width: 100%;
     height: 100%;
     opacity: 0.0001;
-    content: " ";
+    content: ' ';
 }
 
 .ant-menu-submenu-placement-rightTop::before {
@@ -8498,11 +8510,8 @@ a.ant-btn-sm {
     height: 1.5px;
     background-color: currentColor;
     border-radius: 2px;
-    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    content: "";
+    transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    content: '';
 }
 
 .ant-menu-submenu-arrow::before {
@@ -8617,7 +8626,7 @@ a.ant-btn-sm {
     display: block;
     clear: both;
     height: 0;
-    content: "\20";
+    content: '\20';
 }
 
 .ant-menu-vertical .ant-menu-item,
@@ -8638,9 +8647,8 @@ a.ant-btn-sm {
     border-right: 3px solid #1890ff;
     transform: scaleY(0.0001);
     opacity: 0;
-    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
-        opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
-    content: "";
+    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+    content: '';
 }
 
 .ant-menu-vertical .ant-menu-item,
@@ -8690,8 +8698,7 @@ a.ant-btn-sm {
 .ant-menu-inline .ant-menu-item-selected::after {
     transform: scaleY(1);
     opacity: 1;
-    transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
-        opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .ant-menu-inline .ant-menu-item,
@@ -8708,8 +8715,7 @@ a.ant-btn-sm {
 .ant-menu-inline.ant-menu-root .ant-menu-submenu-title {
     display: flex;
     align-items: center;
-    transition: border-color 0.3s, background 0.3s,
-        padding 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: border-color 0.3s, background 0.3s, padding 0.1s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .ant-menu-inline.ant-menu-root .ant-menu-item>.ant-menu-title-content,
@@ -8718,7 +8724,7 @@ a.ant-btn-sm {
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    opacity: 0.9;
+    opacity: .9;
 }
 
 .ant-menu-inline.ant-menu-root .ant-menu-item>*,
@@ -9217,7 +9223,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     z-index: 1060;
     display: block;
@@ -9287,7 +9293,7 @@ a.ant-btn-sm {
     height: 5px;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.75);
-    content: "";
+    content: '';
     pointer-events: auto;
 }
 
@@ -9521,7 +9527,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     top: -9999px;
     left: -9999px;
@@ -9537,7 +9543,7 @@ a.ant-btn-sm {
     left: -7px;
     z-index: -9999;
     opacity: 0.0001;
-    content: " ";
+    content: ' ';
 }
 
 .ant-dropdown-wrap {
@@ -9848,7 +9854,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     border-top: 1px solid #d9d9d9;
     outline: none;
 }
@@ -10129,7 +10135,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
 }
 
@@ -10142,7 +10148,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     margin-right: 8px;
@@ -10159,7 +10165,7 @@ a.ant-btn-sm {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     line-height: 1;
@@ -10192,7 +10198,7 @@ a.ant-btn-sm {
     animation: antRadioEffect 0.36s ease-in-out;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
-    content: "";
+    content: '';
 }
 
 .ant-radio:hover::after,
@@ -10229,7 +10235,7 @@ a.ant-btn-sm {
     transform: scale(0);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-    content: " ";
+    content: ' ';
 }
 
 .ant-radio-input {
@@ -10327,7 +10333,7 @@ span.ant-radio+* {
     padding: 1px 0;
     background-color: #d9d9d9;
     transition: background-color 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-radio-button-wrapper:first-child {
@@ -10353,8 +10359,8 @@ span.ant-radio+* {
 }
 
 .ant-radio-button-wrapper .ant-radio-inner,
-.ant-radio-button-wrapper input[type="checkbox"],
-.ant-radio-button-wrapper input[type="radio"] {
+.ant-radio-button-wrapper input[type='checkbox'],
+.ant-radio-button-wrapper input[type='radio'] {
     width: 0;
     height: 0;
     opacity: 0;
@@ -10488,7 +10494,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     background: #fff;
     border-radius: 2px;
@@ -10524,7 +10530,7 @@ span.ant-radio+* {
 .ant-card-head::before,
 .ant-card-head::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-card-head::after {
@@ -10573,7 +10579,7 @@ span.ant-radio+* {
 .ant-card-body::before,
 .ant-card-body::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-card-body::after {
@@ -10591,8 +10597,7 @@ span.ant-radio+* {
     padding: 24px;
     border: 0;
     border-radius: 0;
-    box-shadow: 1px 0 0 0 #f0f0f0, 0 1px 0 0 #f0f0f0, 1px 1px 0 0 #f0f0f0,
-        1px 0 0 0 #f0f0f0 inset, 0 1px 0 0 #f0f0f0 inset;
+    box-shadow: 1px 0 0 0 #f0f0f0, 0 1px 0 0 #f0f0f0, 1px 1px 0 0 #f0f0f0, 1px 0 0 0 #f0f0f0 inset, 0 1px 0 0 #f0f0f0 inset;
     transition: all 0.3s;
 }
 
@@ -10631,7 +10636,7 @@ span.ant-radio+* {
 .ant-card-actions::before,
 .ant-card-actions::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-card-actions::after {
@@ -10707,7 +10712,7 @@ span.ant-radio+* {
 .ant-card-meta::before,
 .ant-card-meta::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-card-meta::after {
@@ -10758,10 +10763,7 @@ span.ant-radio+* {
 .ant-card-loading-block {
     height: 14px;
     margin: 4px 0;
-    background: linear-gradient(90deg,
-            rgba(207, 216, 220, 0.2),
-            rgba(207, 216, 220, 0.4),
-            rgba(207, 216, 220, 0.2));
+    background: linear-gradient(90deg, rgba(207, 216, 220, 0.2), rgba(207, 216, 220, 0.4), rgba(207, 216, 220, 0.2));
     background-size: 600% 600%;
     border-radius: 2px;
     -webkit-animation: card-loading 1.4s ease infinite;
@@ -11013,7 +11015,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     overflow: hidden;
 }
@@ -11021,7 +11023,7 @@ span.ant-radio+* {
 .ant-tabs::before,
 .ant-tabs::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-tabs::after {
@@ -11061,7 +11063,7 @@ span.ant-radio+* {
 .ant-tabs-nav-container::before,
 .ant-tabs-nav-container::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-tabs-nav-container::after {
@@ -11102,9 +11104,7 @@ span.ant-radio+* {
     border: 0;
     cursor: pointer;
     opacity: 0;
-    transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -11197,7 +11197,7 @@ span.ant-radio+* {
 .ant-tabs-nav::before,
 .ant-tabs-nav::after {
     display: table;
-    content: " ";
+    content: ' ';
 }
 
 .ant-tabs-nav::after {
@@ -11224,7 +11224,7 @@ span.ant-radio+* {
     border-top: 2px solid transparent;
     border-radius: 2px 2px 0 0;
     transition: all 0.3s;
-    content: "";
+    content: '';
     pointer-events: none;
 }
 
@@ -11278,7 +11278,7 @@ span.ant-radio+* {
 .ant-tabs-content::before {
     display: block;
     overflow: hidden;
-    content: "";
+    content: '';
 }
 
 .ant-tabs .ant-tabs-top-content,
@@ -11464,16 +11464,12 @@ span.ant-radio+* {
 
 .ant-tabs-top .ant-tabs-ink-bar-animated,
 .ant-tabs-bottom .ant-tabs-ink-bar-animated {
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        width 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
-        left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .ant-tabs-left .ant-tabs-ink-bar-animated,
 .ant-tabs-right .ant-tabs-ink-bar-animated {
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
-        top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .no-flex>.ant-tabs-content>.ant-tabs-content-animated,
@@ -18151,7 +18147,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-carousel .slick-slider {
@@ -18212,7 +18208,7 @@ span.ant-radio+* {
 .ant-carousel .slick-track::before,
 .ant-carousel .slick-track::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-carousel .slick-track::after {
@@ -18230,7 +18226,7 @@ span.ant-radio+* {
     min-height: 1px;
 }
 
-[dir="rtl"] .ant-carousel .slick-slide {
+[dir='rtl'] .ant-carousel .slick-slide {
     float: right;
 }
 
@@ -18308,7 +18304,7 @@ span.ant-radio+* {
 }
 
 .ant-carousel .slick-prev::before {
-    content: "←";
+    content: '←';
 }
 
 .ant-carousel .slick-next {
@@ -18316,7 +18312,7 @@ span.ant-radio+* {
 }
 
 .ant-carousel .slick-next::before {
-    content: "→";
+    content: '→';
 }
 
 .ant-carousel .slick-dots {
@@ -18423,7 +18419,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-cascader-input.ant-input {
@@ -18447,7 +18443,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     background-color: #fff;
@@ -18713,7 +18709,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     top: -0.09em;
     display: inline-block;
@@ -18743,7 +18739,7 @@ span.ant-radio+* {
     animation: antCheckboxEffect 0.36s ease-in-out;
     -webkit-animation-fill-mode: backwards;
     animation-fill-mode: backwards;
-    content: "";
+    content: '';
 }
 
 .ant-checkbox:hover::after,
@@ -18778,7 +18774,7 @@ span.ant-radio+* {
     transform: rotate(45deg) scale(0) translate(-50%, -50%);
     opacity: 0;
     transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
-    content: " ";
+    content: ' ';
 }
 
 .ant-checkbox-input {
@@ -18803,7 +18799,7 @@ span.ant-radio+* {
     transform: rotate(45deg) scale(1) translate(-50%, -50%);
     opacity: 1;
     transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-    content: " ";
+    content: ' ';
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
@@ -18856,7 +18852,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
     line-height: unset;
     cursor: pointer;
@@ -18884,7 +18880,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
 }
 
@@ -18915,7 +18911,7 @@ span.ant-radio+* {
     border: 0;
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    content: " ";
+    content: ' ';
 }
 
 .ant-checkbox-indeterminate.ant-checkbox-disabled .ant-checkbox-inner::after {
@@ -18936,7 +18932,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     background-color: #fafafa;
     border: 1px solid #d9d9d9;
     border-bottom: 0;
@@ -19087,7 +19083,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     outline: none;
@@ -19388,12 +19384,10 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     z-index: 1050;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 .ant-calendar-picker-container.slide-up-enter.slide-up-enter-active.ant-calendar-picker-container-placement-topLeft,
@@ -19433,7 +19427,7 @@ span.ant-radio+* {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     outline: none;
@@ -19629,8 +19623,7 @@ span.ant-radio+* {
     padding: 0 5px;
     color: rgba(0, 0, 0, 0.45);
     font-size: 16px;
-    font-family: Arial, "Hiragino Sans GB", "Microsoft Yahei",
-        "Microsoft Sans Serif", sans-serif;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
     line-height: 40px;
 }
 
@@ -19658,7 +19651,7 @@ span.ant-radio+* {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-header .ant-calendar-prev-century-btn:hover::before,
@@ -19708,7 +19701,7 @@ span.ant-radio+* {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-header .ant-calendar-next-century-btn:hover::before,
@@ -19766,7 +19759,7 @@ span.ant-radio+* {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-header .ant-calendar-prev-month-btn:hover::before,
@@ -19796,7 +19789,7 @@ span.ant-radio+* {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-header .ant-calendar-next-month-btn:hover::before,
@@ -19928,7 +19921,7 @@ span.ant-radio+* {
     height: 24px;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 2px;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-disabled-cell.ant-calendar-today .ant-calendar-date {
@@ -19945,7 +19938,7 @@ span.ant-radio+* {
     height: 24px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     border-radius: 2px;
-    content: " ";
+    content: ' ';
 }
 
 .ant-calendar-disabled-cell-first-of-row .ant-calendar-date {
@@ -20105,7 +20098,7 @@ span.ant-radio+* {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-calendar .ant-calendar-ok-btn:hover,
@@ -20128,7 +20121,7 @@ span.ant-radio+* {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-calendar .ant-calendar-ok-btn:active {
@@ -20148,7 +20141,7 @@ span.ant-radio+* {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-calendar .ant-calendar-ok-btn[disabled],
@@ -20179,7 +20172,7 @@ span.ant-radio+* {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-calendar .ant-calendar-ok-btn[disabled],
@@ -20210,7 +20203,7 @@ span.ant-radio+* {
     bottom: 0;
     left: 0;
     background: transparent;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-range-picker-input {
@@ -20276,7 +20269,7 @@ span.ant-radio+* {
     clear: both;
     height: 0;
     visibility: hidden;
-    content: ".";
+    content: '.';
 }
 
 .ant-calendar-range-part {
@@ -20519,7 +20512,7 @@ textarea.ant-calendar-range .ant-calendar-time-picker-input {
     background: #e6f7ff;
     border: 0;
     border-radius: 0;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-range .ant-calendar-footer-extra {
@@ -20699,7 +20692,7 @@ div.ant-calendar-range-quick-selector>a {
 .ant-calendar-time-picker-select li:last-child::after {
     display: block;
     height: 202px;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-time-picker-select li:hover {
@@ -20827,8 +20820,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     padding: 0 5px;
     color: rgba(0, 0, 0, 0.45);
     font-size: 16px;
-    font-family: Arial, "Hiragino Sans GB", "Microsoft Yahei",
-        "Microsoft Sans Serif", sans-serif;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
     line-height: 40px;
 }
 
@@ -20856,7 +20848,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-month-panel-header .ant-calendar-month-panel-prev-century-btn:hover::before,
@@ -20906,7 +20898,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-month-panel-header .ant-calendar-month-panel-next-century-btn:hover::before,
@@ -20964,7 +20956,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-month-panel-header .ant-calendar-month-panel-prev-month-btn:hover::before,
@@ -20994,7 +20986,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-month-panel-header .ant-calendar-month-panel-next-month-btn:hover::before,
@@ -21139,8 +21131,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     padding: 0 5px;
     color: rgba(0, 0, 0, 0.45);
     font-size: 16px;
-    font-family: Arial, "Hiragino Sans GB", "Microsoft Yahei",
-        "Microsoft Sans Serif", sans-serif;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
     line-height: 40px;
 }
 
@@ -21168,7 +21159,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-year-panel-header .ant-calendar-year-panel-prev-century-btn:hover::before,
@@ -21218,7 +21209,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-year-panel-header .ant-calendar-year-panel-next-century-btn:hover::before,
@@ -21276,7 +21267,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-year-panel-header .ant-calendar-year-panel-prev-month-btn:hover::before,
@@ -21306,7 +21297,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-year-panel-header .ant-calendar-year-panel-next-month-btn:hover::before,
@@ -21449,8 +21440,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     padding: 0 5px;
     color: rgba(0, 0, 0, 0.45);
     font-size: 16px;
-    font-family: Arial, "Hiragino Sans GB", "Microsoft Yahei",
-        "Microsoft Sans Serif", sans-serif;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
     line-height: 40px;
 }
 
@@ -21478,7 +21468,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-decade-panel-header .ant-calendar-decade-panel-prev-century-btn:hover::before,
@@ -21528,7 +21518,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-decade-panel-header .ant-calendar-decade-panel-next-century-btn:hover::before,
@@ -21586,7 +21576,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-decade-panel-header .ant-calendar-decade-panel-prev-month-btn:hover::before,
@@ -21616,7 +21606,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     border-radius: 1px;
     transform: rotate(-45deg) scale(0.8);
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-calendar-decade-panel-header .ant-calendar-decade-panel-next-month-btn:hover::before,
@@ -21742,12 +21732,10 @@ li.ant-calendar-time-picker-select-option-disabled:hover {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     z-index: 1050;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 .ant-time-picker-panel-inner {
@@ -21900,7 +21888,7 @@ li.ant-time-picker-panel-select-option-disabled:focus {
 .ant-time-picker-panel-combobox::before,
 .ant-time-picker-panel-combobox::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-time-picker-panel-combobox::after {
@@ -21949,7 +21937,7 @@ li.ant-time-picker-panel-select-option-disabled:focus {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     width: 128px;
@@ -22145,7 +22133,7 @@ not all and (min-resolution: 0.001dpcm) {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
     height: auto;
     margin-right: 8px;
@@ -22482,19 +22470,19 @@ not all and (min-resolution: 0.001dpcm) {
 }
 
 .ant-descriptions-item-label::after {
-    content: ":";
+    content: ':';
     position: relative;
     top: -0.5px;
     margin: 0 8px 0 2px;
 }
 
 .ant-descriptions-item-label.ant-descriptions-item-no-colon::after {
-    content: " ";
+    content: ' ';
 }
 
 .ant-descriptions-item-no-label::after {
     margin: 0;
-    content: "";
+    content: '';
 }
 
 .ant-descriptions-item-content {
@@ -22609,7 +22597,7 @@ not all and (min-resolution: 0.001dpcm) {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -22653,7 +22641,7 @@ not all and (min-resolution: 0.001dpcm) {
     border-top-color: inherit;
     border-bottom: 0;
     transform: translateY(50%);
-    content: "";
+    content: '';
 }
 
 .ant-divider-horizontal.ant-divider-with-text-left::before {
@@ -22736,13 +22724,11 @@ not all and (min-resolution: 0.001dpcm) {
     z-index: 1000;
     width: 0%;
     height: 100%;
-    transition: transform 0.3s cubic-bezier(0.7, 0.3, 0.1, 1), height 0s ease 0.3s,
-        width 0s ease 0.3s;
+    transition: transform 0.3s cubic-bezier(0.7, 0.3, 0.1, 1), height 0s ease 0.3s, width 0s ease 0.3s;
 }
 
 .ant-drawer>* {
-    transition: transform 0.3s cubic-bezier(0.7, 0.3, 0.1, 1),
-        box-shadow 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
+    transition: transform 0.3s cubic-bezier(0.7, 0.3, 0.1, 1), box-shadow 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
 }
 
 .ant-drawer-content-wrapper {
@@ -22981,8 +22967,8 @@ not all and (min-resolution: 0.001dpcm) {
     background: #fafafa;
 }
 
-.ant-form-item input[type="radio"],
-.ant-form-item input[type="checkbox"] {
+.ant-form-item input[type='radio'],
+.ant-form-item input[type='checkbox'] {
     width: 14px;
     height: 14px;
 }
@@ -23455,7 +23441,7 @@ not all and (min-resolution: 0.001dpcm) {
     border-color: #b50c1c;
     border-right-width: 1px !important;
     outline: 0;
-    box-shadow: none;
+    box-shadow: none
 }
 
 .ant-form-item-has-error .ant-input-disabled,
@@ -23614,7 +23600,7 @@ not all and (min-resolution: 0.001dpcm) {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-form legend {
@@ -23633,20 +23619,20 @@ not all and (min-resolution: 0.001dpcm) {
     font-size: 14px;
 }
 
-.ant-form input[type="search"] {
+.ant-form input[type='search'] {
     box-sizing: border-box;
 }
 
-.ant-form input[type="radio"],
-.ant-form input[type="checkbox"] {
+.ant-form input[type='radio'],
+.ant-form input[type='checkbox'] {
     line-height: normal;
 }
 
-.ant-form input[type="file"] {
+.ant-form input[type='file'] {
     display: block;
 }
 
-.ant-form input[type="range"] {
+.ant-form input[type='range'] {
     display: block;
     width: 100%;
 }
@@ -23656,9 +23642,9 @@ not all and (min-resolution: 0.001dpcm) {
     height: auto;
 }
 
-.ant-form input[type="file"]:focus,
-.ant-form input[type="radio"]:focus,
-.ant-form input[type="checkbox"]:focus {
+.ant-form input[type='file']:focus,
+.ant-form input[type='radio']:focus,
+.ant-form input[type='checkbox']:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
@@ -23702,7 +23688,7 @@ not all and (min-resolution: 0.001dpcm) {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     margin-bottom: 24px;
     vertical-align: top;
 }
@@ -23750,7 +23736,7 @@ not all and (min-resolution: 0.001dpcm) {
     font-size: 14px;
     font-family: SimSun, sans-serif;
     line-height: 1;
-    content: "*";
+    content: '*';
 }
 
 .ant-form-hide-required-mark .ant-form-item-label>label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
@@ -23777,14 +23763,14 @@ not all and (min-resolution: 0.001dpcm) {
 }
 
 .ant-form-item-label>label::after {
-    content: ":";
+    content: ':';
     position: relative;
     top: -0.5px;
     margin: 0 8px 0 2px;
 }
 
 .ant-form-item-label>label.ant-form-item-no-colon::after {
-    content: " ";
+    content: ' ';
 }
 
 .ant-form-item-control {
@@ -23793,7 +23779,7 @@ not all and (min-resolution: 0.001dpcm) {
     flex-grow: 1;
 }
 
-.ant-form-item-control:first-child:not([class^="ant-col-"]):not([class*=" ant-col-"]) {
+.ant-form-item-control:first-child:not([class^='ant-col-']):not([class*=' ant-col-']) {
     width: 100%;
 }
 
@@ -24187,7 +24173,7 @@ not all and (min-resolution: 0.001dpcm) {
     width: 1px;
     height: 50%;
     margin-right: -1px;
-    content: "";
+    content: '';
 }
 
 .ant-image-preview-moving .ant-image-preview-img {
@@ -24211,7 +24197,7 @@ not all and (min-resolution: 0.001dpcm) {
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     top: 0;
     right: 0;
@@ -24296,7 +24282,7 @@ not all and (min-resolution: 0.001dpcm) {
     box-sizing: border-box;
     font-variant: tabular-nums;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     width: 100%;
     padding: 4px 11px;
@@ -24532,8 +24518,8 @@ textarea.ant-input-number {
     text-overflow: ellipsis;
 }
 
-.ant-input-number-input[type="number"]::-webkit-inner-spin-button,
-.ant-input-number-input[type="number"]::-webkit-outer-spin-button {
+.ant-input-number-input[type='number']::-webkit-inner-spin-button,
+.ant-input-number-input[type='number']::-webkit-outer-spin-button {
     margin: 0;
     -webkit-appearance: none;
 }
@@ -24669,20 +24655,14 @@ textarea.ant-input-number {
 .ant-layout-header {
     position: fixed;
     width: 100%;
-    height: 100px;
-    padding: 15px 100px;
-    background: var(--blue);
+    padding: 18px 0 0 0;
+    background: var(--header);
     z-index: 999;
 }
 
 .ant-layout-footer {
-    width: 100%;
-    height: 180px;
-    padding: 25px 0;
-    color: var(--white);
-    background: var(--blue);
-    text-align: center;
-    z-index: 99;
+    background: var(--footer);
+    padding: 0 0 18px 0;
 }
 
 .ant-layout-content {
@@ -24757,7 +24737,7 @@ textarea.ant-input-number {
     left: 0;
     background: transparent;
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-layout-sider-zero-width-trigger:hover::after {
@@ -24800,7 +24780,7 @@ textarea.ant-input-number {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
 }
 
@@ -25192,7 +25172,7 @@ textarea.ant-input-number {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     display: none;
     color: #1890ff;
@@ -25284,7 +25264,7 @@ textarea.ant-input-number {
     background: #fff;
     opacity: 0;
     transition: all 0.3s;
-    content: "";
+    content: '';
     pointer-events: none;
 }
 
@@ -25453,7 +25433,7 @@ textarea.ant-input-number {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-pagination ul,
@@ -25469,7 +25449,7 @@ textarea.ant-input-number {
     height: 0;
     overflow: hidden;
     visibility: hidden;
-    content: " ";
+    content: ' ';
 }
 
 .ant-pagination-total-text {
@@ -25988,7 +25968,7 @@ textarea.ant-pagination-options-quick-jumper input {
     margin: 0;
     font-variant: tabular-nums;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     width: 100%;
     padding: 4px 11px;
     color: rgba(0, 0, 0, 0.85);
@@ -26197,7 +26177,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     top: -9999px;
     left: -9999px;
@@ -26285,7 +26265,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: fixed;
     top: 16px;
     left: 0;
@@ -26385,7 +26365,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     top: 100px;
     width: auto;
@@ -26531,7 +26511,7 @@ textarea.ant-mentions {
     width: 0;
     height: 100%;
     vertical-align: middle;
-    content: "";
+    content: '';
 }
 
 .ant-modal-centered .ant-modal {
@@ -26563,7 +26543,7 @@ textarea.ant-mentions {
 .ant-modal-confirm-body-wrapper::before,
 .ant-modal-confirm-body-wrapper::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-modal-confirm-body-wrapper::after {
@@ -26635,7 +26615,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: fixed;
     z-index: 1010;
     width: 384px;
@@ -26691,7 +26671,7 @@ textarea.ant-mentions {
 
 .ant-notification-notice-message-single-line-auto-margin::before {
     display: block;
-    content: "";
+    content: '';
 }
 
 .ant-notification-notice-description {
@@ -26900,7 +26880,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     padding: 16px 24px;
     background-color: #fff;
@@ -27090,7 +27070,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: absolute;
     top: 0;
     left: 0;
@@ -27108,7 +27088,7 @@ textarea.ant-mentions {
 .ant-popover::after {
     position: absolute;
     background: rgba(255, 255, 255, 0.01);
-    content: "";
+    content: '';
 }
 
 .ant-popover-hidden {
@@ -27320,7 +27300,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
 }
 
@@ -27413,7 +27393,7 @@ textarea.ant-mentions {
     opacity: 0;
     -webkit-animation: ant-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
     animation: ant-progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
-    content: "";
+    content: '';
 }
 
 .ant-progress-status-exception .ant-progress-bg {
@@ -27516,7 +27496,7 @@ textarea.ant-mentions {
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -27704,9 +27684,19 @@ textarea.ant-mentions {
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 .ant-skeleton {
-    display: table;
     width: 100%;
-    padding: 32px 0;
+    padding-top: 95px;
+    height: calc(100vh - 145px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 1600px) {
+    .ant-skeleton {
+        padding-top: 90px;
+        height: calc(100vh - 150px);
+    }
 }
 
 .ant-skeleton-header {
@@ -27801,50 +27791,35 @@ textarea.ant-mentions {
 
 .ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-title,
 .ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-paragraph>li {
-    background: linear-gradient(90deg,
-            rgba(190, 190, 190, 0.2) 25%,
-            rgba(129, 129, 129, 0.24) 37%,
-            rgba(190, 190, 190, 0.2) 63%);
+    background: linear-gradient(90deg, rgba(190, 190, 190, 0.2) 25%, rgba(129, 129, 129, 0.24) 37%, rgba(190, 190, 190, 0.2) 63%);
     background-size: 400% 100%;
     -webkit-animation: ant-skeleton-loading 1.4s ease infinite;
     animation: ant-skeleton-loading 1.4s ease infinite;
 }
 
 .ant-skeleton.ant-skeleton-active .ant-skeleton-avatar {
-    background: linear-gradient(90deg,
-            rgba(190, 190, 190, 0.2) 25%,
-            rgba(129, 129, 129, 0.24) 37%,
-            rgba(190, 190, 190, 0.2) 63%);
+    background: linear-gradient(90deg, rgba(190, 190, 190, 0.2) 25%, rgba(129, 129, 129, 0.24) 37%, rgba(190, 190, 190, 0.2) 63%);
     background-size: 400% 100%;
     -webkit-animation: ant-skeleton-loading 1.4s ease infinite;
     animation: ant-skeleton-loading 1.4s ease infinite;
 }
 
 .ant-skeleton.ant-skeleton-active .ant-skeleton-button {
-    background: linear-gradient(90deg,
-            rgba(190, 190, 190, 0.2) 25%,
-            rgba(129, 129, 129, 0.24) 37%,
-            rgba(190, 190, 190, 0.2) 63%);
+    background: linear-gradient(90deg, rgba(190, 190, 190, 0.2) 25%, rgba(129, 129, 129, 0.24) 37%, rgba(190, 190, 190, 0.2) 63%);
     background-size: 400% 100%;
     -webkit-animation: ant-skeleton-loading 1.4s ease infinite;
     animation: ant-skeleton-loading 1.4s ease infinite;
 }
 
 .ant-skeleton.ant-skeleton-active .ant-skeleton-input {
-    background: linear-gradient(90deg,
-            rgba(190, 190, 190, 0.2) 25%,
-            rgba(129, 129, 129, 0.24) 37%,
-            rgba(190, 190, 190, 0.2) 63%);
+    background: linear-gradient(90deg, rgba(190, 190, 190, 0.2) 25%, rgba(129, 129, 129, 0.24) 37%, rgba(190, 190, 190, 0.2) 63%);
     background-size: 400% 100%;
     -webkit-animation: ant-skeleton-loading 1.4s ease infinite;
     animation: ant-skeleton-loading 1.4s ease infinite;
 }
 
 .ant-skeleton.ant-skeleton-active .ant-skeleton-image {
-    background: linear-gradient(90deg,
-            rgba(190, 190, 190, 0.2) 25%,
-            rgba(129, 129, 129, 0.24) 37%,
-            rgba(190, 190, 190, 0.2) 63%);
+    background: linear-gradient(90deg, rgba(190, 190, 190, 0.2) 25%, rgba(129, 129, 129, 0.24) 37%, rgba(190, 190, 190, 0.2) 63%);
     background-size: 400% 100%;
     -webkit-animation: ant-skeleton-loading 1.4s ease infinite;
     animation: ant-skeleton-loading 1.4s ease infinite;
@@ -28062,7 +28037,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     height: 12px;
     margin: 14px 6px 10px;
@@ -28150,8 +28125,7 @@ textarea.ant-mentions {
     border-radius: 50%;
     box-shadow: 0;
     cursor: pointer;
-    transition: border-color 0.3s, box-shadow 0.6s,
-        transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    transition: border-color 0.3s, box-shadow 0.6s, transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
 .ant-slider-handle:focus {
@@ -28298,7 +28272,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-statistic-title {
@@ -28310,9 +28284,7 @@ textarea.ant-mentions {
 .ant-statistic-content {
     color: rgba(0, 0, 0, 0.85);
     font-size: 24px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 .ant-statistic-content-value {
@@ -28360,7 +28332,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: flex;
     width: 100%;
     font-size: 0;
@@ -28398,9 +28370,7 @@ textarea.ant-mentions {
     height: 32px;
     margin-right: 8px;
     font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     line-height: 32px;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.25);
@@ -28430,7 +28400,7 @@ textarea.ant-mentions {
     background: #f0f0f0;
     border-radius: 1px;
     transition: background 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-steps-item-title {
@@ -28450,7 +28420,7 @@ textarea.ant-mentions {
     width: 9999px;
     height: 1px;
     background: #f0f0f0;
-    content: "";
+    content: '';
 }
 
 .ant-steps-item-subtitle {
@@ -28598,27 +28568,27 @@ textarea.ant-mentions {
     background: #ff4d4f;
 }
 
-.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role="button"] {
+.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role='button'] {
     cursor: pointer;
 }
 
-.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role="button"] .ant-steps-item-title,
-.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role="button"] .ant-steps-item-description,
-.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role="button"] .ant-steps-item-icon .ant-steps-icon {
+.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role='button'] .ant-steps-item-title,
+.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role='button'] .ant-steps-item-description,
+.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role='button'] .ant-steps-item-icon .ant-steps-icon {
     transition: color 0.3s;
 }
 
-.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role="button"]:hover .ant-steps-item-title,
-.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role="button"]:hover .ant-steps-item-subtitle,
-.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role="button"]:hover .ant-steps-item-description {
+.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role='button']:hover .ant-steps-item-title,
+.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role='button']:hover .ant-steps-item-subtitle,
+.ant-steps .ant-steps-item:not(.ant-steps-item-active)>.ant-steps-item-container[role='button']:hover .ant-steps-item-description {
     color: #1890ff;
 }
 
-.ant-steps .ant-steps-item:not(.ant-steps-item-active):not(.ant-steps-item-process)>.ant-steps-item-container[role="button"]:hover .ant-steps-item-icon {
+.ant-steps .ant-steps-item:not(.ant-steps-item-active):not(.ant-steps-item-process)>.ant-steps-item-container[role='button']:hover .ant-steps-item-icon {
     border-color: #1890ff;
 }
 
-.ant-steps .ant-steps-item:not(.ant-steps-item-active):not(.ant-steps-item-process)>.ant-steps-item-container[role="button"]:hover .ant-steps-item-icon .ant-steps-icon {
+.ant-steps .ant-steps-item:not(.ant-steps-item-active):not(.ant-steps-item-process)>.ant-steps-item-container[role='button']:hover .ant-steps-item-icon .ant-steps-icon {
     color: #1890ff;
 }
 
@@ -28937,7 +28907,7 @@ textarea.ant-mentions {
     width: 60px;
     height: 32px;
     background: rgba(0, 0, 0, 0.001);
-    content: "";
+    content: '';
 }
 
 .ant-steps-dot .ant-steps-item-content,
@@ -29015,11 +28985,11 @@ textarea.ant-mentions {
     display: none;
 }
 
-.ant-steps-navigation .ant-steps-item:not(.ant-steps-item-active) .ant-steps-item-container[role="button"] {
+.ant-steps-navigation .ant-steps-item:not(.ant-steps-item-active) .ant-steps-item-container[role='button'] {
     cursor: pointer;
 }
 
-.ant-steps-navigation .ant-steps-item:not(.ant-steps-item-active) .ant-steps-item-container[role="button"]:hover {
+.ant-steps-navigation .ant-steps-item:not(.ant-steps-item-active) .ant-steps-item-container[role='button']:hover {
     opacity: 0.85;
 }
 
@@ -29044,7 +29014,7 @@ textarea.ant-mentions {
     border-bottom: none;
     border-left: none;
     transform: rotate(45deg);
-    content: "";
+    content: '';
 }
 
 .ant-steps-navigation .ant-steps-item::before {
@@ -29057,7 +29027,7 @@ textarea.ant-mentions {
     background-color: #1890ff;
     transition: width 0.3s, left 0.3s;
     transition-timing-function: ease-out;
-    content: "";
+    content: '';
 }
 
 .ant-steps-navigation .ant-steps-item.ant-steps-item-active::before {
@@ -29128,7 +29098,7 @@ textarea.ant-mentions {
     width: 10px;
     height: 8px;
     background: #fff;
-    content: "";
+    content: '';
 }
 
 .ant-steps-flex-not-supported.ant-steps-dot .ant-steps-item .ant-steps-icon-dot::after {
@@ -29152,7 +29122,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     display: inline-block;
     box-sizing: border-box;
@@ -29190,7 +29160,7 @@ textarea.ant-mentions {
     border-radius: 18px;
     cursor: pointer;
     transition: all 0.36s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-    content: " ";
+    content: ' ';
 }
 
 .ant-switch::after {
@@ -29279,7 +29249,7 @@ textarea.ant-mentions {
 }
 
 .ant-switch-checked {
-    background-color: var(--bluesky);
+    background-color: #407EC9;
 }
 
 .ant-switch-checked .ant-switch-inner {
@@ -29347,7 +29317,7 @@ textarea.ant-mentions {
 .ant-table-wrapper::before,
 .ant-table-wrapper::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-table-wrapper::after {
@@ -29363,7 +29333,7 @@ textarea.ant-mentions {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     clear: both;
     background: #fff;
@@ -29399,7 +29369,7 @@ textarea.ant-mentions {
     transition: background 0.3s ease;
 }
 
-.ant-table-thead>tr>th[colspan]:not([colspan="1"]) {
+.ant-table-thead>tr>th[colspan]:not([colspan='1']) {
     text-align: center;
 }
 
@@ -29554,7 +29524,7 @@ textarea.ant-mentions {
     left: 0;
     background: transparent;
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-table-thead>tr>th .ant-table-header-column .ant-table-column-sorters:hover::before {
@@ -29627,7 +29597,7 @@ textarea.ant-mentions {
     width: 100%;
     height: 1px;
     background: #fafafa;
-    content: "";
+    content: '';
 }
 
 .ant-table.ant-table-bordered .ant-table-footer {
@@ -29927,11 +29897,11 @@ textarea.ant-mentions {
 }
 
 .ant-table-row-expanded::after {
-    content: "-";
+    content: '-';
 }
 
 .ant-table-row-collapsed::after {
-    content: "+";
+    content: '+';
 }
 
 .ant-table-row-spaced {
@@ -29939,7 +29909,7 @@ textarea.ant-mentions {
 }
 
 .ant-table-row-spaced::after {
-    content: ".";
+    content: '.';
 }
 
 .ant-table-row-cell-ellipsis,
@@ -30117,7 +30087,7 @@ tr.ant-table-expanded-row td>.ant-table-wrapper {
     margin-right: 0;
 }
 
-.ant-table-row[class*="ant-table-row-level-0"] .ant-table-selection-column>span {
+.ant-table-row[class*='ant-table-row-level-0'] .ant-table-selection-column>span {
     display: inline-block;
 }
 
@@ -30137,7 +30107,7 @@ tr.ant-table-expanded-row td>.ant-table-wrapper {
     width: 30px;
     transform: translateX(100%);
     transition: box-shadow 0.3s;
-    content: "";
+    content: '';
     pointer-events: none;
 }
 
@@ -30150,7 +30120,7 @@ tr.ant-table-expanded-row td>.ant-table-wrapper {
     width: 30px;
     transform: translateX(-100%);
     transition: box-shadow 0.3s;
-    content: "";
+    content: '';
     pointer-events: none;
 }
 
@@ -30162,7 +30132,7 @@ tr.ant-table-expanded-row td>.ant-table-wrapper {
     z-index: 1;
     width: 30px;
     transition: box-shadow 0.3s;
-    content: "";
+    content: '';
     pointer-events: none;
 }
 
@@ -30289,7 +30259,7 @@ tr.ant-table-expanded-row td>.ant-table-wrapper {
     font-size: 14px;
     font-variant: tabular-nums;
     line-height: 1.5715;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     margin: 0;
     padding: 0;
     list-style: none;
@@ -30530,7 +30500,7 @@ tr.ant-table-expanded-row td>.ant-table-wrapper {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
 }
 
@@ -30761,7 +30731,7 @@ span.ant-transfer-list-search-action {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     top: -0.09em;
     display: inline-block;
@@ -30791,7 +30761,7 @@ span.ant-transfer-list-search-action {
     animation: antCheckboxEffect 0.36s ease-in-out;
     -webkit-animation-fill-mode: backwards;
     animation-fill-mode: backwards;
-    content: "";
+    content: '';
 }
 
 .ant-select-tree-checkbox:hover::after,
@@ -30826,7 +30796,7 @@ span.ant-transfer-list-search-action {
     transform: rotate(45deg) scale(0) translate(-50%, -50%);
     opacity: 0;
     transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
-    content: " ";
+    content: ' ';
 }
 
 .ant-select-tree-checkbox-input {
@@ -30851,7 +30821,7 @@ span.ant-transfer-list-search-action {
     transform: rotate(45deg) scale(1) translate(-50%, -50%);
     opacity: 1;
     transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-    content: " ";
+    content: ' ';
 }
 
 .ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner {
@@ -30904,7 +30874,7 @@ span.ant-transfer-list-search-action {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
     line-height: unset;
     cursor: pointer;
@@ -30932,7 +30902,7 @@ span.ant-transfer-list-search-action {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
 }
 
@@ -30963,7 +30933,7 @@ span.ant-transfer-list-search-action {
     border: 0;
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    content: " ";
+    content: ' ';
 }
 
 .ant-select-tree-checkbox-indeterminate.ant-select-tree-checkbox-disabled .ant-select-tree-checkbox-inner::after {
@@ -30979,7 +30949,7 @@ span.ant-transfer-list-search-action {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     margin: 0;
     margin-top: -4px;
     padding: 0 4px;
@@ -31176,7 +31146,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-select-tree-dropdown .ant-select-dropdown-search {
@@ -31293,7 +31263,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     left: 0;
     height: 24px;
     transition: all 0.3s;
-    content: "";
+    content: '';
 }
 
 .ant-tree.ant-tree-directory>li span.ant-tree-node-content-wrapper>span,
@@ -31341,7 +31311,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     position: relative;
     top: -0.09em;
     display: inline-block;
@@ -31371,7 +31341,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     animation: antCheckboxEffect 0.36s ease-in-out;
     -webkit-animation-fill-mode: backwards;
     animation-fill-mode: backwards;
-    content: "";
+    content: '';
 }
 
 .ant-tree-checkbox:hover::after,
@@ -31406,7 +31376,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     transform: rotate(45deg) scale(0) translate(-50%, -50%);
     opacity: 0;
     transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
-    content: " ";
+    content: ' ';
 }
 
 .ant-tree-checkbox-input {
@@ -31431,7 +31401,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     transform: rotate(45deg) scale(1) translate(-50%, -50%);
     opacity: 1;
     transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-    content: " ";
+    content: ' ';
 }
 
 .ant-tree-checkbox-checked .ant-tree-checkbox-inner {
@@ -31484,7 +31454,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
     line-height: unset;
     cursor: pointer;
@@ -31512,7 +31482,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     display: inline-block;
 }
 
@@ -31543,7 +31513,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     border: 0;
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    content: " ";
+    content: ' ';
 }
 
 .ant-tree-checkbox-indeterminate.ant-tree-checkbox-disabled .ant-tree-checkbox-inner::after {
@@ -31559,7 +31529,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     margin: 0;
     padding: 0;
 }
@@ -31588,7 +31558,7 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
 }
 
 .ant-tree li span[draggable],
-.ant-tree li span[draggable="true"] {
+.ant-tree li span[draggable='true'] {
     line-height: 20px;
     border-top: 2px transparent solid;
     border-bottom: 2px transparent solid;
@@ -31844,7 +31814,7 @@ li.ant-tree-treenode-disabled>.ant-tree-node-content-wrapper:hover {
     height: calc(100% - 22px);
     margin: 22px 0 0;
     border-left: 1px solid #d9d9d9;
-    content: " ";
+    content: ' ';
 }
 
 .ant-tree.ant-tree-icon-hide .ant-tree-treenode-loading .ant-tree-iconEle {
@@ -32278,7 +32248,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
     outline: 0;
 }
 
@@ -32292,7 +32262,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
     outline: none;
 }
 
-.ant-upload input[type="file"] {
+.ant-upload input[type='file'] {
     cursor: pointer;
 }
 
@@ -32413,7 +32383,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-upload-picture-card-wrapper::before,
 .ant-upload-picture-card-wrapper::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-upload-picture-card-wrapper::after {
@@ -32429,13 +32399,13 @@ div.ant-typography-edit-content.ant-typography-rtl {
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
-    font-feature-settings: "tnum";
+    font-feature-settings: 'tnum';
 }
 
 .ant-upload-list::before,
 .ant-upload-list::after {
     display: table;
-    content: "";
+    content: '';
 }
 
 .ant-upload-list::after {
@@ -32713,7 +32683,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: all 0.3s;
-    content: " ";
+    content: ' ';
 }
 
 .ant-upload-list-picture-card .ant-upload-list-item:hover .ant-upload-list-item-info::before {
@@ -32837,6 +32807,10 @@ div.ant-typography-edit-content.ant-typography-rtl {
     animation-name: uploadAnimateInlineOut;
 }
 
+.text-start {
+    text-align: start;
+}
+
 @-webkit-keyframes uploadAnimateIn {
     from {
         height: 0;
@@ -32912,5 +32886,6 @@ div.ant-typography-edit-content.ant-typography-rtl {
         opacity: 0;
     }
 }
+
 
 /*# sourceMappingURL=antd.css.map*/

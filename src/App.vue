@@ -1,15 +1,10 @@
 <template>
-
-<img src="./../public/img/assets/shape2.png" class="watermark">
-
   <!--Navbar-->
   <Navbar />
-  <div class="container">
-    <!--Skeleton-->
-    <a-skeleton active :paragraph="{ rows: 8 }" v-if="loading" />
-    <!--Main-->
-    <router-view v-else />
-  </div>
+  <!--Skeleton-->
+  <a-skeleton active :paragraph="{ rows: 12 }" class="container" v-if="loading" />
+  <!--Main-->
+  <router-view v-else />
   <!--Footer-->
   <Footer />
 </template>

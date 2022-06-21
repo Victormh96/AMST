@@ -3,73 +3,47 @@
 /* ============================================================*/
 
 :root {
+    --header: #ffffff;
+    --body: #ffffff;
+    --footer: #ffffff;
     --blue: #13274A;
-    --bluelight: #1B3665;
     --bluesky: #407EC9;
+    --grey: #3C3C3B;
     --white: #ffffff;
-    --grey: #3C3C3B;
-    --greylight: #d9d9d9;
-    --filter: 1
+    --filter: 0;
 }
 
-html[data-theme="light"] {
+html[data-theme="dark"] {
+    --header: #13274A;
+    --body: #13274A;
+    --footer: #13274A;
     --blue: #ffffff;
-    --bluelight: #1B3665;
-    --bluesky: #407EC9;
+    --bluesky: #ffffff;
+    --grey: #ffffff;
     --white: #13274A;
-    --grey: #3C3C3B;
-    --greylight: #d9d9d9;
-    --filter: 0
-}
-
-.container {
-    max-width: 1200px;
-    min-height: calc(100vh - 180px);
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-top: 130px;
-    padding-bottom: 30px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.watermark {
-    position: absolute;
-    top: 160px;
-    right: 0;
-    width: 230px;
-    height: auto;
-    filter: invert(var(--filter));
-    opacity: .1;
+    --filter: 1;
 }
 
 /* ============================================================*/
 /* Navbar
 /* ============================================================*/
-#navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 #navbar img {
-    width: 225px;
-    height: 75px;
+    width: 170px;
+    height: 72px;
     filter: brightness(var(--filter));
 }
 
 #navbar a {
     font-size: .95rem;
     font-weight: 400;
-    color: var(--white);
+    color: var(--bluesky);
     margin: 0 8px;
     transition: all 0.5s ease;
 }
 
 #navbar a span {
-    background: var(--bluesky);
+    background: #407EC9;
+    color: #ffffff;
     padding: 10px 15px;
     border-radius: 50px;
 }
@@ -154,43 +128,62 @@ html[data-theme="light"] {
     height: 45px;
     width: 100%;
 }
-@media (min-width: 1600px) {
-    html{
-        background-color: red !important;
-    }
-}
+
 /* ============================================================*/
 /* Home
 /* ============================================================*/
 #home {
-    margin: 30px 0;
+    width: 100%;
+    height: calc(100vh - 245px);
+    margin: 95px 0 0 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 1600px) {
+    #home {
+        height: calc(100vh - 250px);
+        margin: 90px 0 0 0;
+    }
 }
 
 #home h1 {
-    font-size: 60px;
+    font-size: 3.5rem;
     font-weight: 900;
     line-height: 1.3;
-    color: var(--bluesky);
-}
-
-#home img {
-    width: 350px;
-    height: auto;
+    margin: 0 100px 20px 0;
+    color: #407EC9;
 }
 
 #home p {
-    font-size: .85rem;
+    font-size: 1.1rem;
     font-weight: 400;
-    line-height: 1.3;
-    color: var(--white);
+    line-height: 1.6;
+    margin: 0 100px 30px 0;
+    color: var(--grey);
 }
 
 #home a {
-    font-size: 1rem;
-    background: var(--bluesky);
-    color: var(--white);
-    padding: 10px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: #407EC9;
+    color: #ffffff;
+    display: block;
+    width: 260px;
+    padding: 12px 0;
     border-radius: 50px;
+}
+
+#home img {
+    width: 400px;
+    height: auto;
+}
+
+@media (min-width: 1600px) {
+    #home img {
+        width: 460px;
+    }
 }
 
 /* ============================================================*/
@@ -208,16 +201,16 @@ html[data-theme="light"] {
 }
 
 #footer .ubicacion p {
-    width: 200px;
-    text-align: start;
     font-size: .8rem;
-    color: var(--white);
+    width: 200px;
+    color: var(--bluesky);
+    text-align: start;
     margin: auto;
     opacity: .8;
 }
 
 #footer .logo img {
-    width: 250px;
+    width: 195px;
     height: 83px;
     filter: brightness(var(--filter));
 }
@@ -228,9 +221,9 @@ html[data-theme="light"] {
 
 #footer .social-media a {
     font-size: 25px;
-    width: 60px;
-    height: 60px;
-    color: var(--blue);
+    width: 63px;
+    height: 63px;
+    color: var(--white);
     background: var(--bluesky);
     margin: 0 15px;
     border-radius: 100%;
@@ -246,14 +239,14 @@ html[data-theme="light"] {
 }
 
 #footer .social-media a:hover {
-    color: var(--white);
-    background: var(--blue);
+    color: var(--bluesky);
+    background: var(--white);
     border: solid;
 }
 
 #footer .ano p {
     font-size: .75rem;
-    color: var(--white);
+    color: var(--bluesky);
     margin: 0;
     opacity: .8;
 }
