@@ -3,7 +3,7 @@
         <div class="container">
             <a-row>
                 <!--Ubicacion-->
-                <a-col :xl="8" class="text-left">
+                <a-col :xl="8" class="text-left d-sm-none">
                     <div class="ubicacion">
                         <img src="../../public/img/assets/shape.png" alt="Alcaldia Municipal Santa Tecla">
                         <p>2a Av. Norte y 1a C Poniente.

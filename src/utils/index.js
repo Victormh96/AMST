@@ -5,7 +5,17 @@ const getYear = () => {
     return year
 }
 
-//Exports
+//Theme
+const getheme = () => {
+    if (localStorage.data === 'true') {
+        document.querySelector('html').setAttribute('data-theme', 'dark')
+    } else {
+        document.querySelector('html').setAttribute('data-theme', '')
+    }
+}
+
+//Exports 
 export {
-    getYear
+    getYear,
+    getheme
 }
