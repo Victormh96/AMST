@@ -32888,19 +32888,19 @@ div.ant-typography-edit-content.ant-typography-rtl {
     text-align: start;
 }
 
-/* Ocultar mobile*/
-@media (max-width: 991px) {
+/*mobile*/
+@media (max-width: 1199px) {
     .d-sm-none {
         display: none !important;
     }
 
-    .pl-5 {
+    .pl-6 {
         padding: 0;
     }
 }
 
-/* Ocultar monitor*/
-@media (min-width: 992px) {
+/*Display*/
+@media (min-width: 1200px) {
     .d-lg-none {
         display: none !important;
     }
