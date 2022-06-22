@@ -77,6 +77,12 @@
     text-align: center;
 }
 
+@media (max-width: 575.98px) {
+    .text-medium {
+        text-align: center !important;
+    }
+}
+
 .pt-0 {
     padding-top: 0;
 }
@@ -175,6 +181,12 @@
 
 .pr-5 {
     padding-right: 2rem;
+}
+
+@media (max-width: 575.98px) {
+    .pbm-7 {
+        padding-bottom: 5rem;
+    }
 }
 
 .m-auto {
@@ -300,6 +312,12 @@ html {
     -ms-text-size-adjust: 100%;
     -ms-overflow-style: scrollbar;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@media (max-width: 575.98px) {
+    html {
+        font-size: 75%;
+    }
 }
 
 @-ms-viewport {
@@ -8729,7 +8747,7 @@ a.ant-btn-sm {
 .ant-menu-vertical-right .ant-menu-submenu-title,
 .ant-menu-inline .ant-menu-submenu-title {
     height: 40px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     overflow: hidden;
     line-height: 40px;
     text-overflow: ellipsis;
@@ -8750,8 +8768,8 @@ a.ant-btn-sm {
 .ant-menu-vertical-left>.ant-menu-submenu>.ant-menu-submenu-title,
 .ant-menu-vertical-right>.ant-menu-submenu>.ant-menu-submenu-title,
 .ant-menu-inline>.ant-menu-submenu>.ant-menu-submenu-title {
-    height: 52px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 35px;
 }
 
 .ant-menu-vertical .ant-menu-item-group-list .ant-menu-submenu-title,
@@ -8948,15 +8966,20 @@ a.ant-btn-sm {
     background: rgba(0, 0, 0, 0.25) !important;
 }
 
-.ant-layout-header .ant-menu {
+.ant-menu {
     position: fixed;
+    left: 0;
     bottom: 0;
     width: 100%;
     background: var(--header);
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border-top: solid 3px;
+    border-top: solid 3px var(--hr);
+}
+
+.ant-menu a {
+    font-size: 25px !important;
 }
 
 .ant-menu-light .ant-menu-item:hover,
@@ -11635,6 +11658,7 @@ span.ant-radio+* {
     position: relative;
     max-width: 100%;
     min-height: 1px;
+    z-index: 99;
 }
 
 .ant-col-24 {
@@ -24729,6 +24753,12 @@ textarea.ant-input-number {
     z-index: 999;
 }
 
+@media (max-width: 575.98px) {
+    .ant-layout-header {
+        padding: 5px 0 0 0;
+    }
+}
+
 .ant-layout-footer {
     background: var(--footer);
     padding: 0 0 18px 0;
@@ -24755,6 +24785,14 @@ textarea.ant-input-number {
     filter: invert(var(--filter));
     opacity: .1;
     z-index: 9;
+}
+
+@media (max-width: 575.98px) {
+    .ant-layout-content:after {
+        bottom: -220px;
+        width: 180px;
+        height: 370px;
+    }
 }
 
 .ant-layout-sider {

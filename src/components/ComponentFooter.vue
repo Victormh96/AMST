@@ -12,13 +12,13 @@
                     </div>
                 </a-col>
                 <!--logo-->
-                <a-col :xl="8" class="text-center">
+                <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="8" class="text-center d-sm-none">
                     <div class="logo">
                         <img src="../../public/img/iconox2.png" alt="ubicacion">
                     </div>
                 </a-col>
                 <!--Redes-->
-                <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="8" class="m-auto text-right">
+                <a-col :xs="24" :sm="24" :md="14" :lg="14" :xl="8" class="m-auto text-right text-medium">
                     <div class="social-media">
                         <a href="tel:0000-0000" target="_blank">
                             <i class="fa-solid fa-phone"></i>
@@ -35,7 +35,7 @@
                     </div>
                 </a-col>
                 <!--Año-->
-                <a-col :span="24" class="pt-4 text-center">
+                <a-col :span="24" class="pt-4 pbm-7 text-center">
                     <div class="ano">
                         <p>© {{ year() }} - Alcaldía Municipal de Santa Tecla , La Libertad, El Salvador. Todos los
                             Derechos
