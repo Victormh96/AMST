@@ -1,5 +1,5 @@
 <template>
-  <!--Main-->
+  <!--router-->
   <router-view />
 </template>
 
