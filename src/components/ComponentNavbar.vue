@@ -3,22 +3,22 @@
         <div class="container">
             <a-row>
                 <!--Logo-->
-                <a-col :xs="14" :sm="14" :md="14" :lg="5" :xl="4" class="text-left">
+                <a-col :xs="14" :sm="14" :md="14" :lg="5" :xl="5" class="text-left">
                     <img src="../../public/img/iconox2.png" alt="Alcaldia Municipal Santa Tecla">
                 </a-col>
                 <!--Menu-->
-                <a-col :lg="10" :xl="14" class="m-auto text-center d-sm-none">
+                <a-col :lg="10" :xl="10" class="m-auto text-center d-sm-none">
                     <router-link :to="{ name: 'Home' }">
                         Inicio
                     </router-link>
-                    <router-link :to="{ name: 'Services' }">
+                    <router-link :to="{ name: 'Home' }">
                         Servicios
                     </router-link>
-                    <router-link :to="{ name: 'Services' }">
+                    <router-link :to="{ name: 'Home' }">
                         Privacidad
                     </router-link>
                 </a-col>
-                <a-col :lg="8" :xl="5" class="m-auto text-center d-sm-none">
+                <a-col :lg="8" :xl="8" class="m-auto text-center d-sm-none">
                     <a href="#" @click="doSomethingWith(0)">Iniciar sesión</a>
                     <a href="#" @click="doSomethingWith(1)"><span>Crear cuenta</span></a>
                 </a-col>
@@ -34,12 +34,12 @@
                         </router-link>
                     </a-menu-item>
                     <a-menu-item>
-                        <router-link :to="{ name: 'Services' }">
+                        <router-link :to="{ name: 'Home' }">
                             <i class="fa-solid fa-bullseye"></i>
                         </router-link>
                     </a-menu-item>
                     <a-menu-item>
-                        <router-link :to="{ name: 'Services' }">
+                        <router-link :to="{ name: 'Home' }">
                             <i class="fa-solid fa-bullseye"></i>
                         </router-link>
                     </a-menu-item>

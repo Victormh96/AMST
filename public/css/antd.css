@@ -61,7 +61,13 @@
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1350px;
+        max-width: 1240px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1440px;
     }
 }
 
@@ -77,6 +83,7 @@
     text-align: center;
 }
 
+/*===Responsive===**/
 @media (max-width: 1199px) {
     .text-middle {
         text-align: center !important;
@@ -156,7 +163,7 @@
 }
 
 .pl-6 {
-    padding-left: 2rem;
+    padding-left: 6rem;
 }
 
 .pr-0 {
@@ -308,15 +315,17 @@ html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/*===Phone===**/
 @media (max-width: 575.98px) {
     html {
         font-size: 75%;
     }
 }
 
-@media (max-width: 920px) and (orientation: landscape) {
+/*===Ipad===**/
+@media (min-width: 992px) and (max-width: 1199.98px) {
     html {
-        font-size: 75%;
+        font-size: 88%;
     }
 }
 
@@ -8298,7 +8307,7 @@ a.ant-btn-sm {
 
 .ant-menu {
     box-sizing: border-box;
-    margin: 0; 
+    margin: 0;
     padding: 0;
     font-variant: tabular-nums;
     line-height: 1.5715;
@@ -8769,6 +8778,10 @@ a.ant-btn-sm {
     line-height: 35px;
 }
 
+.ant-menu-vertical>.ant-menu-item:hover {
+    background: var(--hover);
+}
+
 .ant-menu-vertical .ant-menu-item-group-list .ant-menu-submenu-title,
 .ant-menu-vertical .ant-menu-submenu-title {
     padding-right: 34px;
@@ -8982,7 +8995,12 @@ a.ant-btn-sm {
 
 @media (max-width: 920px) and (orientation: landscape) {
     .ant-menu a {
-        font-size: 25px !important;
+        margin: 0 60px !important;
+    }
+}
+
+@media (min-width: 559px) and (max-width: 991.98px) {
+    .ant-menu a {
         margin: 0 60px !important;
     }
 }
@@ -24753,15 +24771,9 @@ textarea.ant-input-number {
 .ant-layout-header {
     position: fixed;
     width: 100%;
-    padding: 18px 0 0 0;
+    padding: 5px 0 0 0;
     background: var(--header);
     z-index: 999;
-}
-
-@media (max-width: 1199px) {
-    .ant-layout-header {
-        padding: 5px 0 0 0;
-    }
 }
 
 .ant-layout-footer {
@@ -24774,13 +24786,14 @@ textarea.ant-input-number {
     width: 100%;
     min-height: calc(100vh - 275px);
     margin: 90px 0 40px 0;
+    padding: 10px 0 0 0;
     display: inline-flex;
 }
 
 .ant-layout-content:after {
     content: "";
     position: absolute;
-    bottom: -30px;
+    bottom: -180px;
     right: 0;
     background: url(../img/assets/shapex2.png);
     background-repeat: no-repeat;
@@ -24793,6 +24806,10 @@ textarea.ant-input-number {
 }
 
 @media (max-width: 992px) {
+    .ant-layout-content {
+        min-height: calc(100vh - 350px);
+    }
+
     .ant-layout-content:after {
         bottom: -200px;
         width: 180px;
@@ -32927,7 +32944,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
     animation-name: uploadAnimateInlineOut;
 }
 
-/*mobile*/
+/*===Phone===**/
 @media (max-width: 992px) {
     .d-sm-none {
         display: none !important;
@@ -32938,7 +32955,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
     }
 }
 
-/*Display*/
+/*===Desktop===**/
 @media (min-width: 992px) {
     .d-lg-none {
         display: none !important;

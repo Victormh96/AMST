@@ -13,17 +13,16 @@
 
       <!--Row-->
       <a-row v-else>
-        <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="14" class="m-auto pl-6">
+        <a-col :xs="24" :sm="24" :md="24" :lg="14" :xl="14" class="m-auto pl-6">
           <h1>Santa Tecla Digital Tus servicios municipales en línea</h1>
           <p>
             Ahora puedes pagar por tus impuestos, generar estado de cuentas,
             solicitar solvencias y mucho más.
           </p>
-          <center>
-            <a href="">Información</a>
-          </center>
+
+          <a href="">Información</a>
         </a-col>
-        <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="10" class="text-left text-middle">
+        <a-col :xs="24" :sm="24" :md="24" :lg="10" :xl="10" class="text-left text-middle">
           <img src="../../public/img/assets/shapex3.png" alt="amst">
         </a-col>
       </a-row>
