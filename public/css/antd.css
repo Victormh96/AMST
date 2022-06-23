@@ -77,8 +77,8 @@
     text-align: center;
 }
 
-@media (max-width: 575.98px) {
-    .text-medium {
+@media (max-width: 1199px) {
+    .text-middle {
         text-align: center !important;
     }
 }
@@ -186,6 +186,12 @@
 @media (max-width: 575.98px) {
     .pbm-7 {
         padding-bottom: 5rem;
+    }
+}
+
+@media (max-width: 920px) and (orientation: landscape) {
+    .pbm-7 {
+        padding-bottom: 4.5rem;
     }
 }
 
@@ -315,6 +321,12 @@ html {
 }
 
 @media (max-width: 575.98px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+@media (max-width: 920px) and (orientation: landscape) {
     html {
         font-size: 75%;
     }
@@ -8298,21 +8310,18 @@ a.ant-btn-sm {
 
 .ant-menu {
     box-sizing: border-box;
-    margin: 0;
+    margin: 0; 
     padding: 0;
-    border-radius: 5px 0 0 5px;
     font-variant: tabular-nums;
     line-height: 1.5715;
     font-feature-settings: 'tnum';
     margin-bottom: 0;
     padding-left: 0;
     color: var(--white);
-    font-size: .8rem;
     line-height: 0;
     text-align: left;
     list-style: none;
     outline: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     transition: background 0.3s, width 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
     float: right;
 }
@@ -8971,15 +8980,23 @@ a.ant-btn-sm {
     left: 0;
     bottom: 0;
     width: 100%;
+    font-size: 25px;
     background: var(--header);
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border-top: solid 3px var(--hr);
+    border-top: solid 2px var(--hr);
 }
 
 .ant-menu a {
     font-size: 25px !important;
+}
+
+@media (max-width: 920px) and (orientation: landscape) {
+    .ant-menu a {
+        font-size: 25px !important;
+        margin: 0 60px !important;
+    }
 }
 
 .ant-menu-light .ant-menu-item:hover,
@@ -24753,7 +24770,7 @@ textarea.ant-input-number {
     z-index: 999;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 1199px) {
     .ant-layout-header {
         padding: 5px 0 0 0;
     }
@@ -24787,7 +24804,7 @@ textarea.ant-input-number {
     z-index: 9;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 992px) {
     .ant-layout-content:after {
         bottom: -220px;
         width: 180px;
@@ -32922,12 +32939,8 @@ div.ant-typography-edit-content.ant-typography-rtl {
     animation-name: uploadAnimateInlineOut;
 }
 
-.text-start {
-    text-align: start;
-}
-
 /*mobile*/
-@media (max-width: 1199px) {
+@media (max-width: 992px) {
     .d-sm-none {
         display: none !important;
     }
@@ -32938,7 +32951,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
 }
 
 /*Display*/
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
     .d-lg-none {
         display: none !important;
     }

@@ -3,11 +3,11 @@
         <div class="container">
             <a-row>
                 <!--Logo-->
-                <a-col :xs="14" :sm="14" :md="14" :lg="14" :xl="4" class="text-left">
+                <a-col :xs="14" :sm="14" :md="14" :lg="5" :xl="4" class="text-left">
                     <img src="../../public/img/iconox2.png" alt="Alcaldia Municipal Santa Tecla">
                 </a-col>
                 <!--Menu-->
-                <a-col :xl="14" class="m-auto text-center d-sm-none">
+                <a-col :lg="10" :xl="14" class="m-auto text-center d-sm-none">
                     <router-link :to="{ name: 'Home' }">
                         Inicio
                     </router-link>
@@ -18,12 +18,12 @@
                         Privacidad
                     </router-link>
                 </a-col>
-                <a-col :xl="5" class="m-auto text-center d-sm-none">
+                <a-col :lg="8" :xl="5" class="m-auto text-center d-sm-none">
                     <a href="#" @click="doSomethingWith(0)">Iniciar sesión</a>
                     <a href="#" @click="doSomethingWith(1)"><span>Crear cuenta</span></a>
                 </a-col>
                 <!--Theme-->
-                <a-col :xs="10" :sm="10" :md="10" :lg="10" :xl="1" class="m-auto text-right">
+                <a-col :xs="10" :sm="10" :md="10" :lg="1" :xl="1" class="m-auto text-right">
                     <a-switch :checked="theme" @change="changeTheme" class="theme" />
                 </a-col>
                 <!--Responsive Menu-->
