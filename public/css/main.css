@@ -218,12 +218,6 @@ html[data-theme="dark"] {
     display: inline-flex;
 }
 
-@media (max-width: 992px) {
-    #footer .social-media {
-        margin: 50px 0 0 0;
-    }
-}
-
 #footer .social-media a {
     font-size: 25px;
     width: 63px;

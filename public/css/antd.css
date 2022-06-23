@@ -183,18 +183,6 @@
     padding-right: 2rem;
 }
 
-@media (max-width: 575.98px) {
-    .pbm-7 {
-        padding-bottom: 5rem;
-    }
-}
-
-@media (max-width: 920px) and (orientation: landscape) {
-    .pbm-7 {
-        padding-bottom: 4.5rem;
-    }
-}
-
 .m-auto {
     margin: auto;
 }
@@ -24784,8 +24772,8 @@ textarea.ant-input-number {
 .ant-layout-content {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 235px);
-    margin: 90px 0 0 0;
+    min-height: calc(100vh - 275px);
+    margin: 90px 0 40px 0;
     display: inline-flex;
 }
 
@@ -24806,7 +24794,7 @@ textarea.ant-input-number {
 
 @media (max-width: 992px) {
     .ant-layout-content:after {
-        bottom: -220px;
+        bottom: -200px;
         width: 180px;
         height: 370px;
     }

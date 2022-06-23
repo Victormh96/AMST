@@ -35,7 +35,7 @@
                     </div>
                 </a-col>
                 <!--Año-->
-                <a-col :span="24" class="pt-4 pbm-7 text-center">
+                <a-col :span="24" class="pt-4 text-center">
                     <div class="ano">
                         <p>© {{ year() }} - Alcaldía Municipal de Santa Tecla , La Libertad, El Salvador. Todos los
                             Derechos
