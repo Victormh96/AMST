@@ -1,13 +1,14 @@
 <template>
+    <!--Main-->
     <h1>Inicio de sesión</h1>
     <!--Formulario-->
     <a-form layout="vertical" autocomplete="off" :model="formState" @finish="post">
         <!--Email-->
-        <a-form-item name="email" :rules="[{ type: 'email', required: true, message: '' }]" class="mb-1">
+        <a-form-item name="email" :rules="[{ type: 'email', required: true, message: '' }]" class="mb-4">
             <a-input type="text" v-model:value="formState.email" placeholder="Email" />
         </a-form-item>
         <!--Password-->
-        <a-form-item name="password" :rules="[{ required: true, message: '' }]" class="mb-2">
+        <a-form-item name="password" :rules="[{ required: true, message: '' }]" class="mb-4">
             <a-input type="password" v-model:value="formState.password" placeholder="Contraseña" />
             <a href="#" class="component">¿Olvidaste tu
                 contraseña?</a>

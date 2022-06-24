@@ -1,14 +1,16 @@
 <template>
-  <a-modal :footer="null" :maskClosable="false" centered class="auth">
-    {{ status }}
+  <!--Modal-->
+  <a-modal class="auth" :footer="null" :maskClosable="false" centered>
+{{prueba == 0}}
+    <!--Skeleton-->
     <a-skeleton active :paragraph="{ rows: 7 }" v-if="loading" />
 
-    <div v-else>
-      <Codgio/>
+    <!--Body-->
+    <div class="w-100" v-else>
       <!--Login-->
-      <Login @finished="finish" v-if="status == 0 || this.prueba == 0" />
+      <Login @finished="finish" v-if="prueba === 0" />
       <!--Register-->
-      <Register @finished="finish" v-else />
+      <Register @finished="finish" v-if="prueba === 1" />
     </div>
 
   </a-modal>
@@ -24,10 +26,10 @@ export default {
   data() {
     return {
       loading: false,
-      prueba: null
+      prueba: this.status
     }
   },
- 
+
   props: ['status'],
 
   components: {
@@ -36,9 +38,11 @@ export default {
   },
 
   methods: {
-
     finish(data) {
-      this.prueba = data
+      console.log(data)
+
+      this.prueba = 1
+
       this.loading = true
       setTimeout(() => {
         this.loading = false;

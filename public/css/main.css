@@ -9,6 +9,7 @@
     --blue: #13274A;
     --bluesky: #407EC9;
     --grey: #3C3C3B;
+    --greylight: #D0D0D0;
     --white: #ffffff;
     --hr: #407EC9;
     --hover: rgb(19, 39, 74, 0.1);
@@ -22,6 +23,7 @@ html[data-theme="dark"] {
     --blue: #ffffff;
     --bluesky: #ffffff;
     --grey: #ffffff;
+    --greylight: #ffffff;
     --white: #13274A;
     --hr: #ffffff;
     --hover: rgb(64, 126, 201, 0.1);
@@ -137,17 +139,19 @@ html[data-theme="dark"] {
 /* ============================================================*/
 /* Auth
 /* ============================================================*/
-.auth .ant-form {
-    width: 65%;
-    margin: auto;
-}
-
 .auth h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--blue);
     text-align: center;
     margin: 10px 0 35px 0;
+}
+
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .auth h1 {
+        font-size: 2rem;
+    }
 }
 
 .auth input {
@@ -162,6 +166,15 @@ html[data-theme="dark"] {
     color: var(--bluesky);
     float: right;
     margin: 5px 0 0 0;
+    width: 100%;
+    text-align: right;
+}
+
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .auth .component {
+        font-size: .95rem;
+    }
 }
 
 .auth hr {
@@ -172,25 +185,34 @@ html[data-theme="dark"] {
     opacity: .1;
 }
 
-.auth .footer {
-    width: 65%;
-    margin: auto;
-}
-
 .auth h3 {
     font-size: .95rem;
     color: var(--blue);
     margin: 0 0 12px 0;
 }
 
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .auth h3 {
+        font-size: 1.1rem;
+    }
+}
+
 .auth .ant-btn {
-    font-size: .95rem;
+    font-size: 1rem;
     font-weight: 600;
     background: var(--bluesky);
     color: var(--white);
     border-radius: 50px;
     height: 45px;
     width: 100%;
+}
+
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .auth .ant-btn {
+        font-size: 1.2rem;
+    }
 }
 
 /* ============================================================*/

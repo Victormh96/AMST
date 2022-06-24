@@ -61,7 +61,7 @@
 
 @media (min-width: 1200px) {
     .container {
-        max-width: 1240px;
+        max-width: 1340px;
     }
 }
 
@@ -164,6 +164,20 @@
 
 .pl-6 {
     padding-left: 6rem;
+}
+
+/*===Phone===**/
+@media (max-width: 992px) {
+    .pl-6 {
+        padding: 0;
+    }
+}
+
+/*===Ipad===**/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .pl-6 {
+        padding-left: 0;
+    }
 }
 
 .pr-0 {
@@ -288,6 +302,10 @@
 
 .mr-5 {
     margin-right: 2rem;
+}
+
+.w-100 {
+    width: 100%;
 }
 
 /* stylelint-disable at-rule-no-unknown */
@@ -23344,11 +23362,6 @@ not all and (min-resolution: 0.001dpcm) {
     }
 }
 
-.ant-form-item {
-    /* Some non-status related component style is in `components.less` */
-    /* To support leave along ErrorList. We add additional className to handle explain style */
-}
-
 .ant-form-item-explain.ant-form-item-explain-error {
     color: #ff4d4f;
 }
@@ -23797,7 +23810,6 @@ not all and (min-resolution: 0.001dpcm) {
 
 .ant-form-item {
     box-sizing: border-box;
-    margin: 0;
     padding: 0;
     color: rgba(0, 0, 0, 0.85);
     font-size: 14px;
@@ -23805,12 +23817,7 @@ not all and (min-resolution: 0.001dpcm) {
     line-height: 1.5715;
     list-style: none;
     font-feature-settings: 'tnum';
-    margin-bottom: 24px;
     vertical-align: top;
-}
-
-.ant-form-item-with-help {
-    margin-bottom: 24px;
 }
 
 .ant-form-item-hidden,
@@ -26560,7 +26567,7 @@ textarea.ant-mentions {
     right: 0;
     z-index: 10;
     padding: 0;
-    color: rgba(0, 0, 0, 0.45);
+    color: var(--blue);
     font-weight: 700;
     line-height: 1;
     text-decoration: none;
@@ -26575,7 +26582,7 @@ textarea.ant-mentions {
     display: block;
     width: 56px;
     height: 56px;
-    font-size: 20px;
+    font-size: 22px;
     font-style: normal;
     line-height: 56px;
     text-align: center;
@@ -26585,7 +26592,7 @@ textarea.ant-mentions {
 
 .ant-modal-close:focus,
 .ant-modal-close:hover {
-    color: rgba(0, 0, 0, 0.75);
+    opacity: .8;
     text-decoration: none;
 }
 
@@ -26598,11 +26605,31 @@ textarea.ant-mentions {
 }
 
 .ant-modal-body {
-    padding: 25px 0 30px 0;
     font-size: 14px;
     line-height: 1.5715;
     word-wrap: break-word;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 495px;
+    padding: 30px 70px 35px 70px;
+}
+
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .ant-modal-body {
+        min-height: 470px;
+        padding: 30px 30px 35px 30px
+    }
+}
+
+/*===Landscape===**/
+@media (max-width: 920px) and (orientation: landscape) {
+    .ant-modal-body {
+        min-height: 470px;
+        padding: 30px 50px 35px 50px;
+    }
 }
 
 .ant-modal-footer {
@@ -32948,10 +32975,6 @@ div.ant-typography-edit-content.ant-typography-rtl {
 @media (max-width: 992px) {
     .d-sm-none {
         display: none !important;
-    }
-
-    .pl-6 {
-        padding: 0;
     }
 }
 

@@ -84,6 +84,7 @@ export default {
 
     methods: {
         doSomethingWith(item) {
+            console.log(item)
             this.modal = true
             this.thing = item
         },
