@@ -13,6 +13,7 @@
     --white: #ffffff;
     --hr: #407EC9;
     --hover: rgb(19, 39, 74, 0.1);
+    --required: #b50c1c;
     --filter: 0;
 }
 
@@ -27,6 +28,7 @@ html[data-theme="dark"] {
     --white: #13274A;
     --hr: #ffffff;
     --hover: rgb(64, 126, 201, 0.1);
+    --required: #407EC9;
     --filter: 1;
 }
 
@@ -165,7 +167,7 @@ html[data-theme="dark"] {
     font-weight: 600;
     color: var(--bluesky);
     float: right;
-    margin: 5px 0 0 0;
+    margin: 10px 0 24px 0;
     width: 100%;
     text-align: right;
 }

@@ -15,4 +15,4 @@ const getheme = () => {
 };
 
 //Exports
-export { getYear, getheme };
+export { getYear, getheme};

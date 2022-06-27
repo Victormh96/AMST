@@ -2,7 +2,7 @@
   <!--Modal-->
   <a-modal class="auth" :footer="null" :maskClosable="false" centered>
     <!--Skeleton-->
-    <a-skeleton active :paragraph="{ rows: 7 }" v-if="loading" />
+    <a-skeleton active :paragraph="{ rows: 10 }" v-if="loading" />
 
     <!--Body-->
     <div class="w-100" v-else>

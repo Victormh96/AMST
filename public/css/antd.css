@@ -3587,6 +3587,14 @@ html {
     transition: all 0.3s;
 }
 
+.auth .ant-select-single .ant-select-selector .ant-select-selection-item,
+.auth .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
+    padding: 0;
+    text-align: left;
+    line-height: 20px;
+    transition: all 0.3s;
+}
+
 @supports (-moz-appearance: meterbar) {
 
     .ant-select-single .ant-select-selector .ant-select-selection-item,
@@ -3629,10 +3637,22 @@ html {
     color: #bfbfbf;
 }
 
+.auth .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    width: 100%;
+    height: 40px;
+    border-radius: 50px;
+    padding: 8px 25px;
+    border: 2px solid var(--greylight);
+}
+
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     width: 100%;
     height: 32px;
     padding: 0 11px;
+}
+
+.auth .ant-select-single:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-search-input {
+    height: 38px;
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-search-input {
@@ -3983,10 +4003,9 @@ html {
 }
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    border-color: #40a9ff;
+    border-color: #407EC9;
     border-right-width: 1px !important;
     outline: 0;
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 
 .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
@@ -4017,11 +4036,6 @@ html {
 .ant-select:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-search-input::-webkit-search-cancel-button {
     display: none;
     -webkit-appearance: none;
-}
-
-.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
-    border-color: #40a9ff;
-    border-right-width: 1px !important;
 }
 
 .ant-select-selection-item {
@@ -4068,7 +4082,7 @@ html {
     -moz-osx-font-smoothing: grayscale;
     position: absolute;
     top: 53%;
-    right: 11px;
+    right: 15px;
     width: 12px;
     height: 12px;
     margin-top: -6px;
@@ -4252,7 +4266,7 @@ html {
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
     color: rgba(0, 0, 0, 0.85);
     font-weight: 600;
-    background-color: #e6f7ff;
+    background-color: rgb(64, 126, 201, 0.3);
 }
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) .ant-select-item-option-state {
@@ -23623,10 +23637,9 @@ not all and (min-resolution: 0.001dpcm) {
 
 .ant-form-item-has-error .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input).ant-select-open .ant-select-selector,
 .ant-form-item-has-error .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input).ant-select-focused .ant-select-selector {
-    border-color: #ff7875;
+    border-color: #b50c1c;
     border-right-width: 1px !important;
     outline: 0;
-    box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
 }
 
 .ant-form-item-has-error .ant-input-group-addon .ant-select.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
@@ -23921,12 +23934,13 @@ not all and (min-resolution: 0.001dpcm) {
 .ant-form-item-explain,
 .ant-form-item-extra {
     clear: both;
-    min-height: 24px;
     color: rgba(0, 0, 0, 0.45);
-    font-size: 14px;
-    line-height: 1.5715;
+    font-size: .75rem;
+    text-align: right;
+    margin: 3px 20px -6px 0;
+    color: var(--required) !important;
+    font-weight: 600;
     transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-    display: none;
 }
 
 .ant-form-item .ant-input-textarea-show-count::after {
@@ -26612,22 +26626,22 @@ textarea.ant-mentions {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 495px;
+    min-height: 565px;
     padding: 30px 70px 35px 70px;
 }
 
 /*===Phone===**/
 @media (max-width: 575.98px) {
     .ant-modal-body {
-        min-height: 470px;
-        padding: 30px 30px 35px 30px
+        min-height: 539px;
+        padding: 30px 25px 35px 25px;
     }
 }
 
 /*===Landscape===**/
 @media (max-width: 920px) and (orientation: landscape) {
     .ant-modal-body {
-        min-height: 470px;
+        min-height: 563px;
         padding: 30px 50px 35px 50px;
     }
 }
