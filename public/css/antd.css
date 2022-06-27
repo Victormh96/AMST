@@ -343,7 +343,7 @@ html {
 /*===Ipad===**/
 @media (min-width: 992px) and (max-width: 1199.98px) {
     html {
-        font-size: 88%;
+        font-size: 90%;
     }
 }
 

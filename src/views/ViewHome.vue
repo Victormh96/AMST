@@ -19,7 +19,6 @@
             Ahora puedes pagar por tus impuestos, generar estado de cuentas,
             solicitar solvencias y mucho más.
           </p>
-
           <a href="">Información</a>
         </a-col>
         <a-col :xs="24" :sm="24" :md="24" :lg="10" :xl="10" class="text-left text-middle">

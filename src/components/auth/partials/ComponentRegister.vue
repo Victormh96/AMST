@@ -1,6 +1,8 @@
 <template>
     <!--Main-->
     <h1>Únete hoy mismo</h1>
+
+    <!--Formulario-->
     <a-form layout="vertical" autocomplete="off" :model="formState" @finish="get">
         <!--Dui-->
         <a-form-item name="dui" class="mb-4"
@@ -27,7 +29,7 @@
     <!--Others-->
     <div class="footer">
         <h3>¿Ya tienes cuenta?</h3>
-        <a-button v-on:click="$emit('finished', 0)">Iniciar sesión</a-button>
+        <a-button v-on:click="$emit('exchange', 0)">Iniciar sesión</a-button>
     </div>
 </template>
 
@@ -39,12 +41,6 @@ import { Form } from "ant-design-vue";
 const useForm = Form.useForm;
 
 export default {
-    data() {
-        return {
-            thing: 0
-        }
-    },
-
     setup() {
         const formState = reactive({
             dui: null,

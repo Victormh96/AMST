@@ -1,6 +1,7 @@
 <template>
     <!--Main-->
     <h1>Inicio de sesión</h1>
+
     <!--Formulario-->
     <a-form layout="vertical" autocomplete="off" :model="formState" @finish="post">
         <!--Email-->
@@ -20,7 +21,7 @@
     <!--Others-->
     <div class="footer">
         <h3>¿No tienes cuenta?</h3>
-        <a-button v-on:click="$emit('finished', 1)">Crear Cuenta</a-button>
+        <a-button v-on:click="$emit('exchange', 1)">Crear Cuenta</a-button>
     </div>
 </template>
 

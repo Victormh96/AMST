@@ -24,7 +24,7 @@
                 </a-col>
                 <!--Theme-->
                 <a-col :xs="10" :sm="10" :md="10" :lg="1" :xl="1" class="m-auto text-right">
-                    <a-switch :checked="theme" @change="changeTheme" class="theme" />
+                    <a-switch :checked="theme == 'true'" @change="changeTheme" class="theme" />
                 </a-col>
                 <!--Responsive Menu-->
                 <a-menu class="d-lg-none">
@@ -53,12 +53,12 @@
         </div>
     </a-layout-header>
     <!--Components-->
-    <Modal v-model:visible="modal" :status="thing" />
+    <Modal v-model:visible="modal" :thing="thing" />
 </template>
 
 <!--========Script========-->
 <script>
-import Modal from '@/views/auth/ViewAuth.vue'
+import Modal from '@/components/auth/ComponentAuth.vue'
 
 export default {
 
@@ -69,35 +69,26 @@ export default {
     data() {
         return {
             modal: false,
-            theme: null,
-            data: localStorage.data
-        }
-    },
-
-    created() {
-        if (this.data === 'true') {
-            this.theme = true
-        } else {
-            this.theme = false
+            thing: null,
+            theme: localStorage.theme
         }
     },
 
     methods: {
         doSomethingWith(item) {
-            console.log(item)
             this.modal = true
             this.thing = item
         },
 
         changeTheme(checked) {
             if (checked) {
-                this.theme = true
-                document.querySelector('html').setAttribute('data-theme', 'dark')
+                this.theme = "true"
+                document.querySelector("html").setAttribute("data-theme", "dark")
             } else {
-                this.theme = false
-                document.querySelector('html').setAttribute('data-theme', '')
+                this.theme = "false"
+                document.querySelector("html").setAttribute("data-theme", "")
             }
-            localStorage.setItem('data', checked);
+            localStorage.setItem('theme', checked);
         }
     },
 }
