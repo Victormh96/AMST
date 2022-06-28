@@ -1,32 +1,28 @@
 <template>
     <!--Main-->
-    <h1>Inicio de sesión</h1>
+    <h2>Inicio de sesión</h2>
 
     <!--Formulario-->
-    <a-form layout="vertical" :rules="rules" :model="formState" @finish="get">
+    <a-form layout="vertical" :model="formState" :rules="rules" @finish="onSubmit">
         <!--Option-->
-        <a-form-item name="option" class="mb-4 select" v-model:value="formState.option">
-            <a-select ref="select" v-model:value="formState.option" @change="doDocumentsWith"
-                placeholder="Tipo Documento">
-                <a-select-option value="0">DUI</a-select-option>
-                <a-select-option value="1">Pasaporte</a-select-option>
-                <a-select-option value="2">Carné de residencia</a-select-option>
+        <a-form-item name="optionDocument" class="mb-4 select" >
+            <a-select @change="doDocumentsWith" placeholder="Seleccione documento" 
+            v-model:value="formState.optionDocument" :options="documentsType.map(item => ({ value: item.id, label: item.name }))">
             </a-select>
         </a-form-item>
         <!--Documents-->
         <a-form-item name="document" class="mb-4">
-            <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder" :disabled="disabled"
-                autocomplete="off" />
+            <a-input type="tel" :placeholder="placeholder || 'Documento'" 
+            :disabled="!formState.optionDocument" autocomplete="off" />
         </a-form-item>
         <!--Password-->
-        <a-form-item name="password" :disabled="disabled">
-            <a-input type="password" v-model:value="formState.password" placeholder="Contraseña" :disabled="disabled"
+        <a-form-item name="password">
+            <a-input type="password" v-model:value="formState.password" placeholder="Contraseña" :disabled="!formState.optionDocument"
                 autocomplete="off" />
         </a-form-item>
         <!--Reset-->
         <a-form-item>
-            <a href="#" class="component">¿Olvidaste tu
-                contraseña?</a>
+            <p @click="$emit('exchange', 2)" class="link-style">¿Olvidaste tu contraseña?</p>
         </a-form-item>
         <!--Button-->
         <a-form-item>
@@ -37,7 +33,7 @@
     <!--Others-->
     <div class="footer">
         <a-form-item>
-            <h3>¿No tienes cuenta?</h3>
+            <h5>¿No tienes cuenta?</h5>
             <a-button v-on:click="$emit('exchange', 1)">Crear cuenta</a-button>
         </a-form-item>
     </div>
@@ -47,32 +43,24 @@
 <script>
 import { reactive } from "vue"
 import { Form } from "ant-design-vue"
+import { documentsType, documentName } from '@/utils/data'
 
 const useForm = Form.useForm
 
 export default {
+
     data() {
         return {
             placeholder: null,
-            disabled: true
         }
     },
-
     setup() {
         const formState = reactive({
-            document: null,
-            password: null,
+            document: undefined,
+            password: undefined,
         })
 
         const rules = {
-            document: [
-                {
-                    required: true,
-                    message: "Campo requerido",
-                    trigger: 'blur',
-                },
-            ],
-
             password: [
                 {
                     required: true,
@@ -87,30 +75,22 @@ export default {
         return {
             formState,
             rules,
-            resetFields
+            resetFields,
+            documentsType,
         }
     },
-
     methods: {
         doDocumentsWith(item) {
-            this.disabled = false
-
-            if (item == 0) {
-                this.placeholder = "DUI"
-
-            } else if (item == 1) {
-                this.placeholder = "Pasaporte"
-
-            } else if (item == 2) {
-                this.placeholder = "Carné de residencia"
-            }
+            console.log(this.formState.optionDocument);
+            this.placeholder = documentName(item)
             //Others
             this.resetFields()
         },
 
-        get(values) {
+        onSubmit(values) {
             console.log(values)
         },
     },
+    emits: ['exchange'],
 };
 </script>

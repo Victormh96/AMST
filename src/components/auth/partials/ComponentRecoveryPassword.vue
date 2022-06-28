@@ -1,6 +1,6 @@
 <template>
   <!--Main-->
-  <h2>Únete hoy mismo</h2>
+  <h2>Recupera tu contraseña</h2>
 
   <!--Formulario-->
   <a-form layout="vertical" :rules="rules" :model="formState" @finish="get">
@@ -12,20 +12,12 @@
     </a-form-item>
     <!--Documents-->
     <a-form-item name="document" class="mb-4">
-      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'" :disabled="disabled"
+      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'" :disabled="formState.option"
         autocomplete="off" />
-    </a-form-item>
-    <!--Type-->
-    <a-form-item :name="name">
-      <a-input type="text" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off" />
-    </a-form-item>
-    <!--Type Option-->
-    <a-form-item>
-      <p @click="doTypesWith((exchange = !exchange))" class="link-style">Registro con {{ placeholder3 }}</p>
     </a-form-item>
     <!--Button-->
     <a-form-item>
-      <a-button key="submit" htmlType="submit">Crear cuenta</a-button>
+      <a-button key="submit" htmlType="submit">Enviar</a-button>
     </a-form-item>
   </a-form>
   <hr />
@@ -60,7 +52,6 @@ export default {
       placeholder3: "Teléfono",
     };
   },
-
   setup() {
     const formState = reactive({
       document: null,
@@ -76,32 +67,6 @@ export default {
           trigger: "blur",
         },
       ],
-
-      email: [
-        {
-          required: true,
-          message: "Campo requerido",
-          trigger: "blur",
-        },
-        {
-          type: "email",
-          message: "Email no valido",
-          trigger: "blur",
-        },
-      ],
-
-      phone: [
-        {
-          required: true,
-          message: "Campo requerido",
-          trigger: "blur",
-        },
-        {
-          pattern: /^[0-9]\d{7}$/gm,
-          message: "Teléfono no valido",
-          trigger: "blur",
-        },
-      ],
     };
 
     const { resetFields } = useForm(formState, reactive({}));
@@ -110,7 +75,7 @@ export default {
       formState,
       rules,
       resetFields,
-      documentsType,
+      documentsType
     };
   },
 
@@ -121,21 +86,6 @@ export default {
       this.disabled = false;
       this.resetFields();
     },
-
-    doTypesWith(item) {
-      if (item == true) {
-        this.name = "email";
-        this.placeholder2 = "Email";
-        this.placeholder3 = "Teléfono";
-      } else if (item == false) {
-        this.name = "phone";
-        this.placeholder2 = "Teléfono";
-        this.placeholder3 = "Email";
-      }
-      //Others
-      this.resetFields();
-    },
-
     get(values) {
       console.log(values);
     },

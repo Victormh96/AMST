@@ -24,7 +24,7 @@
                 </a-col>
                 <!--Theme-->
                 <a-col :xs="10" :sm="10" :md="10" :lg="1" :xl="1" class="m-auto text-right">
-                    <a-switch :checked="theme == 'true'" @change="doChangeTheme" class="theme" />
+                    <Theme />
                 </a-col>
                 <!--Responsive Menu-->
                 <a-menu class="d-lg-none">
@@ -58,11 +58,12 @@
 
 <!--========Script========-->
 <script>
+import Theme from '@/components/ComponentTheme.vue'
 import Modal from '@/components/auth/ComponentAuth.vue'
 
 export default {
-
     components: {
+        Theme,
         Modal
     },
 

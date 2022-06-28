@@ -1,5 +1,5 @@
 <template>
-    <h1>Se ha enviado un código</h1>
+    <h2>Se ha enviado un código</h2>
     <!--Formulario-->
     <a-form layout="vertical" autocomplete="off" :model="formState" @finish="post">
         <a-form-item name="code" class="mb-1"
@@ -19,7 +19,7 @@
     <hr>
     <!--Others-->
     <div class="footer">
-        <h3>¿Ya tienes cuenta?</h3>
+        <h5>¿Ya tienes cuenta?</h5>
         <a-button v-on:click="$emit('finished', 0)">Iniciar sesión</a-button>
     </div>
 </template>

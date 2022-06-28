@@ -10,6 +10,8 @@
       <Login @exchange="exchange" v-if="changes === 0" />
       <!--Register-->
       <Register @exchange="exchange" v-else-if="changes === 1" />
+      <!-- Recovery Password -->
+      <RecoveryPassword @exchange="exchange" v-else-if="changes === 2" />
     </div>
   </a-modal>
 </template>
@@ -18,11 +20,13 @@
 <script>
 import Login from '@/components/auth/partials/ComponentLogin.vue';
 import Register from '@/components/auth/partials/ComponentRegister.vue';
+import RecoveryPassword from '@/components/auth/partials/ComponentRecoveryPassword.vue'
 
 export default {
   components: {
     Login,
-    Register
+    Register,
+    RecoveryPassword
   },
 
   props: ['change'],

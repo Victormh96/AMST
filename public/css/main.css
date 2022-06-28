@@ -1,34 +1,15 @@
 /* ============================================================*/
 /* Html
 /* ============================================================*/
-:root {
-    --header: #ffffff;
-    --body: #ffffff;
-    --footer: #ffffff;
-    --blue: #13274A;
-    --bluesky: #407EC9;
-    --grey: #3C3C3B;
-    --greylight: #D0D0D0;
-    --white: #ffffff;
-    --hr: #407EC9;
-    --hover: rgb(19, 39, 74, 0.1);
-    --required: #b50c1c;
-    --filter: 0;
+
+.centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-html[data-theme="dark"] {
-    --header: #13274A;
-    --body: #13274A;
-    --footer: #13274A;
-    --blue: #ffffff;
-    --bluesky: #ffffff;
-    --grey: #ffffff;
-    --greylight: #ffffff;
-    --white: #13274A;
-    --hr: #ffffff;
-    --hover: rgb(64, 126, 201, 0.1);
-    --required: #407EC9;
-    --filter: 1;
+.bordered{
+
 }
 
 /* ============================================================*/
@@ -67,35 +48,7 @@ html[data-theme="dark"] {
     justify-content: center;
 }
 
-#home h1 {
-    font-size: 3.2rem;
-    font-weight: 900;
-    color: #407EC9;
-    line-height: 1.2;
-    width: 600px;
-    margin: 0 0 20px 0;
-}
-
-/*===Phone===**/
-@media (max-width: 575.98px) {
-    #home h1 {
-        width: 100%;
-    }
-}
-
-/*===Ipad===**/
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    #home h1 {
-        width: 510px;
-    }
-}
-
 #home p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--grey);
-    line-height: 1.6;
-    margin: 0 0 30px 0;
     width: 600px;
 }
 
@@ -140,50 +93,22 @@ html[data-theme="dark"] {
 /* ============================================================*/
 /* Auth
 /* ============================================================*/
-.auth h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--blue);
-    text-align: center;
-    margin: 10px 0 35px 0;
-}
 
-#auth h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #407EC9;
-    text-align: center;
-    margin: 10px 0 35px 0;
-}
-
-/*===Phone===**/
-@media (max-width: 575.98px) {
-    .auth h1 {
-        font-size: 2rem;
-    }
-}
-
-#auth input,
-.auth input {
-    border-radius: 50px;
-    padding: 8px 25px;
-    border: 2px solid var(--greylight);
-}
-
-.auth .component {
+.link-style {
     font-size: .8rem;
     font-weight: 600;
     color: var(--bluesky);
     float: right;
-    margin: 8px 0 15px 0;
-    width: auto;
+    margin: 10px 0 24px 0;
+    width: 190px;
     text-align: right;
+    cursor: pointer;
 }
 
 /*===Phone===**/
 @media (max-width: 575.98px) {
-    .auth .component {
-        font-size: 1rem;
+    .link-style {
+        font-size: .95rem;
     }
 }
 
@@ -195,34 +120,32 @@ html[data-theme="dark"] {
     opacity: .1;
 }
 
-.auth h3 {
-    font-size: .95rem;
-    color: var(--blue);
-    margin: 0 0 12px 0;
-}
-
-/*===Phone===**/
-@media (max-width: 575.98px) {
-    .auth h3 {
-        font-size: 1.2rem;
-    }
-}
-
-.auth .ant-btn {
-    font-size: 1rem;
-    font-weight: 600;
-    background: var(--bluesky);
-    color: var(--white);
-    border-radius: 50px;
-    height: 45px;
-    width: 100%;
-}
-
 /*===Phone===**/
 @media (max-width: 575.98px) {
     .auth .ant-btn {
         font-size: 1.2rem;
     }
+}
+
+/* ============================================================*/
+/* register
+/* ============================================================*/
+#register h2 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+#register .ant-btn {
+    width: 40%;
+    background-color: #407EC9;
+    color: #ffffff;
+    border-color: #407EC9;
+
+}
+
+#register .mb {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 /* ============================================================*/
