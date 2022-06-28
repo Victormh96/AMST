@@ -40,7 +40,7 @@ import Footer from '@/components/ComponentFooter.vue'
 export default {
   components: {
     Navbar,
-    Footer,
+    Footer
   },
 
   data() {
@@ -52,7 +52,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.loading = false;
-    }, 2000);
+    }, 2000)
   },
-}
+};
 </script>

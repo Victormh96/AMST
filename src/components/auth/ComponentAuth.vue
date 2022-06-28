@@ -2,14 +2,14 @@
   <!--Modal-->
   <a-modal class="auth" :footer="null" :maskClosable="false" centered>
     <!--Skeleton-->
-    <a-skeleton active :paragraph="{ rows: 10 }" v-if="loading" />
+    <a-skeleton active :paragraph="{ rows: 6 }" v-if="loading" />
 
     <!--Body-->
     <div class="w-100" v-else>
       <!--Login-->
-      <Login @exchange="exchange" v-if="things === 0" />
+      <Login @exchange="exchange" v-if="changes === 0" />
       <!--Register-->
-      <Register @exchange="exchange" v-else-if="things === 1" />
+      <Register @exchange="exchange" v-else-if="changes === 1" />
     </div>
   </a-modal>
 </template>
@@ -25,27 +25,29 @@ export default {
     Register
   },
 
-  props: ['thing'],
+  props: ['change'],
 
   data() {
     return {
       loading: false,
-      things: null
+      changes: null
     }
   },
 
   updated() {
-    this.things = this.thing
+    this.changes = this.change
   },
 
   methods: {
     exchange(item) {
-      this.things = item
+      this.changes = item
       this.loading = true
+
+      //loading
       setTimeout(() => {
         this.loading = false;
       }, 650);
     }
   },
-}
+};
 </script>

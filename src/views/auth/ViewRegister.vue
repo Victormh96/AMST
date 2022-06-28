@@ -5,41 +5,58 @@
   <!--Navbar-->
   <Navbar />
 
-  <a-layout-content id="data">
+  <!--Main-->
+  <a-layout-content id="auth">
     <div class="container">
-      <a-row>
-        <a-col :xl="15">
+      <!--Skeleton-->
+      <a-skeleton active :paragraph="{ rows: 9 }" v-if="loading" />
+
+      <!--Row-->
+      <a-row v-else>
+
+        <a-col :xs="24" :sm="24" :md="24" :lg="14" :xl="15" class="m-auto">
+
+
           <!--Formulario---->
           <a-form class="title" layout="vertical" autocomplete="off" :model="formState" @finish="post">
+            <!--Main-->
             <h1>Datos Personales</h1>
-            <br />
+
             <a-row>
-              <a-col :xs="14" :sm="14" :md="14" :lg="12" :xl="12" class="box_right">
-                <!--Datos-->
-                <a-form-item name="nome" :rules="[{ type: 'text', required: true, message: '' }]">
-                  <a-input type="text" v-model:value="formState.nome" placeholder="Nombre" />
-                </a-form-item>
-
-                <a-form-item name="contact" :rules="[{ type: 'tel', required: true, message: '' }]">
-                  <a-input type="tel" v-model:value="formState.contact" placeholder="Número de contacto" />
-                </a-form-item>
-
-                <a-form-item name="pass" :rules="[{ type: 'password', required: true, message: '' }]">
-                  <a-input-password type="password" v-model:value="formState.pass" placeholder="Contraseña" />
+              <!--Datos-->
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+                <a-form-item name="name">
+                  <a-input type="text" v-model:value="formState.name" placeholder="Nombre" />
                 </a-form-item>
               </a-col>
 
-              <a-col :xs="14" :sm="14" :md="14" :lg="12" :xl="12" class="box_left">
-                <a-form-item name="lastname" :rules="[{ required: true, message: '' }]">
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+                <a-form-item name="lastname">
                   <a-input type="text" v-model:value="formState.lastname" placeholder="Apellido" />
                 </a-form-item>
+              </a-col>
 
-                <a-form-item name="email" :rules="[{ type: 'email', required: true, message: '' }]">
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+                <a-form-item name="contact">
+                  <a-input type="tel" v-model:value="formState.contact" placeholder="Número de contacto" />
+                </a-form-item>
+              </a-col>
+
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+                <a-form-item name="email">
                   <a-input type="email" v-model:value="formState.email" placeholder="Correo Electrónico" />
                 </a-form-item>
+              </a-col>
 
-                <a-form-item name="repass" :rules="[{ type: 'password', required: true, message: '' }]">
-                  <a-input-password style="margin-left: 20px;" type="password" v-model:value="formState.repass"
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+                <a-form-item name="password">
+                  <a-input-password type="password" v-model:value="formState.password" placeholder="Contraseña" />
+                </a-form-item>
+              </a-col>
+
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+                <a-form-item name="repeat">
+                  <a-input-password type="password" v-model:value="formState.repeat"
                     placeholder="Confirmar Contraseña" />
                 </a-form-item>
               </a-col>
@@ -61,20 +78,18 @@
 
 <!--========Script========-->
 <script>
-import { reactive } from "vue";
-import { Form } from "ant-design-vue";
-import axios from "axios";
+import { reactive } from "vue"
+import { Form } from "ant-design-vue"
 import Navbar from '@/components/ComponentNavbar.vue'
 import Footer from '@/components/ComponentFooter.vue'
 
 const useForm = Form.useForm;
 
 export default {
-  name: 'App',
   data() {
     return {
-      usuarios: { nome: "", email: "", contact: "", pass: "", lastname: "", repass: "" },
-    };
+      loading: true
+    }
   },
 
   components: {
@@ -101,36 +116,13 @@ export default {
   },
 
   methods: {
-    addItem() {
-      var parametros = {
-        nome: this.usuario.title,
-        contact: this.usuario.title,
-        pass: this.usuario.title,
-        lastname: this.usuario.title,
-        email: this.usuario.title,
-        repass: this.usuario.title,
-      };
-      axios
-        .post("http://localhost:8080//", parametros)
-        .then(res => {
-          console.log(res);
-          parametros = this.datos.push({
-            nome: this.usuario.title,
-            contact: this.usuario.title,
-            pass: this.usuario.title,
-            lastname: this.usuario.title,
-            email: this.usuario.title,
-            repass: this.usuario.title,
-          });
-        })
-        .chatch(e => {
-          console.log("No llegan los datos" + e);
-        });
-    },
   },
-  async mounted() {
 
-  }
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000)
+  },
 };
 </script>
 

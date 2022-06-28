@@ -9,7 +9,6 @@ export default {
   },
 
   actions: {
-    // Menu
     async getMenu({ commit }) {
       console.log(commit)
     }

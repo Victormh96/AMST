@@ -49,12 +49,12 @@
 
 <!--========Script========-->
 <script>
-import { getYear } from "@/utils/index.js";
+import { getYear } from "@/utils/index.js"
 
 export default {
     methods: {
         year() {
-            return getYear();
+            return getYear()
         }
     },
 };

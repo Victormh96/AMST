@@ -19,12 +19,12 @@
                     </router-link>
                 </a-col>
                 <a-col :lg="8" :xl="8" class="m-auto text-center d-sm-none">
-                    <a href="#" @click="doSomethingWith(0)">Iniciar sesión</a>
-                    <a href="#" @click="doSomethingWith(1)"><span>Crear cuenta</span></a>
+                    <a href="#" @click="doChangeWith(0)">Iniciar sesión</a>
+                    <a href="#" @click="doChangeWith(1)"><span>Crear cuenta</span></a>
                 </a-col>
                 <!--Theme-->
                 <a-col :xs="10" :sm="10" :md="10" :lg="1" :xl="1" class="m-auto text-right">
-                    <a-switch :checked="theme == 'true'" @change="changeTheme" class="theme" />
+                    <a-switch :checked="theme == 'true'" @change="doChangeTheme" class="theme" />
                 </a-col>
                 <!--Responsive Menu-->
                 <a-menu class="d-lg-none">
@@ -44,7 +44,7 @@
                         </router-link>
                     </a-menu-item>
                     <a-menu-item>
-                        <a href="#" @click="doSomethingWith(0)">
+                        <a href="#" @click="doChangeWith(0)">
                             <i class="fa-solid fa-circle-user"></i>
                         </a>
                     </a-menu-item>
@@ -53,7 +53,7 @@
         </div>
     </a-layout-header>
     <!--Components-->
-    <Modal v-model:visible="modal" :thing="thing" />
+    <Modal v-model:visible="modal" :change="change" />
 </template>
 
 <!--========Script========-->
@@ -69,28 +69,29 @@ export default {
     data() {
         return {
             modal: false,
-            thing: null,
+            change: null,
             theme: localStorage.theme
         }
     },
 
     methods: {
-        doSomethingWith(item) {
+        doChangeWith(item) {
             this.modal = true
-            this.thing = item
+            this.change = item
         },
 
-        changeTheme(checked) {
+        doChangeTheme(checked) {
             if (checked) {
                 this.theme = "true"
                 document.querySelector("html").setAttribute("data-theme", "dark")
+
             } else {
                 this.theme = "false"
                 document.querySelector("html").setAttribute("data-theme", "")
             }
-            localStorage.setItem('theme', checked);
+            localStorage.setItem('theme', checked)
         }
     },
-}
+};
 </script>
 

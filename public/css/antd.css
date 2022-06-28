@@ -343,7 +343,7 @@ html {
 /*===Ipad===**/
 @media (min-width: 992px) and (max-width: 1199.98px) {
     html {
-        font-size: 90%;
+        font-size: 85%;
     }
 }
 
@@ -4473,13 +4473,10 @@ html {
     position: relative;
     display: inline-block;
     width: 100%;
-    padding: 4px 11px;
     color: rgba(0, 0, 0, 0.85);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.5715;
-    background-color: #fff;
     background-image: none;
-    border: 1px solid #d9d9d9;
     border-radius: 2px;
     transition: all 0.3s;
     display: inline-flex;
@@ -4508,18 +4505,6 @@ html {
 
 .ant-input-affix-wrapper:placeholder-shown {
     text-overflow: ellipsis;
-}
-
-.ant-input-affix-wrapper:hover {
-    border-color: #40a9ff;
-    border-right-width: 1px !important;
-}
-
-.ant-input-affix-wrapper:focus {
-    border-color: #40a9ff;
-    border-right-width: 1px !important;
-    outline: 0;
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }
 
 .ant-input-affix-wrapper-disabled {
@@ -4989,31 +4974,6 @@ textarea.ant-input {
     vertical-align: top;
 }
 
-.ant-input-affix-wrapper {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-variant: tabular-nums;
-    list-style: none;
-    font-feature-settings: 'tnum';
-    position: relative;
-    display: inline-flex;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
-    padding: 4px 11px;
-    width: 100%;
-    text-align: start;
-    background-color: #fff;
-    background-image: none;
-    color: rgba(0, 0, 0, 0.85);
-    font-size: 14px;
-    line-height: 1.5715;
-}
-
-.ant-input-affix-wrapper:hover {
-    border-color: #40a9ff;
-    border-right-width: 1px !important;
-}
 
 .ant-input-affix-wrapper-disabled {
     color: rgba(0, 0, 0, 0.25);
@@ -5079,7 +5039,10 @@ textarea.ant-input {
 }
 
 .ant-input-affix-wrapper .ant-input-suffix {
-    margin-left: 4px;
+    position: absolute;
+    right: 25px;
+    margin: auto;
+    height: 100%;
 }
 
 .ant-input-password-icon {
@@ -18996,7 +18959,7 @@ span.ant-radio+* {
     margin: 0;
     padding: 0;
     color: rgba(0, 0, 0, 0.85);
-    font-size: 14px;
+    font-size: .8rem !important;
     font-variant: tabular-nums;
     line-height: 1.5715;
     list-style: none;
@@ -23913,6 +23876,8 @@ not all and (min-resolution: 0.001dpcm) {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    padding-left: 15px;
+    padding-right: 15px
 }
 
 .ant-form-item-control:first-child:not([class^='ant-col-']):not([class*=' ant-col-']) {
@@ -26623,26 +26588,13 @@ textarea.ant-mentions {
     line-height: 1.5715;
     word-wrap: break-word;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 565px;
-    padding: 30px 70px 35px 70px;
+    padding: 30px 50px 35px 50px;
 }
 
 /*===Phone===**/
 @media (max-width: 575.98px) {
     .ant-modal-body {
-        min-height: 539px;
-        padding: 30px 25px 35px 25px;
-    }
-}
-
-/*===Landscape===**/
-@media (max-width: 920px) and (orientation: landscape) {
-    .ant-modal-body {
-        min-height: 563px;
-        padding: 30px 50px 35px 50px;
+        padding: 30px 15px 35px 15px;
     }
 }
 

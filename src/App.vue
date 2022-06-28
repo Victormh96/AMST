@@ -5,14 +5,13 @@
 
 <!--========Script========-->
 <script>
-import { getheme } from "@/utils/index.js";
+import { geTheme } from "@/utils/index.js"
 
 export default {
   name: 'App',
 
   created() {
-    //this.$store.dispatch("getMenu", "hola")
-    return getheme()
+    return geTheme()
   }
-}
+};
 </script>

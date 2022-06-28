@@ -1,7 +1,6 @@
 /* ============================================================*/
 /* Html
 /* ============================================================*/
-
 :root {
     --header: #ffffff;
     --body: #ffffff;
@@ -149,6 +148,14 @@ html[data-theme="dark"] {
     margin: 10px 0 35px 0;
 }
 
+#auth h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #407EC9;
+    text-align: center;
+    margin: 10px 0 35px 0;
+}
+
 /*===Phone===**/
 @media (max-width: 575.98px) {
     .auth h1 {
@@ -156,6 +163,7 @@ html[data-theme="dark"] {
     }
 }
 
+#auth input,
 .auth input {
     border-radius: 50px;
     padding: 8px 25px;
@@ -167,15 +175,15 @@ html[data-theme="dark"] {
     font-weight: 600;
     color: var(--bluesky);
     float: right;
-    margin: 10px 0 24px 0;
-    width: 100%;
+    margin: 8px 0 15px 0;
+    width: auto;
     text-align: right;
 }
 
 /*===Phone===**/
 @media (max-width: 575.98px) {
     .auth .component {
-        font-size: .95rem;
+        font-size: 1rem;
     }
 }
 
@@ -196,7 +204,7 @@ html[data-theme="dark"] {
 /*===Phone===**/
 @media (max-width: 575.98px) {
     .auth h3 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
