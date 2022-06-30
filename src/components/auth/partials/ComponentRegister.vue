@@ -5,15 +5,15 @@
   <!--Formulario-->
   <a-form layout="vertical" :rules="rules" :model="formState" @finish="get">
     <!--Option-->
-    <a-form-item name="option" class="mb-4 select" >
+    <a-form-item name="option" class="mb-4 select">
       <a-select v-model:value="formState.option" @change="doDocumentsWith" placeholder="Seleccione documento">
         <a-select-option v-for="(item, index) in documentsType" :key="index">{{ item?.name }}</a-select-option>
       </a-select>
     </a-form-item>
     <!--Documents-->
     <a-form-item name="document" class="mb-4">
-      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'" :disabled="disabled"
-        autocomplete="off" />
+      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'"
+        :disabled="disabled" autocomplete="off" />
     </a-form-item>
     <!--Type-->
     <a-form-item :name="name">
@@ -96,11 +96,6 @@ export default {
           message: "Campo requerido",
           trigger: "blur",
         },
-        {
-          pattern: /^[0-9]\d{7}$/gm,
-          message: "Teléfono no valido",
-          trigger: "blur",
-        },
       ],
     };
 
@@ -138,6 +133,9 @@ export default {
 
     get(values) {
       console.log(values);
+      this.$emit("exchange", 3)
+      localStorage.setItem('document', values.document);
+      localStorage.setItem('phone', values.phone);
     },
   },
   emits: ['exchange']

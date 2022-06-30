@@ -4,12 +4,14 @@
 
     <!--Formulario-->
     <a-form layout="vertical" :model="formState" :rules="rules" @finish="onSubmit">
+    
         <!--Option-->
         <a-form-item name="optionDocument" class="mb-4 select" >
             <a-select @change="doDocumentsWith" placeholder="Seleccione documento" 
             v-model:value="formState.optionDocument" :options="documentsType.map(item => ({ value: item.id, label: item.name }))">
             </a-select>
         </a-form-item>
+
         <!--Documents-->
         <a-form-item name="document" class="mb-4">
             <a-input type="tel" :placeholder="placeholder || 'Documento'" 
