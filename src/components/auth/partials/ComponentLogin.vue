@@ -1,26 +1,23 @@
 <template>
     <!--Main-->
     <h2>Inicio de sesión</h2>
-
     <!--Formulario-->
     <a-form layout="vertical" :model="formState" :rules="rules" @finish="onSubmit">
-    
         <!--Option-->
-        <a-form-item name="optionDocument" class="mb-4 select" >
+         <a-form-item name="optionDocument" class="mb-4 select" >
             <a-select @change="doDocumentsWith" placeholder="Seleccione documento" 
             v-model:value="formState.optionDocument" :options="documentsType.map(item => ({ value: item.id, label: item.name }))">
             </a-select>
         </a-form-item>
-
         <!--Documents-->
         <a-form-item name="document" class="mb-4">
-            <a-input type="tel" :placeholder="placeholder || 'Documento'" 
-            :disabled="!formState.optionDocument" autocomplete="off" />
+            <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'"
+                :disabled="!formState.optionDocument" autocomplete="off" />
         </a-form-item>
         <!--Password-->
         <a-form-item name="password">
-            <a-input type="password" v-model:value="formState.password" placeholder="Contraseña" :disabled="!formState.optionDocument"
-                autocomplete="off" />
+            <a-input-password type="password" v-model:value="formState.password" placeholder="Contraseña"
+                :disabled="!formState.optionDocument" autocomplete="off" />
         </a-form-item>
         <!--Reset-->
         <a-form-item>
@@ -54,6 +51,7 @@ export default {
     data() {
         return {
             placeholder: null,
+
         }
     },
     setup() {
@@ -61,6 +59,7 @@ export default {
             document: undefined,
             password: undefined,
         })
+
 
         const rules = {
             password: [
@@ -72,7 +71,10 @@ export default {
             ],
         }
 
-        const { resetFields } = useForm(formState, reactive({}))
+
+
+
+        const { resetFields } = useForm(formState, reactive({}));
 
         return {
             formState,
@@ -83,14 +85,18 @@ export default {
     },
     methods: {
         doDocumentsWith(item) {
-            console.log(this.formState.optionDocument);
             this.placeholder = documentName(item)
             //Others
             this.resetFields()
         },
-
-        onSubmit(values) {
-            console.log(values)
+        
+        onSubmit() {
+            const body = {
+                email: "cesarvan3@gmail.com",
+                password: this.formState.password
+            }
+            this.$store.dispatch("LogInSesion",body);
+            
         },
     },
     emits: ['exchange'],

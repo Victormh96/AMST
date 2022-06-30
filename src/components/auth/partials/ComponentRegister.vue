@@ -3,25 +3,26 @@
   <h2>Únete hoy mismo</h2>
 
   <!--Formulario-->
-  <a-form layout="vertical" :rules="rules" :model="formState" @finish="get">
+  <a-form layout="vertical" :rules="rules" :model="formState" @finish="onSubmit">
     <!--Option-->
-    <a-form-item name="option" class="mb-4 select">
-      <a-select v-model:value="formState.option" @change="doDocumentsWith" placeholder="Seleccione documento">
-        <a-select-option v-for="(item, index) in documentsType" :key="index">{{ item?.name }}</a-select-option>
+    <a-form-item name="optionDocument" class="mb-4 select">
+      <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.optionDocument"
+        :options="documentsType.map(item => ({ value: item.id, label: item.name }))">
       </a-select>
     </a-form-item>
     <!--Documents-->
     <a-form-item name="document" class="mb-4">
       <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'"
-        :disabled="disabled" autocomplete="off" />
+        :disabled="!formState.optionDocument" autocomplete="off" />
     </a-form-item>
     <!--Type-->
     <a-form-item :name="name">
-      <a-input type="text" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off" />
+      <a-input type="text" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off"
+        :disabled="!formState.optionDocument" />
     </a-form-item>
     <!--Type Option-->
     <a-form-item>
-      <p @click="doTypesWith((exchange = !exchange))" class="link-style">Registro con {{ placeholder3 }}</p>
+      <p @click="doTypesWith((exchange = !exchange))" class="link-style" value>Registro con {{ placeholder3 }}</p>
     </a-form-item>
     <!--Button-->
     <a-form-item>
@@ -51,7 +52,6 @@ export default {
     return {
       //Document
       placeholder: null,
-      disabled: true,
 
       //Type
       exchange: true,
@@ -95,7 +95,7 @@ export default {
           required: true,
           message: "Campo requerido",
           trigger: "blur",
-        },
+        }
       ],
     };
 
@@ -113,7 +113,6 @@ export default {
     doDocumentsWith(item) {
       this.placeholder = documentName(item)
       //Others
-      this.disabled = false;
       this.resetFields();
     },
 
@@ -131,7 +130,7 @@ export default {
       this.resetFields();
     },
 
-    get(values) {
+    onSubmit(values) {
       console.log(values);
       this.$emit("exchange", 3)
       localStorage.setItem('document', values.document);

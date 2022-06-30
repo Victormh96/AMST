@@ -12,25 +12,26 @@
       <Register @exchange="exchange" v-else-if="changes === 1" />
       <!-- Recovery Password -->
       <RecoveryPassword @exchange="exchange" v-else-if="changes === 2" />
-      <!-- Code -->
-      <Code @exchange="exchange" v-else-if="changes === 3" />
+      <!-- Verify -->
+      <Verify @exchange="exchange" v-else-if="changes === 3" />
+
     </div>
   </a-modal>
 </template>
 
 <!--========Script========-->
 <script>
-import Code from '@/components/auth/partials/ComponentCode.vue';
+import Verify from '@/components/auth/partials/ComponentVerify.vue';
 import Login from '@/components/auth/partials/ComponentLogin.vue';
 import Register from '@/components/auth/partials/ComponentRegister.vue';
 import RecoveryPassword from '@/components/auth/partials/ComponentRecoveryPassword.vue'
 
 export default {
   components: {
+    Verify,
     Login,
     Register,
-    RecoveryPassword,
-    Code
+    RecoveryPassword
   },
 
   props: ['change'],

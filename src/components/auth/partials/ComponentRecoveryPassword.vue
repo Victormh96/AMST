@@ -1,18 +1,17 @@
 <template>
   <!--Main-->
   <h2>Recupera tu contraseña</h2>
-
   <!--Formulario-->
-  <a-form layout="vertical" :rules="rules" :model="formState" @finish="get">
+  <a-form layout="vertical" :rules="rules" :model="formState" @finish="onSubmit">
     <!--Option-->
-    <a-form-item name="option" class="mb-4 select" >
-      <a-select v-model:value="formState.option" @change="doDocumentsWith" placeholder="Seleccione documento">
-        <a-select-option v-for="(item, index) in documentsType" :key="index">{{ item?.name }}</a-select-option>
-      </a-select>
-    </a-form-item>
+      <a-form-item name="optionDocument" class="mb-4 select" >
+        <a-select @change="doDocumentsWith" placeholder="Seleccione documento" 
+        v-model:value="formState.optionDocument" :options="documentsType.map(item => ({ value: item.id, label: item.name }))">
+        </a-select>
+      </a-form-item>
     <!--Documents-->
     <a-form-item name="document" class="mb-4">
-      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'" :disabled="formState.option"
+      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'" :disabled="!formState?.optionDocument"
         autocomplete="off" />
     </a-form-item>
     <!--Button-->
@@ -43,8 +42,6 @@ export default {
     return {
       //Document
       placeholder: null,
-      disabled: true,
-
       //Type
       exchange: true,
       name: "email",
@@ -55,8 +52,6 @@ export default {
   setup() {
     const formState = reactive({
       document: null,
-      email: null,
-      phone: null,
     });
 
     const rules = {
@@ -82,11 +77,8 @@ export default {
   methods: {
     doDocumentsWith(item) {
       this.placeholder = documentName(item)
-      //Others
-      this.disabled = false;
-      this.resetFields();
     },
-    get(values) {
+    onSubmit(values) {
       console.log(values);
     },
   },

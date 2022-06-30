@@ -19,6 +19,11 @@ const router = createRouter({
             name: "Recuperar",
             component: () => import("../views/auth/ViewRecoveryPassword.vue"),
         },
+        {
+            path: "/dashboard",
+            name: "dashboard",
+            component: () => import("../views/ViewDashboard.vue"),
+        },
     ],
 });
 

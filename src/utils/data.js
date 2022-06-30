@@ -15,8 +15,6 @@ const documentsType = [
 
 const documentName = (item) => {
     return documentsType[item-1]?.name
-
-
 }
 
 export {
