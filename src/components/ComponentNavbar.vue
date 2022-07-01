@@ -15,13 +15,9 @@
         <a-col :lg="8" :xl="8" class="m-auto text-center d-sm-none">
           <a href="#" @click="doChangeWith(0)">Iniciar sesión</a>
           <a href="#" @click="doChangeWith(1)"><span>Crear cuenta</span></a>
-
         </a-col>
-
-
-
         <!--Theme-->
-        <a-col :xs="10" :sm="10" :md="10" :lg="1" :xl="1" class="m-auto text-right ">
+        <a-col :xs="10" :sm="10" :md="10" :lg="1" :xl="1" class="m-auto text-right">
           <Theme />
         </a-col>
         <!--Responsive Menu-->
@@ -58,7 +54,6 @@
 <script>
 import Theme from "@/components/ComponentTheme.vue";
 import Modal from "@/components/auth/ComponentAuth.vue";
-import { geTheme } from "@/utils/index.js"
 
 export default {
   components: {
@@ -66,15 +61,10 @@ export default {
     Modal,
   },
 
-  created() {
-    return geTheme()
-  },
-
   data() {
     return {
       modal: false,
       change: null,
-      theme: localStorage.theme,
     };
   },
 
@@ -82,17 +72,6 @@ export default {
     doChangeWith(item) {
       this.modal = true;
       this.change = item;
-    },
-
-    doChangeTheme(checked) {
-      if (checked) {
-        this.theme = "true";
-        document.querySelector("html").setAttribute("data-theme", "dark");
-      } else {
-        this.theme = "false";
-        document.querySelector("html").setAttribute("data-theme", "");
-      }
-      localStorage.setItem("theme", checked);
     },
   },
 };

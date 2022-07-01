@@ -1,30 +1,30 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { auth } from '@/utils/firebase'
+
+import { publicRoutes } from '@/router/publicRoutes'
 
 const router = createRouter({
-
     history: createWebHistory(),
     routes: [
-        {
-            path: "/",
-            name: "Home",
-            component: () => import("../views/ViewHome.vue"),
-        },
-        {
-            path: "/register",
-            name: "Register",
-            component: () => import("../views/auth/ViewRegister.vue"),
-        },
-        {
-            path: "/recuperar",
-            name: "Recuperar",
-            component: () => import("../views/auth/ViewRecoveryPassword.vue"),
-        },
-        {
-            path: "/dashboard",
-            name: "dashboard",
-            component: () => import("../views/ViewDashboard.vue"),
-        },
+        ...publicRoutes
     ],
 });
+
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.authRequired)) {
+        if (auth.currentUser) {
+            next();
+        } else {
+            alert('You must be logged in to see this page');
+            next({
+                path: '/',
+            });
+        }
+    } else {
+        next();
+    }
+});
+
 
 export default router;

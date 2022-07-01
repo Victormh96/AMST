@@ -2,35 +2,37 @@
     <h2>Se ha enviado un código</h2>
     <!--Formulario-->
     <a-form layout="vertical" :model="formState" :rules="rules" @finish="VerifyCode">
-
-        <div :style="{ display: 'flex' }">
-            <div :style="{ background: 'rgb(64, 126, 201)', width: '450px', height: '40px', borderRadius: '10px' }">
-                <p :style="{ fontSize: '14px', paddingTop: '10px' }">Introdúcelo abajo para verificar el número
-                    ('{tel}')
-                    &nbsp;<i class="fa-solid fa-pencil" /></p>
-            </div>
-        </div>&nbsp;
-
+        <div class="mb-3">
+            <p class="color-code-text">
+            Introdúcelo para verificar el número
+                {{ tel }}
+                <i class="fa-solid fa-pencil i-tel" /></p>
+        </div>
         <a-form-item name="code" class="mb-1">
             <a-input type="text" v-model:value="formState.code" placeholder="Código de verificación" />
-            <!--Dropdown List-->
-            <a-dropdown :trigger="['click']">
-                <a class="component link-style" @click.prevent>
-                    ¿No recibiste un SMS? &nbsp;
-                    {{ timerCount }} <i class="fa-regular fa-clock" />
-                </a>
-                <template #overlay>
-                    <a-menu>
-                        <a-menu-item key="0">
-                            <a href="http://localhost:8080/">Volver a enviar SMS</a>
-                        </a-menu-item>
-                        <a-menu-item key="1">
-                            <a href="#">Usar correo</a>
-                        </a-menu-item>
-                    </a-menu>
-                </template>
-            </a-dropdown>
         </a-form-item>
+        <!--Dropdown List-->
+        <a-dropdown :trigger="['click']" :disabled="timerCount > 0 ? true : false">
+            <div class="component link-style righted" @click.prevent>
+                <div :class="[timerCount > 0 && 'danger']" >
+                ¿No recibiste un SMS? 
+                </div>
+                <div  class="mr-1 timeCount" :class="[timerCount === 0 && 'hidden']">
+                    {{ timerCount }} 
+                </div>
+                <div ><i class="fa-regular fa-clock" :class="[timerCount === 0 && 'hidden']"/></div>
+            </div>
+            <template #overlay>
+                <a-menu>
+                    <a-menu-item key="0">
+                        <a href="http://localhost:8080/">Volver a enviar SMS</a>
+                    </a-menu-item>
+                    <a-menu-item key="1">
+                        <a href="#">Usar correo</a>
+                    </a-menu-item>
+                </a-menu>
+            </template>
+        </a-dropdown>
         <!--Button-->
         <a-button key="submit" htmlType="submit">Siguiente</a-button>
     </a-form>
@@ -57,7 +59,8 @@ export default {
     data() {
         return {
             thing: 0,
-            timerCount: 30
+            timerCount: 60,
+            tel: localStorage.getItem('phone')
         }
     },
 
@@ -85,6 +88,14 @@ export default {
                     required: true,
                     message: "Campo requerido",
                     trigger: 'blur',
+                },
+                {
+                    pattern: /^[0-9]{1,6}$/,
+                    transform(value) {
+                        return value.trim();
+                    },
+                    message: "Se requiere ingresar un código de 6 dígitos",
+                    trigger: 'blur',
                 }
             ],
         }
@@ -105,16 +116,17 @@ export default {
 
     methods: {
         sendCode() {
-            const phoneNumber = localStorage.phone
-            const appVerifier = window.recaptchaVerifier
-
-            signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+            const phoneNumber = localStorage?.phone
+            const appVerifier = window?.recaptchaVerifier
+            if(phoneNumber) {
+                signInWithPhoneNumber(auth, phoneNumber, appVerifier)
                 .then((confirmationResult) => {
                     window.confirmationResult = confirmationResult
                 }).catch((error) => {
                     this.RecaptchaReset()
                     console.log('codigo no enviado', error)
                 })
+            }
         },
 
         VerifyCode(values) {
@@ -144,5 +156,6 @@ export default {
             })
         }
     },
+    emits: ['exchange'],
 };
 </script>

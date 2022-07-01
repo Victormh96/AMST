@@ -50,7 +50,7 @@ export default {
   methods: {
     exchange(item) {
       this.changes = item
-      this.loading = true
+      // this.loading = true
 
       //loading
       setTimeout(() => {

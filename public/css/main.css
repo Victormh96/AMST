@@ -1,4 +1,6 @@
 /* ============================================================*/
+
+
 /* Html
 /* ============================================================*/
 
@@ -16,6 +18,34 @@
     text-align: right;
 }
 
+.w-100 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}
+
+.timeCount {
+    min-width: 25px;
+}
+
+.color-code-text {
+    font-size: 14px;
+    padding-top: 10px;
+    color: var(--bluesky);
+}
+
+.danger {
+    color: var(--required) !important;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.i-tel{
+    margin-left: 7px;
+}
+
 .lefted {
     display: flex;
     justify-content: left;
@@ -26,6 +56,7 @@
 /* ============================================================*/
 /* Navbar
 /* ============================================================*/
+
 #navbar img {
     width: 170px;
     height: 75px;
@@ -79,6 +110,7 @@
 /* ============================================================*/
 /* NavbarDashboard
 /* ============================================================*/
+
 #navbar-dashboard img {
     width: 170px;
     height: 75px;
@@ -105,7 +137,8 @@
     filter: opacity(0.8);
 }
 
-#navbar-dashboard .fa-solid, .fas {
+#navbar-dashboard .fa-solid,
+.fas {
     margin-left: 30px;
 }
 
@@ -123,6 +156,7 @@
 /* ============================================================*/
 /* Home
 /* ============================================================*/
+
 #home {
     align-items: center;
     justify-content: center;
@@ -132,14 +166,18 @@
     width: 600px;
 }
 
+
 /*===Phone===**/
+
 @media (max-width: 575.98px) {
     #home p {
         width: 100%;
     }
 }
 
+
 /*===Ipad===**/
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
     #home p {
         width: 510px;
@@ -158,7 +196,9 @@
     border-radius: 50px;
 }
 
+
 /*===Responsive===**/
+
 @media (max-width: 1199px) {
     #home a {
         margin: auto auto 50px 0;
@@ -170,7 +210,10 @@
     height: auto;
 }
 
+
 /* ============================================================*/
+
+
 /* Auth
 /* ============================================================*/
 
@@ -185,7 +228,9 @@
     cursor: pointer;
 }
 
+
 /*===Phone===**/
+
 @media (max-width: 575.98px) {
     .link-style {
         font-size: .95rem;
@@ -200,16 +245,22 @@
     opacity: .1;
 }
 
+
 /*===Phone===**/
+
 @media (max-width: 575.98px) {
     .auth .ant-btn {
         font-size: 1.2rem;
     }
 }
 
+
 /* ============================================================*/
+
+
 /* register
 /* ============================================================*/
+
 #register h2 {
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -220,7 +271,6 @@
     background-color: #407EC9;
     color: #ffffff;
     border-color: #407EC9;
-
 }
 
 #register .mb {
@@ -228,9 +278,13 @@
     margin-bottom: 1rem;
 }
 
+
 /* ============================================================*/
+
+
 /* Footer
 /* ============================================================*/
+
 #footer .ubicacion {
     display: inline-flex;
 }
@@ -276,7 +330,9 @@
     transition: all 0.5s ease;
 }
 
+
 /*===Phone===**/
+
 @media (max-width: 575.98px) {
     #footer .social-media a {
         font-size: 22px;
@@ -286,7 +342,9 @@
     }
 }
 
+
 /*===Ipad===**/
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
     #footer .social-media a {
         font-size: 20px;
@@ -300,7 +358,9 @@
     font-size: 30px;
 }
 
+
 /*===Phone===**/
+
 @media (max-width: 575.98px) {
     #footer .social-media a.instagram {
         font-size: 27px;
@@ -320,9 +380,13 @@
     opacity: .8;
 }
 
+
 /* ============================================================*/
+
+
 /* Dashboard
 /* ============================================================*/
+
 .rounded-item {
     border: 1px solid rgb(193, 188, 188);
     border-radius: 50%;
@@ -348,7 +412,6 @@
 
 #dashboard img {
     width: 60%;
-
 }
 
 #dashboard h5 {
@@ -360,38 +423,36 @@
 }
 
 #dashboard p {
-    font-size: 13px;
+    font-size: 14px;
     margin-top: 10px;
-    margin-left: -10px;
+    margin-left: -19.5px;
     margin-bottom: 0;
     text-align: center;
-    width: 174px;
+    width: 192px;
+    font-weight: 700;
 }
 
 #dashboard .item-menu {
     margin-top: 2rem;
     margin-left: 3rem;
-
 }
 
+
 /*===Phone===**/
+
 @media (max-width: 767.98px) {
     #dashboard .rounded-item {
         border-radius: 10%;
         width: 230px;
         height: 150px;
     }
-
     #dashboard .item-menu {
         margin-top: 2rem;
         margin-left: 0rem;
-
     }
-
     #dashboard img {
         width: 50%;
     }
-
     #dashboard p {
         font-size: 15px;
         margin-top: 10px;
@@ -399,56 +460,52 @@
         width: 230px;
         margin-left: 0px;
     }
-
     #dashboard h1 {
         font-size: 30px;
     }
-
     #dashboard a {
         height: 230px;
     }
-
 }
 
+
 /*===Ipad===**/
+
 @media (min-width: 768px) and (max-width: 976px) {
     #dashboard img {
         width: 60%;
     }
-
     .md-none {
         display: none !important;
     }
-
     #dashboard p {
         font-size: 15px;
         margin-top: 10px;
         text-align: center;
-        width: 180px;
-        margin-left: 0px;
+        width: 206px;
+        margin-left: -14px;
+        font-weight: 700;
     }
-
     #dashboard .item-menu {
         margin-top: 2rem;
         margin-left: 0rem;
-
     }
-
     #dashboard .rounded-item {
         width: 180px;
         height: 180px;
     }
-
     #dashboard a {
         height: 230px;
     }
 }
 
 
-
 /* ============================================================*/
+
+
 /* ScrollBar
 /* ============================================================*/
+
 html::-webkit-scrollbar {
     width: 12px;
     background-color: var(--white);
@@ -460,7 +517,9 @@ html::-webkit-scrollbar-thumb {
     border: 3px solid var(--white);
 }
 
+
 /*Deshabilitar boton*/
+
 .disabled {
     cursor: not-allowed;
     pointer-events: none;

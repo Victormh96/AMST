@@ -1,5 +1,9 @@
 import axios from "axios";
-import {LogInSesion, recoveyPassword,  changePassword, createAccount, validateAccount,userAccount} from "../../services/paths";
+
+import { loginGoogle } from '@/utils/google';
+
+import { recoveyPassword, changePassword, createAccount, validateAccount, userAccount } from "../../services/paths";
+
 
 export default {
     state() {
@@ -38,23 +42,16 @@ export default {
     },
 
     actions: {
+
         //Iniciar Sesion
         async LogInSesion({ commit }, body) {
-            await axios.post(LogInSesion(), body).then(response => {
-                if (response.status === 200) {
-                    //if(response.data?.status === 200) {
-                    console.log('response', response.data);
-                    commit("login", response.data?.data);
-                    //<router-link to="{ name: 'dashboard' }"> </router-link>
-                    //}
-                } else {
-                    console.error('Error ', response)
-                    commit("doErrorAPI", "Iniciar Sesion");
-                }
-            }).catch(err => {
-                console.error('Error ', err);
-                commit("doErrorAPI", "Iniciar Sesion");
-            })
+            if (body?.email || body?.password) {
+                const response = await loginGoogle(body)            
+                console.log(response)
+                console.log(commit)
+            } else {
+                return "Datos Incompletos"
+            }
         },
 
         //Recuperar Contraseña
@@ -64,7 +61,6 @@ export default {
                     //if(response.data?.status === 200) {
                     console.log('response', response.data);
                     commit("password", response.data?.data);
-                    //<router-link to="{ name: 'dashboard' }"> </router-link>
                     //}
                 } else {
                     console.error('Error ', response)
@@ -83,7 +79,6 @@ export default {
                     //if(response.data?.status === 200) {
                     console.log('response', response.data);
                     commit("changePassword", response.data?.data);
-                    //<router-link to="{ name: 'dashboard' }"> </router-link>
                     //}
                 } else {
                     console.error('Error ', response)
@@ -102,7 +97,6 @@ export default {
                     //if(response.data?.status === 200) {
                     console.log('response', response.data);
                     commit("createAccount", response.data?.data);
-                    //<router-link to="{ name: 'dashboard' }"> </router-link>
                     //}
                 } else {
                     console.error('Error ', response)
@@ -121,7 +115,6 @@ export default {
                     //if(response.data?.status === 200) {
                     console.log('response', response.data);
                     commit("validateAccount", response.data?.data);
-                    //<router-link to="{ name: 'dashboard' }"> </router-link>
                     //}
                 } else {
                     console.error('Error ', response)
@@ -150,6 +143,27 @@ export default {
                 console.error('Error ', err);
                 commit("doErrorAPI", "Iniciar Sesion");
             })
-        },        
+        },
+
+        /*
+//Iniciar Sesion
+async LogInSesion({ commit }, body) {
+    await axios.post(LogInSesion(), body).then(response => {
+        if (response.status === 200) {
+            //if(response.data?.status === 200) {
+            console.log('response', response.data);
+            commit("login", response.data?.data);
+            //<router-link to="{ name: 'dashboard' }"> </router-link>
+            //}
+        } else {
+            console.error('Error ', response)
+            commit("doErrorAPI", "Iniciar Sesion");
+        }
+    }).catch(err => {
+        console.error('Error ', err);
+        commit("doErrorAPI", "Iniciar Sesion");
+    })
+},
+*/
     },
 }

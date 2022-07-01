@@ -1,28 +1,50 @@
 <template>
   <!--Main-->
-  <h2>Únete hoy mismo</h2>
-
+  <h2>Crear cuenta</h2>
   <!--Formulario-->
-  <a-form layout="vertical" :rules="rules" :model="formState" @finish="onSubmit">
+  <a-form
+    layout="vertical"
+    :rules="rules"
+    :model="formState"
+    @finish="onSubmit"
+  >
     <!--Option-->
     <a-form-item name="optionDocument" class="mb-4 select">
-      <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.optionDocument"
-        :options="documentsType.map(item => ({ value: item.id, label: item.name }))">
+      <a-select
+        @change="doDocumentsWith"
+        placeholder="Seleccione documento"
+        v-model:value="formState.optionDocument"
+        :options="
+          documentsType.map((item) => ({ value: item.id, label: item.name }))
+        "
+      >
       </a-select>
     </a-form-item>
     <!--Documents-->
-    <a-form-item name="document" class="mb-4">
-      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'"
-        :disabled="!formState.optionDocument" autocomplete="off" />
+    <a-form-item :name="nameDocument" class="mb-4">
+      <a-input
+        type="tel"
+        v-model:value="formState[nameDocument]"
+        :placeholder="placeholder || 'Documento'"
+        :disabled="!formState.optionDocument"
+        autocomplete="off"
+      />
     </a-form-item>
     <!--Type-->
     <a-form-item :name="name">
-      <a-input type="text" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off"
-        :disabled="!formState.optionDocument" />
+      <a-input
+        type="text"
+        v-model:value="formState[name]"
+        :placeholder="placeholder2"
+        autocomplete="off"
+        :disabled="!formState.optionDocument"
+      />
     </a-form-item>
     <!--Type Option-->
     <a-form-item>
-      <p @click="doTypesWith((exchange = !exchange))" class="link-style" value>Registro con {{ placeholder3 }}</p>
+      <p @click="doTypesWith((exchange = !exchange))" class="link-style" value>
+        Registro con {{ placeholder3 }}
+      </p>
     </a-form-item>
     <!--Button-->
     <a-form-item>
@@ -41,11 +63,11 @@
 
 <!--========Script========-->
 <script>
-import { reactive } from "vue";
-import { Form } from "ant-design-vue";
-import { documentsType, documentName } from '@/utils/data'
+// import { reactive } from "vue";
+// import { Form } from "ant-design-vue";
+import { documentsType, documentName } from "@/utils/data";
 
-const useForm = Form.useForm;
+// const useForm = Form.useForm;
 
 export default {
   data() {
@@ -58,16 +80,16 @@ export default {
       name: "email",
       placeholder2: "Email",
       placeholder3: "Teléfono",
+      nameDocument: null,
+      formState: {
+        document: null,
+        email: null,
+        phone: null,
+      },
     };
   },
 
   setup() {
-    const formState = reactive({
-      document: null,
-      email: null,
-      phone: null,
-    });
-
     const rules = {
       document: [
         {
@@ -77,6 +99,21 @@ export default {
         },
       ],
 
+      dui: [
+        {
+          required: true,
+          message: "Campo requerido",
+          trigger: "blur",
+        },
+        {
+          parent: /^[0-9]\d{7}-\d{1}$/,
+          transform(value) {
+            return value.trim();
+          },
+          message: "Formato Invalido",
+          trigger: "blur",
+        },
+      ],
       email: [
         {
           required: true,
@@ -95,25 +132,31 @@ export default {
           required: true,
           message: "Campo requerido",
           trigger: "blur",
-        }
+        },
       ],
     };
 
-    const { resetFields } = useForm(formState, reactive({}));
+    // const { resetFields } = useForm(formState, reactive({}));
 
     return {
-      formState,
       rules,
-      resetFields,
+      // resetFields,
       documentsType,
     };
   },
 
   methods: {
     doDocumentsWith(item) {
-      this.placeholder = documentName(item)
+      this.placeholder = documentName(item);
+      if (this.placeholder === "DUI") {
+        this.nameDocument = "dui";
+      } else {
+        this.nameDocument = "document";
+      }
+      console.log(this.nameDocument);
+
       //Others
-      this.resetFields();
+      // this.resetFields();
     },
 
     doTypesWith(item) {
@@ -127,16 +170,17 @@ export default {
         this.placeholder3 = "Email";
       }
       //Others
-      this.resetFields();
+      // this.resetFields();
     },
 
     onSubmit(values) {
+      localStorage.removeItem("phone");
       console.log(values);
-      this.$emit("exchange", 3)
-      localStorage.setItem('document', values.document);
-      localStorage.setItem('phone', values.phone);
+      this.$emit("exchange", 3);
+      localStorage.setItem("document", values.document);
+      this.name === "phone" && localStorage.setItem("phone", values.phone);
     },
   },
-  emits: ['exchange']
+  emits: ["exchange"],
 };
 </script>

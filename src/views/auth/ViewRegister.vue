@@ -15,14 +15,7 @@
       <a-row v-else>
         <a-col :xs="24" :sm="24" :md="24" :lg="14" :xl="15" class="m-auto">
           <!--Formulario---->
-          <a-form
-            class="title"
-            layout="vertical"
-            autocomplete="off"
-            :rules="rules"
-            :model="formState"
-            @finish="onSubmit"
-          >
+          <a-form class="title" layout="vertical" autocomplete="off" :rules="rules" :model="formState" @finish="onSubmit">
             <!--Main-->
             <h2>Datos Personales</h2>
 
