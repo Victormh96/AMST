@@ -1,169 +1,338 @@
 import axios from "axios";
+import router from "@/router";
 
-import { loginGoogle } from '@/utils/google';
+import { loginGoogle, singOutGoogle, createUserGoogle } from "@/utils/google";
 
-import { recoveyPassword, changePassword, createAccount, validateAccount, userAccount } from "../../services/paths";
-
+import {
+  LogInSesion,
+  recoveyPassword,
+  changePassword,
+  createAccount,
+  validateAccount,
+  userAccount,
+} from "../../services/paths";
 
 export default {
-    state() {
-        return {
-            login: null,
-            password: null,
-            changePassword: null,
-            createAccount: null,
-            validateAccount: null,
-            userAccount: null,
+  state() {
+    return {
+      user: null,
+      account: null,
+      loadingLogin: false,
+      loadingRegister: false,
+      error: null,
+      errorLogin: null,
+      errorRegister: null,
+      temporaryData: null,
+
+      changePassword: null,
+      createAccount: null,
+      validateAccount: null,
+    };
+  },
+
+  mutations: {
+    errorLogin(state, data) {
+      state.error = true;
+      state.errorLogin = data;
+    },
+
+    validateAccount(state, data) {
+      state.validateAccount = data;
+    },
+
+    temporaryData(state, data) {
+      state.temporaryData = data;
+    },
+
+    temporaryDataUid(state, data) {
+      state.temporaryData.uid = data;
+      state.temporaryData.active = 1
+      state.temporaryData.type = 0
+    },
+
+    errorRegister(state, data) {
+      state.error = true;
+      state.errorRegister = data;
+
+    },
+
+    clearError(state) {
+      state.error = false;
+      state.errorLogin = false;
+      state.errorRegister = false;
+    },
+
+
+    clearValidateAccount(state) {
+      state.validateAccount = null;
+    },
+
+    setUser(state, data) {
+      state.user = data;
+    },
+
+    createAccount(state, data) {
+      state.account = data;
+    },
+
+    clear(state) {
+      state.user = null;
+      state.login = null;
+      state.password = null;
+      state.error = null;
+      state.errorApi = null;
+    },
+
+    initLoading(state) {
+      state.loadingLogin = true;
+      state.loadingRegister = true;
+      state.error = false;
+      state.errorLogin = false;
+      state.errorRegister = false;
+    },
+
+    finishLoading(state) {
+      state.loadingLogin = false;
+      state.loadingRegister = false;
+    },
+
+    /*
+    changePassword(state, data) {
+      state.changePassword = data;
+    },
+
+    createAccount(state, data) {
+      state.createAccount = data;
+    },
+    */
+  },
+
+  actions: {
+
+    /*------------------- consumo de apis finalizadas --------------------*/
+
+    // Inicio de Session completo
+    async LogInSesion({ commit }, body) {
+      commit("initLoading", null);
+
+      this.signOut
+
+      try {
+        const resLoginDB = await axios.post(LogInSesion(), body);
+
+        if (resLoginDB.status === 200) {
+
+          const data = {
+            email: resLoginDB.data?.data[0].correo,
+            password: body.password,
+          };
+
+          const resLoginFirebase = await loginGoogle(data);
+
+          if (resLoginFirebase.error) {
+            commit("errorLogin", resLoginFirebase);
+          } else {
+            resLoginDB.data.data[0].token = resLoginFirebase._tokenResponse
+            commit("setUser", resLoginDB.data?.data[0]);
+            router.push("/dashboard");
+
+          }
         }
+      } catch (errorglobal) {
+        commit("errorLogin", errorglobal.response.data);
+        commit("finishLoading");
+      }
+      commit("finishLoading");
     },
 
-    mutations: {
-        login(state, data) {
-            state.login = data;
-        },
-        password(state, data) {
-            state.password = data;
-        },
-        changePassword(state, data) {
-            state.changePassword = data;
-        },
-        createAccount(state, data) {
-            state.createAccount = data;
-        },
-        validateAccount(state, data) {
-            state.validateAccount = data;
-        },
-        userAccount(state, data) {
-            state.userAccount = data;
-        },
-        doErrorAPI(state, name) {
-            state.errorAPI = name;
-        },
+
+    //Crear Cuenta Temporal
+    async createAccount({ commit }, body) {
+      commit("initLoading");
+      console.log(body)
+      await axios
+        .post(createAccount(), body)
+        .then((response) => {
+          if (response.status === 200) {
+            commit("createAccount", response.data?.data);
+          } else {
+            commit("errorRegister", response.response.data);
+          }
+        })
+        .catch((err) => {
+          commit("errorRegister", err.response.data);
+        });
+      commit("finishLoading");
     },
 
-    actions: {
+    //Cerar session en google
+    async signOut({ commit }) {
+      try {
+        commit("clear");
+        const response = await singOutGoogle();
+        if (response) {
+          router.push("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
 
-        //Iniciar Sesion
-        async LogInSesion({ commit }, body) {
-            if (body?.email || body?.password) {
-                const response = await loginGoogle(body)            
-                console.log(response)
-                console.log(commit)
-            } else {
-                return "Datos Incompletos"
-            }
-        },
+    //Validar cuenta por correo
+    async validateAccount({ commit }, body) {
+      commit("clearValidateAccount");
+      await axios
+        .post(validateAccount(), body)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("response", response.data);
+            commit("validateAccount", response.data?.data[0]);
+          } else {
+            console.error("Error ", response);
+            commit("errorLogin", "Iniciar Sesion");
+          }
+        })
+        .catch((err) => {
+          console.error("Error ", err);
+          commit("validateAccount", err.response.data);
+        });
+    },
 
-        //Recuperar Contraseña
-        async recoveyPassword({ commit }, body) {
-            await axios.post(recoveyPassword(), body).then(response => {
-                if (response.status === 200) {
-                    //if(response.data?.status === 200) {
-                    console.log('response', response.data);
-                    commit("password", response.data?.data);
-                    //}
-                } else {
-                    console.error('Error ', response)
-                    commit("doErrorAPI", "Iniciar Sesion");
-                }
-            }).catch(err => {
-                console.error('Error ', err);
-                commit("doErrorAPI", "Iniciar Sesion");
-            })
-        },
+    temporaryData({ commit }, data) {
+      commit("temporaryData", data);
+      commit("finishLoading", data);
+    },
 
-        //Cambiar contraseña
-        async changePassword({ commit }, body) {
-            await axios.post(changePassword(), body).then(response => {
-                if (response.status === 200) {
-                    //if(response.data?.status === 200) {
-                    console.log('response', response.data);
-                    commit("changePassword", response.data?.data);
-                    //}
-                } else {
-                    console.error('Error ', response)
-                    commit("doErrorAPI", "Iniciar Sesion");
-                }
-            }).catch(err => {
-                console.error('Error ', err);
-                commit("doErrorAPI", "Iniciar Sesion");
-            })
-        },
+    temporaryDataUid({ commit }, data) {
+      commit("temporaryDataUid", data);
+    },
 
-        //Crear Cuenta
-        async createAccount({ commit }, body) {
-            await axios.post(createAccount(), body).then(response => {
-                if (response.status === 200) {
-                    //if(response.data?.status === 200) {
-                    console.log('response', response.data);
-                    commit("createAccount", response.data?.data);
-                    //}
-                } else {
-                    console.error('Error ', response)
-                    commit("doErrorAPI", "Iniciar Sesion");
-                }
-            }).catch(err => {
-                console.error('Error ', err);
-                commit("doErrorAPI", "Iniciar Sesion");
-            })
-        },
+/* trabajando*/
 
-        //Validar cuenta
-        async validateAccount({ commit }, body) {
-            await axios.post(validateAccount(), body).then(response => {
-                if (response.status === 200) {
-                    //if(response.data?.status === 200) {
-                    console.log('response', response.data);
-                    commit("validateAccount", response.data?.data);
-                    //}
-                } else {
-                    console.error('Error ', response)
-                    commit("doErrorAPI", "Iniciar Sesion");
-                }
-            }).catch(err => {
-                console.error('Error ', err);
-                commit("doErrorAPI", "Iniciar Sesion");
-            })
-        },
 
-        //Registrar datos adicionales
-        async userAccount({ commit }, body) {
-            await axios.post(userAccount(), body).then(response => {
-                if (response.status === 200) {
-                    //if(response.data?.status === 200) {
-                    console.log('response', response.data);
-                    commit("userAccount", response.data?.data);
-                    //<router-link to="{ name: 'dashboard' }"> </router-link>
-                    //}
-                } else {
-                    console.error('Error ', response)
-                    commit("doErrorAPI", "Iniciar Sesion");
-                }
-            }).catch(err => {
-                console.error('Error ', err);
-                commit("doErrorAPI", "Iniciar Sesion");
-            })
-        },
+    // RegistrarDatosAdicionales
+    async RegisterData({ commit }, body) {
+      commit("initLoading");
+      console.log(body)
+      try {
+
+        const data = {
+          email: body.email,
+          password: body.password,
+        };
+
+        const resCreateFirebase = await createUserGoogle(data);
+
+        body.uid = resCreateFirebase.user.uid
+
+        const resCreateDB = await axios.post(userAccount(), body);
+
+        console.log(resCreateDB)
+
+        const data2 = {
+          documentType: body.documentType,
+          document: body.document,
+          password: body.password,
+        }
+
+        this.LogInSesion(data2)
+    
 
         /*
-//Iniciar Sesion
-async LogInSesion({ commit }, body) {
-    await axios.post(LogInSesion(), body).then(response => {
-        if (response.status === 200) {
-            //if(response.data?.status === 200) {
-            console.log('response', response.data);
-            commit("login", response.data?.data);
-            //<router-link to="{ name: 'dashboard' }"> </router-link>
-            //}
-        } else {
-            console.error('Error ', response)
-            commit("doErrorAPI", "Iniciar Sesion");
+        const resLoginDB = await axios.post(LogInSesion(), body);
+
+        if (resLoginDB.status === 200) {
+
+          const data = {
+            email: resLoginDB.data?.data[0].correo,
+            password: body.password,
+          };
+
+         
+
+          if (resLoginFirebase.error) {
+            commit("errorLogin", resLoginFirebase);
+          } else {
+            resLoginDB.data.data[0].token = resLoginFirebase._tokenResponse
+            commit("setUser", resLoginDB.data?.data[0]);
+            router.push("/dashboard");
+
+          }
         }
-    }).catch(err => {
-        console.error('Error ', err);
-        commit("doErrorAPI", "Iniciar Sesion");
-    })
-},
-*/
+        */
+      } catch (errorglobal) {
+        console.log(errorglobal)
+        //commit("errorCreate", errorglobal);
+      }
+      commit("finishLoading");
+      //commit("finishLoading");
     },
-}
+
+    /*---------------------- Apis por consumir ------------------------*/
+
+
+
+
+    //Recuperar Contraseña
+    async recoveyPassword({ commit }, body) {
+      await axios
+        .post(recoveyPassword(), body)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("response", response);
+            commit("password", response.data?.data[0]);
+          } else {
+            console.error("Error ", response);
+            commit("doErrorAPI", "Iniciar Sesion");
+          }
+        })
+        .catch((err) => {
+          console.error("Error ", err);
+          commit("doErrorAPI", "Iniciar Sesion");
+        });
+    },
+
+    //Cambiar contraseña
+    async changePassword({ commit }, body) {
+      await axios
+        .post(changePassword(), body)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("response", response.data);
+            commit("changePassword", response.data?.data);
+          } else {
+            console.error("Error ", response);
+            commit("doErrorAPI", "Iniciar Sesion");
+          }
+        })
+        .catch((err) => {
+          console.error("Error ", err);
+          commit("doErrorAPI", "Iniciar Sesion");
+        });
+    },
+
+
+
+
+
+    //Registrar datos adicionales
+    async userAccount({ commit }, body) {
+      await axios
+        .post(userAccount(), body)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("response", response.data);
+            commit("userAccount", response.data?.data);
+          } else {
+            console.error("Error ", response);
+            commit("doErrorAPI", "Iniciar Sesion");
+          }
+        })
+        .catch((err) => {
+          console.error("Error ", err);
+          commit("doErrorAPI", "Iniciar Sesion");
+        });
+    },
+
+  },
+};

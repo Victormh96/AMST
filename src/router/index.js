@@ -1,30 +1,54 @@
-import { createRouter, createWebHistory } from "vue-router";
-import { auth } from '@/utils/firebase'
+//Others
+import store from "@/store"
+import { createRouter, createWebHistory } from "vue-router"
 
-import { publicRoutes } from '@/router/publicRoutes'
+//Component
+import { authRoutes } from "@/router/auth/authRoutes"
+import { userRoutes } from "@/router/user/userRoutes"
+import { publicRoutes } from "@/router/public/publicRoutes"
 
+//Routes
+const routes = [
+    ...authRoutes,
+    ...publicRoutes,
+    ...userRoutes
+]
+
+//Initialization
 const router = createRouter({
-    history: createWebHistory(),
-    routes: [
-        ...publicRoutes
-    ],
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 });
-
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.authRequired)) {
-        if (auth.currentUser) {
-            next();
+
+    let auth
+    try {
+        auth = store.state.auth.user.token
+    } catch (error) {
+        auth = false
+    }
+
+    //console.log(auth)
+    if (to.meta.rutaProtegida) {
+
+        if (auth !== false) {
+            if (to.meta.rutaSinAuth) {
+                next('/dashboard')
+            }
+            else {
+                next()
+            }
         } else {
-            alert('You must be logged in to see this page');
-            next({
-                path: '/',
-            });
+            next('/')
         }
     } else {
-        next();
+        if (auth !== false && to.meta.rutaSinAuth) {
+            next('/dashboard')
+        } else {
+            next();
+        }
     }
 });
-
 
 export default router;

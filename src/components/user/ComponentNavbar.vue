@@ -4,10 +4,7 @@
       <a-row>
         <!--Logo-->
         <a-col :xs="14" :sm="14" :md="14" :lg="5" :xl="5" class="text-left">
-          <img
-            src="../../../public/img/iconox2.png"
-            alt="Alcaldia Municipal Santa Tecla"
-          />
+          <img src="@/../public/img/iconox2.png" alt="Alcaldia Municipal Santa Tecla" />
         </a-col>
         <!--Menu-->
         <a-col :lg="10" :xl="10" class="m-auto text-center d-sm-none"> </a-col>
@@ -22,7 +19,6 @@
           <a-dropdown :trigger="['click']">
             <a class="ant-dropdown-link" @click.prevent>
               <i class="fas fa-user-circle"></i>
-              <DownOutlined />
             </a>
             <template #overlay>
               <a-menu>
@@ -33,7 +29,7 @@
                   <a href="">Configuración</a>
                 </a-menu-item>
                 <a-menu-divider />
-                <a-menu-item key="3">Cerrar Sesión</a-menu-item>
+                <a-menu-item key="3" @click="cerrarSession">Cerrar Sesión</a-menu-item>
               </a-menu>
             </template>
           </a-dropdown>
@@ -44,7 +40,6 @@
           <a-dropdown :trigger="['click']">
             <a class="ant-dropdown-link" @click.prevent>
               <i class="fas fa-user-circle"></i>
-              <DownOutlined />
             </a>
             <template #overlay>
               <a-menu>
@@ -55,7 +50,7 @@
                   <a href="">Configuración</a>
                 </a-menu-item>
                 <a-menu-divider />
-                <a-menu-item key="3">Cerrar Sesión</a-menu-item>
+                <a-menu-item key="3" @click="cerrarSession">Cerrar Sesión</a-menu-item>
               </a-menu>
             </template>
           </a-dropdown>
@@ -74,7 +69,6 @@
               <i class="fa-solid fa-message"></i>
             </a>
           </a-menu-item>
-         
         </a-menu>
       </a-row>
     </div>
@@ -85,8 +79,9 @@
 
 <!--========Script========-->
 <script>
-import Theme from "@/components/ComponentTheme.vue";
+import Theme from "@/components/user/ComponentTheme.vue";
 import Modal from "@/components/auth/ComponentAuth.vue";
+//import router from '@/router'
 
 export default {
   components: {
@@ -102,7 +97,10 @@ export default {
     };
   },
 
+
+
   methods: {
+
     doChangeWith(item) {
       this.modal = true;
       this.change = item;
@@ -118,6 +116,11 @@ export default {
       }
       localStorage.setItem("theme", checked);
     },
+
+    cerrarSession() {
+      this.$store.dispatch("signOut");
+      this.$router.push('/')
+    }
   },
 };
 </script>

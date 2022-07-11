@@ -120,24 +120,31 @@ html[data-theme=dark] svg .circle--inner,
 html[data-theme=dark] svg .mask--inner {
     r: 12.5%;
 }
+
 html[data-theme=dark] svg .line {
     opacity: 1;
 }
+
 html[data-theme=dark] svg .line--1 {
     transform: rotate(0deg) scaleY(1);
 }
+
 html[data-theme=dark] svg .line--2 {
     transform: rotate(45deg) scaleY(1);
 }
+
 html[data-theme=dark] svg .line--3 {
     transform: rotate(90deg) scaleY(1);
 }
+
 html[data-theme=dark] svg .line--4 {
     transform: rotate(135deg) scaleY(1);
 }
+
 html[data-theme=dark] svg .line--5 {
     transform: rotate(180deg) scaleY(1);
 }
+
 html[data-theme=dark] svg .line--6 {
     transform: rotate(225deg) scaleY(1);
 }

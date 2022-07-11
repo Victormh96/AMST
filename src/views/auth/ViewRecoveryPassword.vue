@@ -55,8 +55,8 @@
 <script>
 import { reactive } from "vue"
 import { Form } from "ant-design-vue"
-import Navbar from '@/components/ComponentNavbar.vue'
-import Footer from '@/components/ComponentFooter.vue'
+import Navbar from '@/components/public/ComponentNavbar.vue'
+import Footer from '@/components/public/ComponentFooter.vue'
 
 const useForm = Form.useForm;
 
@@ -89,14 +89,14 @@ export default {
             {
                 required: true,
                 message: "La Contraseña es requerida",
-                trigger: "blur",
+                trigger: "change",
             } 
         ],
         repeat:[
             {
                 required: true,
                 message: "La Contraseña es requerida",
-                trigger: "blur",
+                trigger: "change",
             },
             {
                 validator: async (_, value) => {
@@ -106,7 +106,7 @@ export default {
                     return Promise.reject(new Error('Las Contraseñas no son iguales'));
                 }
                 },
-                trigger: "blur",
+                trigger: "change",
             },             
         ]
     };

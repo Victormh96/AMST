@@ -59,7 +59,7 @@ export default {
         {
           required: true,
           message: "Campo requerido",
-          trigger: "blur",
+          trigger: "change",
         },
       ],
     };

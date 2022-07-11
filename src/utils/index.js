@@ -1,8 +1,8 @@
 //Year Now
 const getYear = () => {
-  const dateData = new Date();
-  const year = dateData.getFullYear();
-  return year;
+    const dateData = new Date();
+    const year = dateData.getFullYear();
+    return year;
 };
 
 //localStorage
@@ -14,5 +14,14 @@ const geTheme = () => {
     }
 };
 
+const resetData = () => {
+    localStorage.removeItem('document');
+    localStorage.removeItem('type');
+    localStorage.removeItem('phone');
+    localStorage.removeItem('email');
+    localStorage.removeItem('_grecaptcha');
+};
+
+
 //Exports
-export { getYear, geTheme };
+export { getYear, geTheme, resetData };

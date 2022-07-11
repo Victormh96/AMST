@@ -3,17 +3,17 @@ import { getAuth } from 'firebase/auth'
 
 //Firebase
 const firebase = {
-    apiKey: "AIzaSyD8q9lueJWy2VwW5pwNYnA7zhVSRC-aVSU",
-    authDomain: "tecla96-9070b.firebaseapp.com",
-    projectId: "tecla96-9070b",
-    storageBucket: "tecla96-9070b.appspot.com",
-    messagingSenderId: "431731585529",
-    appId: "1:431731585529:web:ed29a39a56a8157c550d28"
+    apiKey: "AIzaSyAYv3sRY1Jq0PfQxW47XWApevKHP6d-Du8",
+    authDomain: "tecla-528dd.firebaseapp.com",
+    projectId: "tecla-528dd",
+    storageBucket: "tecla-528dd.appspot.com",
+    messagingSenderId: "698447747389",
+    appId: "1:698447747389:web:f950fa7a82b234f77b0d54"
 }
 
 const fbConfig = initializeApp(firebase)
 
-const auth = getAuth(fbConfig)
+const auth = getAuth(fbConfig.auth())
 
 export {
     auth

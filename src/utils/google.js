@@ -1,5 +1,5 @@
 
-import { getAuth, signInWithEmailAndPassword, updatePassword, createUserWithEmailAndPassword  } from "firebase/auth"
+import { getAuth, signOut, signInWithEmailAndPassword, updatePassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { initializeApp } from 'firebase/app';
 
 //Firebase
@@ -14,10 +14,9 @@ const firebase = {
 
 const fb = initializeApp(firebase)
 
-
 const firebaseAuth = getAuth(fb);
 
-const createUserGoogle = async(user) =>{
+const createUserGoogle = async (user) => {
     let response = null;
     const { email, password } = user;
     await createUserWithEmailAndPassword(firebaseAuth, email, password).then((userCredential) => {
@@ -31,10 +30,10 @@ const createUserGoogle = async(user) =>{
     return response;
 }
 
-const loginGoogle = async(user) => {
+const loginGoogle = async (user) => {
     let response = null;
     const { email, password } = user;
-    console.log(user);
+    //console.log(user);
     await signInWithEmailAndPassword(firebaseAuth, email, password).then((userCredential) => {
         response = userCredential;
     }).catch((error) => {
@@ -46,14 +45,52 @@ const loginGoogle = async(user) => {
     return response;
 }
 
-const resetPasswordGoogle = async(user) => {
+const singOutGoogle = async () => {
+    try {
+        await signOut(firebaseAuth).then(
+            (res) => {
+                console.log(res)
+            }
+        );
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+/*
+onAuthStateChanged(firebaseAuth, (token) => {
+    try {
+        if (token) {
+            console.log(token)
+            return token
+        } else {
+            console.log("no esta logueado")
+            return false
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+*/
+
+onAuthStateChanged(firebaseAuth, (token) => {
+    if (token) {
+        console.log(token)
+        return token
+    } else {
+        console.log("no esta logueado")
+        return false
+    }
+});
+
+const resetPasswordGoogle = async (user) => {
     let response = null;
     const { newPassword } = user;
     const res = await loginGoogle(user)
     const userFirebase = firebaseAuth.currentUser;
     if (res?.message === 'auth/wrong-password' || res?.message === 'auth/too-many-requests') {
         return res
-    } 
+    }
     await updatePassword(userFirebase, newPassword).then(() => {
         response = 'Se ha cambiado la contraseña con exito';
     }).catch((error) => {
@@ -65,9 +102,11 @@ const resetPasswordGoogle = async(user) => {
     return response;
 }
 
-
 export {
     createUserGoogle,
     loginGoogle,
-    resetPasswordGoogle
+    resetPasswordGoogle,
+    singOutGoogle,
+    onAuthStateChanged,
+
 }
