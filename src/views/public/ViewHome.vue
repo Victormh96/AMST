@@ -63,7 +63,14 @@ export default {
   },
 
   mounted() {
+<<<<<<< HEAD
     this.$store.dispatch("temporaryData");
+=======
+    this.$store.dispatch("clearData");
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000)
+>>>>>>> 7ddf0218ad3c0ce0e07f204e9386bf88446c94bd
   },
 };
 </script>

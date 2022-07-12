@@ -53,6 +53,10 @@ const genderType = [
         id: "F",
         name: 'Femenino'
     },
+    {
+        id: "U",
+        name: 'Prefiero no decirlo'
+    },
 ]
 
 const gender = (type) => {

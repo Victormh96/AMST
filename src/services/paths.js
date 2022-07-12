@@ -15,5 +15,5 @@ export const createAccount = () => `${url_base}/${auth}/crear-cuenta`;
 
 export const validateAccount = () => `${url_base}/${auth}/validar-cuenta`;
 
-export const userAccount = () => `${url_base}/${auth}/registrar-datos-cuenta`;
+export const registerDataAccount = () => `${url_base}/${auth}/registrar-datos-cuenta`;
 

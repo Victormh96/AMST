@@ -33,7 +33,6 @@ const createUserGoogle = async (user) => {
 const loginGoogle = async (user) => {
     let response = null;
     const { email, password } = user;
-    //console.log(user);
     await signInWithEmailAndPassword(firebaseAuth, email, password).then((userCredential) => {
         response = userCredential;
     }).catch((error) => {
@@ -56,22 +55,6 @@ const singOutGoogle = async () => {
         console.log(error);
     }
 }
-
-/*
-onAuthStateChanged(firebaseAuth, (token) => {
-    try {
-        if (token) {
-            console.log(token)
-            return token
-        } else {
-            console.log("no esta logueado")
-            return false
-        }
-    } catch (error) {
-        console.log(error);
-    }
-});
-*/
 
 onAuthStateChanged(firebaseAuth, (token) => {
     if (token) {

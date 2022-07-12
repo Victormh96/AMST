@@ -121,8 +121,12 @@ export default {
 
   methods: {
     sendCode(index = 0) {
+
       const phoneNumber = this.$store.state.auth.temporaryData.phone;
+      
       const appVerifier = window?.recaptchaVerifier;
+      
+
       if (phoneNumber) {
         if (index === 1) {
           this.RecaptchaReset();
@@ -146,10 +150,14 @@ export default {
         .then((result) => {
           console.log("codigo exitoso", result);
 
-          this.$store.dispatch("temporaryDataUid", result.user.uid).then(
-            () => this.$store.dispatch("createAccount", this.$store.state.auth.temporaryData)
-          )
-
+          this.$store
+            .dispatch("temporaryDataUid", result.user.uid)
+            .then(() =>
+              this.$store.dispatch(
+                "createAccount",
+                this.$store.state.auth.temporaryData
+              )
+            );
 
           this.$router.replace({ name: "Register" });
         })

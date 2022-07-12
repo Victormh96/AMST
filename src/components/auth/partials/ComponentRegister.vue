@@ -2,47 +2,75 @@
   <!--Main-->
   <h2>Crear cuenta</h2>
   <!--Formulario-->
-  <a-form layout="vertical" :rules="rules" :model="formState" @finish="onSubmit">
+  <a-form
+    layout="vertical"
+    :rules="rules"
+    :model="formState"
+    @finish="onSubmit"
+  >
     <!--Option-->
     <a-form-item name="optionDocument" class="mb-4 select">
-      <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.optionDocument"
+      <a-select
+        @change="doDocumentsWith"
+        placeholder="Seleccione documento"
+        v-model:value="formState.optionDocument"
         :options="
           documentsType.map((item) => ({ value: item.id, label: item.name }))
-        " :disabled="this.$store.state.auth.loadingRegister">
+        "
+        :disabled="this.$store.state.auth.loading"
+      >
       </a-select>
     </a-form-item>
     <!--Documents-->
     <a-form-item :name="nameDocument" class="mb-4">
-      <a-input type="text" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'" :disabled="
-        this.$store.state.auth.loadingRegister || !formState.optionDocument
-      " autocomplete="off" />
+      <a-input
+        type="text"
+        v-model:value="formState[nameDocument]"
+        :placeholder="placeholder || 'Documento'"
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument"
+        autocomplete="off"
+      />
     </a-form-item>
 
     <!--Type-->
     <a-form-item :name="name">
-      <a-input :type="valueformat" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off"
-        :disabled="
-          this.$store.state.auth.loadingRegister || !formState.optionDocument
-        " :pattern="patternformat" :title="tittleformat" @focus="togglePicker()" />
+      <a-input
+        :type="valueformat"
+        v-model:value="formState[name]"
+        :placeholder="placeholder2"
+        autocomplete="off"
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument"
+        :pattern="patternformat"
+        :title="tittleformat"
+        @focus="togglePicker()"
+      />
     </a-form-item>
 
     <!--Type Option-->
     <a-form-item>
-      <p @click="doTypesWith((exchange = !exchange))" class="link-style"
-        :disabled="this.$store.state.auth.loadingRegister" value>
+      <p
+        @click="doTypesWith((exchange = !exchange))"
+        class="link-style"
+        :disabled="this.$store.state.auth.loading"
+        value
+      >
         Registro con {{ placeholder3 }}
       </p>
     </a-form-item>
 
     <!--Button-->
     <a-form-item>
-      <a-button key="submit" htmlType="submit" :disabled="this.$store.state.auth.loadingRegister">Crear cuenta
+      <a-button
+        key="submit"
+        htmlType="submit"
+        :disabled="this.$store.state.auth.loading"
+        >Crear cuenta
       </a-button>
     </a-form-item>
   </a-form>
 
-  <span v-if="this.$store.state.auth.loadingLogin">
-    <img src="@/../public/img/assets/LoadingCircle.svg">
+  <span v-if="this.$store.state.auth.loading">
+    <img src="@/../public/img/assets/LoadingCircle.svg" />
   </span>
   <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
 
@@ -51,7 +79,10 @@
   <div class="footer">
     <a-form-item>
       <h5>¿Ya tienes cuenta?</h5>
-      <a-button v-on:click="$emit('exchange', 0)" :disabled="this.$store.state.auth.loadingRegister">Iniciar sesión
+      <a-button
+        v-on:click="$emit('exchange', 0)"
+        :disabled="this.$store.state.auth.loading"
+        >Iniciar sesión
       </a-button>
     </a-form-item>
   </div>
@@ -206,7 +237,7 @@ export default {
         try {
           this.nameDocument = "dui";
           this.formState.dui = this.agregarCaracter(
-            this.$store.state.auth.temporaryData.dui,
+            this.$store.state.auth.temporaryData.document,
             "-",
             8
           );
@@ -218,7 +249,8 @@ export default {
       if (this.placeholder === "Pasaporte") {
         try {
           this.nameDocument = "Pasaporte";
-          this.formState.pasaporte = this.$store.state.auth.temporaryData.pasaporte;
+          this.formState.pasaporte =
+            this.$store.state.auth.temporaryData.pasaporte;
         } catch (error) {
           //
         }
@@ -226,15 +258,13 @@ export default {
       } else {
         try {
           this.nameDocument = "document";
-          this.formState.document = this.$store.state.auth.temporaryData.carneResidencia;
+          this.formState.document =
+            this.$store.state.auth.temporaryData.carneResidencia;
         } catch (error) {
           //
         }
         return;
       }
-
-      //Others
-      // this.resetFields();
     },
 
     doTypesWith(item) {
@@ -256,6 +286,8 @@ export default {
 
     // metodo enviar
     async onSubmit(values) {
+      console.log(values);
+
       const body = {
         documentType: values.optionDocument,
         document: values.dui?.replace("-", ""),
@@ -263,24 +295,26 @@ export default {
         carneResidencia: values?.document,
         email: values.email,
         phone: values.phone,
-
       };
-      this.$store.dispatch("temporaryData", body);
+
+      await this.$store.dispatch("temporaryData", body);
 
       if (this.name === "phone") {
         this.$emit("exchange", 3);
       } else {
         this.errorStatus = false;
-        body.type = 1
-        body.active = 0
 
-        console.log(body)
+        body.type = 1;
+        body.active = 0;
+
         await this.$store.dispatch("createAccount", body);
 
         this.errorStatus = this.$store.state.auth.error;
+
         if (this.errorStatus) {
           try {
-            this.errorMessage = this.$store.state.auth.errorRegister.message;
+            this.errorMessage =
+              this.$store.state.auth.errorCreateAccount.message;
           } catch (error) {
             this.errorMessage = "Error Interno de Servidor";
           }

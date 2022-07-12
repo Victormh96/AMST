@@ -15,7 +15,8 @@
       <a-row v-else>
         <a-col :xs="24" :sm="24" :md="24" :lg="14" :xl="15" class="m-auto">
           <div class="loading">
-            <img src="@/../public/img/assets/LoadingSquare.svg">
+            <span class="centered"> <img  src="@/../public/img/assets/LoadingSquare.svg"></span>
+            
             <h3 class="centered loading-text">
               {{ message }} <br />Seras redireccionado en breve...
             </h3>
@@ -65,25 +66,25 @@ export default {
         if (this.$store.state.auth.validateAccount.verificado) {
           setTimeout(() => {
             this.$router.push("/register");
-          }, 1500);
+          }, 2500);
         } else {
           if (!this.$store.state.auth.validateAccount.success) {
             this.message = this.$store.state.auth.validateAccount.message;
             setTimeout(() => {
-              //this.$router.push("/");
-            }, 3000);
+              this.$router.push("/");
+            }, 3500);
           } else {
             this.message = "Error en la validación";
             setTimeout(() => {
-              //this.$router.push("/");
-            }, 3000);
+              this.$router.push("/");
+            }, 3500);
           }
         }
       } catch (error) {
-        //this.$router.push("/");
+        this.$router.push("/");
       }
     } else {
-      //this.$router.push("/");
+      this.$router.push("/");
     }
   },
 

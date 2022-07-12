@@ -3,27 +3,19 @@ import router from "@/router";
 
 import { loginGoogle, singOutGoogle, createUserGoogle } from "@/utils/google";
 
-import {
-  LogInSesion,
-  recoveyPassword,
-  changePassword,
-  createAccount,
-  validateAccount,
-  userAccount,
-} from "../../services/paths";
+import {LogInSesion, recoveyPassword, changePassword, createAccount, validateAccount, registerDataAccount} from "../../services/paths";
 
 export default {
   state() {
     return {
       user: null,
-      account: null,
-      loadingLogin: false,
-      loadingRegister: false,
+      account: null, 
+      loading: false,
       error: null,
       errorLogin: null,
-      errorRegister: null,
+      errorCreateAccount: null,
+      errorRegisterData: null,
       temporaryData: null,
-
       changePassword: null,
       createAccount: null,
       validateAccount: null,
@@ -31,80 +23,84 @@ export default {
   },
 
   mutations: {
+
+    //se inicializa el loading y se limpian los errores  
+    initLoading(state) {
+      state.loading = true;
+      state.error = false;
+
+      state.errorLogin = false;
+      state.errorRegisterData = false;
+      state.errorRegister = false
+    },
+
+    //finaliza el loading
+    finishLoading(state) {
+      state.loading = false;
+    },
+
+    //se activa el error y guarda el error del modal login
     errorLogin(state, data) {
       state.error = true;
       state.errorLogin = data;
     },
 
+    // se activa el error y guarda el error del modal crear cuenta
+    errorCreateAccount(state, data) {
+      state.error = true;
+      state.errorCreateAccount = data;
+    },
+
+    // se activa el error y guarda el error en el la vista registrar datos adicionales
+    errorRegisterData(state, data) {
+      state.error = true;
+      state.errorRegisterData = data;
+    },
+
+    //respuesta a la peticion de validad cuenta por correo
     validateAccount(state, data) {
       state.validateAccount = data;
     },
 
+    //se guardan los datos temporales del usuario
     temporaryData(state, data) {
       state.temporaryData = data;
     },
 
+    //se agrega el uid de la cuenta temporal y los datos activo = 1 y tipo = 0
     temporaryDataUid(state, data) {
       state.temporaryData.uid = data;
       state.temporaryData.active = 1
       state.temporaryData.type = 0
     },
 
-    errorRegister(state, data) {
-      state.error = true;
-      state.errorRegister = data;
-
+    //guarda los datos del usuario activo
+    setUser(state, data) {
+      state.user = data;
     },
 
+    //Borra los datos del usuario cuando se cierra sesion
+    clearUser(state) {
+      state.user = null;
+    },
+
+    //Crea la cuenta temporal
+    createAccount(state, data) {
+      state.account = data;
+    },
+
+    //limpia los errores
     clearError(state) {
       state.error = false;
       state.errorLogin = false;
       state.errorRegister = false;
+      state.loading = false;
     },
-
 
     clearValidateAccount(state) {
       state.validateAccount = null;
     },
 
-    setUser(state, data) {
-      state.user = data;
-    },
-
-    createAccount(state, data) {
-      state.account = data;
-    },
-
-    clear(state) {
-      state.user = null;
-      state.login = null;
-      state.password = null;
-      state.error = null;
-      state.errorApi = null;
-    },
-
-    initLoading(state) {
-      state.loadingLogin = true;
-      state.loadingRegister = true;
-      state.error = false;
-      state.errorLogin = false;
-      state.errorRegister = false;
-    },
-
-    finishLoading(state) {
-      state.loadingLogin = false;
-      state.loadingRegister = false;
-    },
-
-    /*
-    changePassword(state, data) {
-      state.changePassword = data;
-    },
-
-    createAccount(state, data) {
-      state.createAccount = data;
-    },
-    */
   },
 
   actions: {
@@ -145,7 +141,6 @@ export default {
       commit("finishLoading");
     },
 
-
     //Crear Cuenta Temporal
     async createAccount({ commit }, body) {
       commit("initLoading");
@@ -156,19 +151,20 @@ export default {
           if (response.status === 200) {
             commit("createAccount", response.data?.data);
           } else {
-            commit("errorRegister", response.response.data);
+            commit("errorCreateAccount", response.response.data);
           }
         })
         .catch((err) => {
-          commit("errorRegister", err.response.data);
+          console.log("error")
+          commit("errorCreateAccount", err.response.data);
         });
       commit("finishLoading");
     },
 
-    //Cerar session en google
+    //Cerrar session en google
     async signOut({ commit }) {
       try {
-        commit("clear");
+        commit("clearUser");
         const response = await singOutGoogle();
         if (response) {
           router.push("/");
@@ -178,7 +174,7 @@ export default {
       }
     },
 
-    //Validar cuenta por correo
+    //Validar cuenta metodo correo
     async validateAccount({ commit }, body) {
       commit("clearValidateAccount");
       await axios
@@ -189,7 +185,7 @@ export default {
             commit("validateAccount", response.data?.data[0]);
           } else {
             console.error("Error ", response);
-            commit("errorLogin", "Iniciar Sesion");
+            commit("errorValidate", "Iniciar Sesion");
           }
         })
         .catch((err) => {
@@ -198,80 +194,69 @@ export default {
         });
     },
 
+    //Limpiar Datos temporales y errores
+    clearData({ commit }, data) {
+      commit("temporaryData", data);
+      commit("clearError");
+    },
+
+    //Guarda los datos temporales
     temporaryData({ commit }, data) {
       commit("temporaryData", data);
       commit("finishLoading", data);
     },
 
+    //Agrega el valor de uid cuando es por metodo de telefono
     temporaryDataUid({ commit }, data) {
       commit("temporaryDataUid", data);
     },
 
-/* trabajando*/
-
-
     // RegistrarDatosAdicionales
     async RegisterData({ commit }, body) {
       commit("initLoading");
-      console.log(body)
-      try {
 
+      try {
+        let response = null;
         const data = {
           email: body.email,
           password: body.password,
         };
 
-        const resCreateFirebase = await createUserGoogle(data);
-
-        body.uid = resCreateFirebase.user.uid
-
-        const resCreateDB = await axios.post(userAccount(), body);
-
-        console.log(resCreateDB)
-
-        const data2 = {
-          documentType: body.documentType,
-          document: body.document,
-          password: body.password,
-        }
-
-        this.LogInSesion(data2)
-    
-
-        /*
-        const resLoginDB = await axios.post(LogInSesion(), body);
-
-        if (resLoginDB.status === 200) {
-
-          const data = {
-            email: resLoginDB.data?.data[0].correo,
-            password: body.password,
+        await createUserGoogle(data).then((resCreateFirebase) => {
+          console.log(resCreateFirebase)
+          response = resCreateFirebase
+          response._tokenResponse
+          body.uid = response.user.uid
+        }).catch((error) => {
+          commit("errorRegisterData", error)
+          response = {
+            error: true,
+            message: error
           };
+        });
 
-         
-
-          if (resLoginFirebase.error) {
-            commit("errorLogin", resLoginFirebase);
-          } else {
-            resLoginDB.data.data[0].token = resLoginFirebase._tokenResponse
-            commit("setUser", resLoginDB.data?.data[0]);
-            router.push("/dashboard");
-
+        await axios.post(registerDataAccount(), body).then(() => {
+          const user = {
+            nombres: body.name,
+            apellidos: body.lastName,
+            correo: body.email,
+            rol: "Usuario",
+            sexo: body.sex,
+            token: response._tokenResponse
           }
-        }
-        */
-      } catch (errorglobal) {
-        console.log(errorglobal)
-        //commit("errorCreate", errorglobal);
+          commit("setUser", user);
+          router.push("/dashboard"); 
+
+        }).catch((error) => {
+          commit("errorRegisterData", error.response)
+        });
+      } catch (errorGlobal) {
+        commit("errorRegisterData", errorGlobal);
       }
       commit("finishLoading");
-      //commit("finishLoading");
     },
 
     /*---------------------- Apis por consumir ------------------------*/
-
-
-
 
     //Recuperar Contraseña
     async recoveyPassword({ commit }, body) {
@@ -315,24 +300,7 @@ export default {
 
 
 
-    //Registrar datos adicionales
-    async userAccount({ commit }, body) {
-      await axios
-        .post(userAccount(), body)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log("response", response.data);
-            commit("userAccount", response.data?.data);
-          } else {
-            console.error("Error ", response);
-            commit("doErrorAPI", "Iniciar Sesion");
-          }
-        })
-        .catch((err) => {
-          console.error("Error ", err);
-          commit("doErrorAPI", "Iniciar Sesion");
-        });
-    },
+
 
   },
 };
