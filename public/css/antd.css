@@ -73,6 +73,73 @@ html[data-theme="Dark-Mode"] {
 
 /* Custom */
 
+/* ============================================================*/
+/* Html
+/* ============================================================*/
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.righted {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    text-align: right;
+}
+
+.w-100 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}
+
+.loading {
+    margin-top: 90px;
+}
+
+.loading-text {
+    color: var(--blue);
+    font-weight: 500;
+}
+
+.timeCount {
+    min-width: 25px;
+}
+
+.color-code-text {
+    font-size: 14px;
+    padding-top: 10px;
+    color: var(--bluesky);
+}
+
+.danger {
+    color: var(--required) !important;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.i-tel {
+    margin-left: 7px;
+}
+
+.lefted {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-align: center;
+}
+
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .container {
     width: 100%;
     padding-right: 15px;
@@ -29816,7 +29883,7 @@ textarea.ant-mentions {
 }
 
 .ant-switch-inner {
-    display: block  !important;
+    display: block !important;
     margin-right: 6px !important;
     margin-left: 30px !important;
     color: #fff !important;

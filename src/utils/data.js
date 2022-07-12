@@ -1,3 +1,6 @@
+import cryptoJS from "crypto-js"
+
+//Document Type
 const documentsType = [
     {
         id: "DUI",
@@ -12,7 +15,6 @@ const documentsType = [
         name: 'Carné de residencia'
     },
 ]
-
 
 const documentName = (item) => {
     let name = null
@@ -30,6 +32,7 @@ const documentName = (item) => {
     return name
 }
 
+//Gender Type
 const genderName = (item) => {
     let name = null
     switch (item) {
@@ -39,9 +42,7 @@ const genderName = (item) => {
         case 2:
             name = "Femenino"
             break;
-
     }
-
     return name
 }
 
@@ -64,30 +65,18 @@ const gender = (type) => {
     return type === 'M' ? 'o' : 'a'
 }
 
-const getParameterUrl= (url) =>{
-    console.log(url)
-    return url
+const decryptPass =(encrypted)=>{
+    const key_crypto = process.env.VUE_APP_AUTH_KEY_CRYPTO.toString();
+    const bytes = cryptoJS.AES.decrypt(encrypted, key_crypto);
+    return bytes.toString(cryptoJS.enc.Utf8);
 }
 
-const agregarCaracter = (cadena, caracter, pasos) => {
-    let cadenaConCaracteres = "";
-    const longitudCadena = cadena.length;
-    for (let i = 0; i < longitudCadena; i += pasos) {
-        if (i + pasos < longitudCadena) {
-            cadenaConCaracteres += cadena.substring(i, i + pasos) + caracter;
-        } else {
-            cadenaConCaracteres += cadena.substring(i, longitudCadena);
-        }
-    }
-    return cadenaConCaracteres;
-}
-
+//Exports
 export {
-    documentsType,
-    gender,
+    genderType,
     documentName,
-    getParameterUrl,
-    agregarCaracter,
     genderName,
-    genderType
+    decryptPass,
+    gender,
+    documentsType
 }

@@ -9,11 +9,12 @@
   <a-layout-content id="dashboard">
     <div class="container">
       <!--Skeleton-->
-      <a-skeleton active :paragraph="{ rows: 24 }" v-if="loading" />
+      <Skeleton @loading="loading" v-if="(!skeleton)" />
+
       <!--Row-->
       <a-row v-else>
         <a-col :lg="24" :xl="24" class="m-auto">
-          <h1 v-if="(sexo === 'M')">¡Bienvenido Tecleño!</h1>
+          <h1 v-if="(sexo === 'M' || sexo === 'U')">¡Bienvenido Tecleño!</h1>
           <h1 v-else>¡Bienvenida Tecleña!</h1>
           <h5>{{ nombre }}</h5>
         </a-col>
@@ -28,34 +29,36 @@
 
 <!--========Script========-->
 <script>
+import Item from "@/components/user/ComponentItem.vue";
 import Navbar from '@/components/user/ComponentNavbar.vue'
 import Footer from '@/components/user/ComponentFooter.vue'
-import Item from "@/components/user/ComponentItem.vue";
+import Skeleton from '@/components/user/ComponentSkeleton.vue'
 
 export default {
   data() {
     return {
       nombre: null,
       sexo: null,
-      loading: true,
+      skeleton: false,
     };
   },
   created() {
-    const { nombres, apellidos, sexo } = this.$store.state.auth.user
-    this.nombre = nombres + " " + apellidos
-    this.sexo = sexo
+    const { names, lastNames, sex } = this.$store.state.auth.user
+    this.nombre = names + " " + lastNames
+    this.sexo = sex
 
   },
   components: {
     Navbar,
     Footer,
     Item,
+    Skeleton
   },
 
-  mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+  methods: {
+    loading(item) {
+      this.skeleton = item
+    }
   },
 };
 </script>

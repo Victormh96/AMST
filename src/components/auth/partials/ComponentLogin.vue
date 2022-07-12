@@ -6,7 +6,7 @@
     <!--Option-->
     <a-form-item name="optionDocument" class="mb-4 select">
       <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.optionDocument"
-        :disabled="this.$store.state.auth.loadingLogin" :options="
+        :disabled="this.$store.state.auth.loading" :options="
           documentsType.map((item) => ({ value: item.id, label: item.name }))
         ">
       </a-select>
@@ -15,13 +15,13 @@
     <!--Documents-->
     <a-form-item :name="nameDocument" class="mb-4">
       <a-input type="tel" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'"
-        :disabled="this.$store.state.auth.loadingLogin || !formState.optionDocument" autocomplete="off" />
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off" />
     </a-form-item>
 
     <!--Password-->
     <a-form-item name="password">
       <a-input-password type="password" v-model:value="formState.password" placeholder="Contraseña" :disabled="
-        this.$store.state.auth.loadingLogin || !formState.optionDocument
+        this.$store.state.auth.loading || !formState.optionDocument
       " autocomplete="off" />
     </a-form-item>
     <!--Reset-->
@@ -32,10 +32,10 @@
     </a-form-item>
     <!--Button-->
     <a-form-item>
-      <a-button key="submit" htmlType="submit" :disabled="this.$store.state.auth.loadingLogin">Entrar</a-button>
+      <a-button key="submit" htmlType="submit" :disabled="this.$store.state.auth.loading">Entrar</a-button>
     </a-form-item>
 
-    <span v-if="this.$store.state.auth.loadingLogin">
+    <span v-if="this.$store.state.auth.loading">
       <img src="@/../public/img/assets/LoadingCircle.svg">
     </span>
     <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
@@ -46,7 +46,7 @@
   <div class="footer">
     <a-form-item>
       <h5>¿No tienes cuenta?</h5>
-      <a-button v-on:click="$emit('exchange', 1)">Crear cuenta</a-button>
+      <a-button :disabled="this.$store.state.auth.loading" v-on:click="$emit('exchange', 1)">Crear cuenta</a-button>
     </a-form-item>
   </div>
 </template>
@@ -172,6 +172,8 @@ export default {
     async onSubmit(values) {
 
       this.errorStatus = false;
+
+//falta cambiar a varios tipos de documentos
 
       const body = {
         documentType: values.optionDocument,

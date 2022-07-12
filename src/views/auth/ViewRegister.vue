@@ -131,7 +131,7 @@
                 :xl="24"
                 class="mb-5 centered"
               >
-                <span v-if="this.$store.state.auth.loadingLogin">
+                <span v-if="this.$store.state.auth.loading">
                   <img src="@/../public/img/assets/LoadingCircle.svg" />
                 </span>
                 <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>

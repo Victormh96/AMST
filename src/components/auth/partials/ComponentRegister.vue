@@ -300,12 +300,26 @@ export default {
       await this.$store.dispatch("temporaryData", body);
 
       if (this.name === "phone") {
-        this.$emit("exchange", 3);
+        const data = {
+          documentType: body.documentType,
+          document: body.document,
+          phone: body.phone.substring(4, 12),
+        };
+
+        await this.$store.dispatch("validateAccountPhone", data);
+
+        if (this.$store.state.auth.validateAccountPhone.success) {
+          this.$emit("exchange", 3);
+        } else {
+          this.errorStatus = true;
+          this.errorMessage = "El documento ya esta registrado";
+        }
       } else {
         this.errorStatus = false;
 
         body.type = 1;
         body.active = 0;
+        body.action = 0;
 
         await this.$store.dispatch("createAccount", body);
 
@@ -347,26 +361,6 @@ export default {
       } catch (error) {
         //
       }
-
-      /*
-      if (doc !== undefined && type !== undefined) {
-        switch (type) {
-          case 1:
-            this.formState.optionDocument = "DUI";
-            this.formState.nameDocument = "dui";
-            break;
-          case 2:
-            this.formState.optionDocument = "DUI";
-            this.formState.nameDocument = "pasaporte";
-            break;
-          case 3:
-            this.nameDocument = "document";
-            break;
-        }
-        this.formState.optionDocument = true;
-        this.formState.document = doc;
-      }
-      */
     },
 
     /*

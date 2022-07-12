@@ -4,6 +4,9 @@ const authRoutes = [
         path: "/register",
         name: "Register",
         component: () => import("@/views/auth/ViewRegister.vue"),
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: "/recuperar",

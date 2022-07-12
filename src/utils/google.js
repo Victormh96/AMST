@@ -1,4 +1,4 @@
-import { getAuth, signOut, signInWithEmailAndPassword, updatePassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
+import { getAuth, signOut, signInWithEmailAndPassword, deleteUser, updatePassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { initializeApp } from 'firebase/app';
 
 //Setting
@@ -15,6 +15,34 @@ const firebase = {
 const fb = initializeApp(firebase)
 
 const firebaseAuth = getAuth(fb)
+
+//Update Password
+const updatePasswordGoogle = async (newPassword) => {
+    const user = firebaseAuth.currentUser;
+    await updatePassword(user, newPassword).then(() => {
+        console.log("cambio correcto")
+    }).catch((error) => {
+        console.log("cambio fallo", error)
+    });
+}
+
+//Delete User
+const deleteUserGoogle = async () => {
+    const user = firebaseAuth.currentUser;
+    await deleteUser(user).catch((error) => {
+        console.log("cambio fallo", error)
+    });
+}
+
+//Checking Token
+firebaseAuth.getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = firebaseAuth.onAuthStateChanged(user => {
+            unsubscribe();
+            resolve(user);
+        }, reject);
+    })
+};
 
 //Create Account
 const createUserGoogle = async (user) => {
@@ -92,9 +120,12 @@ const resetPasswordGoogle = async (user) => {
 
 //Exports
 export {
-    createUserGoogle,
     loginGoogle,
-    resetPasswordGoogle,
+    firebaseAuth,
     singOutGoogle,
-    onAuthStateChanged
+    deleteUserGoogle,
+    createUserGoogle,
+    onAuthStateChanged,
+    resetPasswordGoogle,
+    updatePasswordGoogle,
 }

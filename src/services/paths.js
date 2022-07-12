@@ -17,3 +17,4 @@ export const validateAccount = () => `${url_base}/${auth}/validar-cuenta`;
 
 export const registerDataAccount = () => `${url_base}/${auth}/registrar-datos-cuenta`;
 
+export const validateAccountPhone = () => `${url_base}/${auth}/cuenta-existente`;
