@@ -1,10 +1,10 @@
 //Endpoint
 const url_base = process.env.VUE_APP_URL_BASE;
 
-//Prefijo
+//Prefix
 const auth = 'api/cuenta';
 
-//Rutas
+//Routes
 export const LogInSesion = () => `${url_base}/${auth}/iniciar-sesion`;
 
 export const recoveyPassword = () => `${url_base}/${auth}/recuperar-password`;

@@ -11,6 +11,7 @@ import '../public/css/main.css'
 
 const app = createApp(App)
 
+//Statement
 app.use(store)
     .use(router)
     .use(Antd)

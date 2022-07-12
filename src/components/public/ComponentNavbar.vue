@@ -54,7 +54,6 @@
 
 <!--========Script========-->
 <script>
-import { geTheme } from "@/utils/index.js"
 import Modal from "@/components/auth/ComponentAuth.vue";
 import Theme from "@/components/public/ComponentTheme.vue";
 
@@ -69,10 +68,6 @@ export default {
       modal: false,
       change: null,
     };
-  },
-
-  created() {
-    return geTheme()
   },
 
   methods: {

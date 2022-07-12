@@ -34,7 +34,7 @@
     --filter: 0;
 }
 
-html[data-theme="dark"] {
+html[data-theme="Dark-Mode"] {
     --header: #13274A;
     --body: #13274A;
     --footer: #13274A;
@@ -415,18 +415,14 @@ html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-
 /*===Phone===**/
-
 @media (max-width: 575.98px) {
     html {
         font-size: 75%;
     }
 }
 
-
 /*===Ipad===**/
-
 @media (min-width: 992px) and (max-width: 1199.98px) {
     html {
         font-size: 85%;
@@ -474,7 +470,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-h5{
+h5 {
     font-size: .85rem;
     font-weight: 500;
     width: 240px;
@@ -25166,7 +25162,6 @@ textarea.ant-input-number {
     width: 100%;
     min-height: calc(100vh - 275px);
     margin: 90px 0 40px 0;
-    padding: 10px 0 0 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -29805,7 +29800,7 @@ textarea.ant-mentions {
     position: relative;
     display: inline-block;
     box-sizing: border-box;
-    min-width: 44px;
+    min-width: 55px;
     height: 22px;
     line-height: 20px;
     vertical-align: middle;
@@ -29821,11 +29816,11 @@ textarea.ant-mentions {
 }
 
 .ant-switch-inner {
-    display: block;
-    margin-right: 6px;
-    margin-left: 24px;
-    color: #fff;
-    font-size: 12px;
+    display: block  !important;
+    margin-right: 6px !important;
+    margin-left: 30px !important;
+    color: #fff !important;
+    font-size: 12px !important;
 }
 
 .ant-switch-loading-icon,
@@ -29932,8 +29927,8 @@ textarea.ant-mentions {
 }
 
 .ant-switch-checked .ant-switch-inner {
-    margin-right: 24px;
-    margin-left: 6px;
+    margin-right: 30px !important;
+    margin-left: 6px !important;
 }
 
 .ant-switch-checked::after {
@@ -33669,6 +33664,5 @@ div.ant-typography-edit-content.ant-typography-rtl {
         opacity: 0;
     }
 }
-
 
 /*# sourceMappingURL=antd.css.map*/

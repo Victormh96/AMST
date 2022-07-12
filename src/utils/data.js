@@ -13,6 +13,7 @@ const documentsType = [
     },
 ]
 
+
 const documentName = (item) => {
     let name = null
     switch (item) {

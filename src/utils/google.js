@@ -1,8 +1,7 @@
-
 import { getAuth, signOut, signInWithEmailAndPassword, updatePassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
 import { initializeApp } from 'firebase/app';
 
-//Firebase
+//Setting
 const firebase = {
     apiKey: "AIzaSyD8q9lueJWy2VwW5pwNYnA7zhVSRC-aVSU",
     authDomain: "tecla96-9070b.firebaseapp.com",
@@ -12,10 +11,12 @@ const firebase = {
     appId: "1:431731585529:web:ed29a39a56a8157c550d28"
 }
 
+//Initializacion
 const fb = initializeApp(firebase)
 
-const firebaseAuth = getAuth(fb);
+const firebaseAuth = getAuth(fb)
 
+//Create Account
 const createUserGoogle = async (user) => {
     let response = null;
     const { email, password } = user;
@@ -30,6 +31,7 @@ const createUserGoogle = async (user) => {
     return response;
 }
 
+//Log in
 const loginGoogle = async (user) => {
     let response = null;
     const { email, password } = user;
@@ -44,6 +46,7 @@ const loginGoogle = async (user) => {
     return response;
 }
 
+//Sign Out
 const singOutGoogle = async () => {
     try {
         await signOut(firebaseAuth).then(
@@ -56,6 +59,7 @@ const singOutGoogle = async () => {
     }
 }
 
+//Authentication
 onAuthStateChanged(firebaseAuth, (token) => {
     if (token) {
         console.log(token)
@@ -66,6 +70,7 @@ onAuthStateChanged(firebaseAuth, (token) => {
     }
 });
 
+//Restore password
 const resetPasswordGoogle = async (user) => {
     let response = null;
     const { newPassword } = user;
@@ -85,11 +90,11 @@ const resetPasswordGoogle = async (user) => {
     return response;
 }
 
+//Exports
 export {
     createUserGoogle,
     loginGoogle,
     resetPasswordGoogle,
     singOutGoogle,
-    onAuthStateChanged,
-
+    onAuthStateChanged
 }

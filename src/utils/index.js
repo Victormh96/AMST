@@ -5,15 +5,7 @@ const getYear = () => {
     return year;
 };
 
-//localStorage
-const geTheme = () => {
-    if (localStorage.theme === "true") {
-        document.querySelector("html").setAttribute("data-theme", "dark")
-    } else {
-        document.querySelector("html").setAttribute("data-theme", "")
-    }
-};
-
+//Reset localStorage
 const resetData = () => {
     localStorage.removeItem('document');
     localStorage.removeItem('type');
@@ -22,6 +14,5 @@ const resetData = () => {
     localStorage.removeItem('_grecaptcha');
 };
 
-
 //Exports
-export { getYear, geTheme, resetData };
+export { getYear, resetData };
