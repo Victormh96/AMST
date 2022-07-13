@@ -511,13 +511,10 @@ body {
 }
 
 hr {
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
     background: var(--grey);
     height: 2px;
     border: none;
-    margin: 27px 0;
+    margin: 28px 0 25px 0;
     opacity: .1;
 }
 
@@ -532,23 +529,17 @@ h2 {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--blue);
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
 }
 
 h5 {
-    font-size: .85rem;
+    font-size: .9rem;
     font-weight: 500;
-    width: 240px;
-    color: var(--bluesky);
-    text-align: left;
-    margin: auto;
-    opacity: .8;
+    color: var(--blue);
+    margin: 0;
 }
 
 h6 {
-    font-size: .8rem;
+    font-size: .85rem;
     font-weight: 500;
     color: var(--bluesky);
     margin: 0;
@@ -560,9 +551,8 @@ p {
     font-weight: 500;
     color: var(--grey);
     line-height: 1.6;
+    margin: 0;
 }
-
-
 
 abbr[title],
 abbr[data-original-title] {
@@ -3857,8 +3847,9 @@ html {
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     border-radius: 50px;
-    padding: 8px 25px;
+    padding: 6px 25px;
     border: 2px solid var(--greylight);
+    text-align: left;
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector::after {
@@ -5381,7 +5372,7 @@ textarea.ant-input {
     white-space: nowrap;
     text-align: center;
     background-image: none;
-    border: 1px solid transparent;
+    border: 2px solid #407EC9;
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -5392,8 +5383,7 @@ textarea.ant-input {
     touch-action: manipulation;
     padding: 4px 15px;
     width: 100%;
-    border-color: #d9d9d9;
-    font-size: 1rem;
+    font-size: .95rem;
     font-weight: 600;
     background: var(--bluesky);
     color: var(--white);
@@ -5458,9 +5448,9 @@ textarea.ant-input {
 
 .ant-btn:hover,
 .ant-btn:focus {
-    color: #40a9ff;
+    color: #407EC9;
     background: #fff;
-    border-color: #40a9ff;
+    border-color: #407EC9;
 }
 
 .ant-btn:hover>a:only-child,
@@ -6863,6 +6853,7 @@ textarea.ant-input {
 
 .ant-btn.ant-btn-loading:not([disabled]) {
     pointer-events: none;
+    border: 2px solid #83ABDC;
 }
 
 .ant-btn.ant-btn-loading::before {

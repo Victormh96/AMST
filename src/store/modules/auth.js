@@ -382,9 +382,6 @@ export default {
           };
           commit("errorChangePassword", response);
         });
-
-
-
       } catch (errorGlobal) {
         commit("errorChangePassword", errorGlobal);
       }

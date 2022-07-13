@@ -1,12 +1,7 @@
 <template>
   <h2>Se ha enviado un código</h2>
   <!--Formulario-->
-  <a-form
-    layout="vertical"
-    :model="formState"
-    :rules="rules"
-    @finish="VerifyCode"
-  >
+  <a-form layout="vertical" :model="formState" :rules="rules" @finish="VerifyCode">
     <div class="mb-3">
       <p class="color-code-text">
         Introdúcelo para verificar el número
@@ -15,11 +10,7 @@
       </p>
     </div>
     <a-form-item name="code" class="mb-1">
-      <a-input
-        type="text"
-        v-model:value="formState.code"
-        placeholder="Código de verificación"
-      />
+      <a-input type="text" v-model:value="formState.code" placeholder="Código de verificación" />
     </a-form-item>
     <!--Dropdown List-->
     <a-dropdown :trigger="['click']" :disabled="timerCount > 0 ? true : false">
@@ -29,10 +20,7 @@
           {{ timerCount }}
         </div>
         <div>
-          <i
-            class="fa-regular fa-clock"
-            :class="[timerCount === 0 && 'hidden']"
-          />
+          <i class="fa-regular fa-clock" :class="[timerCount === 0 && 'hidden']" />
         </div>
       </div>
       <template #overlay>
@@ -131,32 +119,32 @@ export default {
   mounted() {
     this.Recaptcha();
     this.sendCode();
-    this.phone= this.$store.state.auth.temporaryData.phone;
+    this.phone = this.$store.state.auth.temporaryData.phone;
   },
 
   methods: {
     async sendCode(index = 0) {
       const phoneNumber = this.$store.state.auth.temporaryData.phone;
-      
+
       const appVerifier = window?.recaptchaVerifier;
 
 
 
 
-        if (phoneNumber) {
-          if (index === 1) {
-            this.RecaptchaReset();
-            this.timerCount = 60;
-          }
-          signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-            .then((confirmationResult) => {
-              window.confirmationResult = confirmationResult;
-            })
-            .catch((error) => {
-              this.RecaptchaReset();
-              console.log("codigo no enviado", error);
-            });
+      if (phoneNumber) {
+        if (index === 1) {
+          this.RecaptchaReset();
+          this.timerCount = 60;
         }
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+          .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+          })
+          .catch((error) => {
+            this.RecaptchaReset();
+            console.log("codigo no enviado", error);
+          });
+      }
 
     },
 

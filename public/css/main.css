@@ -28,7 +28,7 @@
     border: solid;
 }
 
-#navbar .notify{
+#navbar .notify {
     width: 30px !important;
     height: 30px !important;
     filter: none !important;
@@ -81,45 +81,17 @@
 /* ============================================================*/
 /* Auth
 /* ============================================================*/
-.link-style {
+#auth p {
     font-size: .8rem;
-    font-weight: 600;
     color: var(--bluesky);
     float: right;
-    margin: 10px 0 24px 0;
-    width: 190px;
-    text-align: right;
     cursor: pointer;
 }
 
-.error-login {
-    margin-top: 15px;
+#auth strong {
     color: var(--required) !important;
-    font-size: 13px;
-    margin-bottom: -15px;
-
-}
-
-/*===Phone===**/
-@media (max-width: 575.98px) {
-    .link-style {
-        font-size: .95rem;
-    }
-}
-
-.auth hr {
-    background: var(--grey);
-    height: 2px;
-    border: none;
-    margin: 27px 0;
-    opacity: .1;
-}
-
-/*===Phone===**/
-@media (max-width: 575.98px) {
-    .auth .ant-btn {
-        font-size: 1.2rem;
-    }
+    font-size: 0.75rem;
+    font-weight: 600;
 }
 
 /* ============================================================*/

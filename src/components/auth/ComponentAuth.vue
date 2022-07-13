@@ -1,44 +1,43 @@
 <template>
   <!--Modal-->
-  <a-modal class="auth" :footer="null" :maskClosable="false" centered>
+  <a-modal :footer="null" :maskClosable="false" centered>
     <!--Skeleton-->
-    <a-skeleton active :paragraph="{ rows: 6 }" v-if="loading" />
+    <Skeleton @loading="loading" v-if="(!skeleton)" />
 
-    <!--Body-->
-    <div class="w-100" v-else>
+    <!--Row-->
+    <div id="auth" class="w-100" v-else>
       <!--Login-->
       <Login @exchange="exchange" v-if="changes === 0" />
       <!--Register-->
       <Register @exchange="exchange" v-else-if="changes === 1" />
-      <!-- Recovery Password -->
-      <RecoveryPassword @exchange="exchange" v-else-if="changes === 2" />
-      <!-- Verify -->
-      <Verify @exchange="exchange" v-else-if="changes === 3" />
-
+      <!--Verify Account-->
+      <Verify @exchange="exchange" v-else-if="changes === 2" />
+      <!--Recovery Password-->
+      <RecoveryPassword @exchange="exchange" v-else-if="changes === 3" />
     </div>
   </a-modal>
 </template>
 
 <!--========Script========-->
 <script>
-import Verify from '@/components/auth/partials/ComponentVerify.vue';
+import Skeleton from '@/components/auth/ComponentSkeleton.vue'
 import Login from '@/components/auth/partials/ComponentLogin.vue';
+import Verify from '@/components/auth/partials/ComponentVerify.vue';
 import Register from '@/components/auth/partials/ComponentRegister.vue';
 import RecoveryPassword from '@/components/auth/partials/ComponentRecoveryPassword.vue'
 
 export default {
   components: {
-    Verify,
     Login,
+    Verify,
     Register,
+    Skeleton,
     RecoveryPassword
   },
 
-  props: ['change'],
-
   data() {
     return {
-      loading: false,
+      skeleton: false,
       changes: null
     }
   },
@@ -50,13 +49,14 @@ export default {
   methods: {
     exchange(item) {
       this.changes = item
-      // this.loading = true
+      this.skeleton = false
+    },
 
-      //loading
-      setTimeout(() => {
-        this.loading = false;
-      }, 650);
+    loading(item) {
+      this.skeleton = item
     }
   },
+
+  props: ['change'],
 };
 </script>

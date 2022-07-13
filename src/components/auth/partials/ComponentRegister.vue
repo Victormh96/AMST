@@ -2,76 +2,42 @@
   <!--Main-->
   <h2>Crear cuenta</h2>
   <!--Formulario-->
-  <a-form
-    layout="vertical"
-    :rules="rules"
-    :model="formState"
-    @finish="onSubmit"
-  >
+  <a-form layout="vertical" :rules="rules" :model="formState" @finish="onSubmit">
     <!--Option-->
     <a-form-item name="optionDocument" class="mb-4 select">
-      <a-select
-        @change="doDocumentsWith"
-        placeholder="Seleccione documento"
-        v-model:value="formState.optionDocument"
+      <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.optionDocument"
         :options="
           documentsType.map((item) => ({ value: item.id, label: item.name }))
-        "
-        :disabled="this.$store.state.auth.loading"
-      >
+        " :disabled="this.$store.state.auth.loading">
       </a-select>
     </a-form-item>
     <!--Documents-->
     <a-form-item :name="nameDocument" class="mb-4">
-      <a-input
-        type="text"
-        v-model:value="formState[nameDocument]"
-        :placeholder="placeholder || 'Documento'"
-        :disabled="this.$store.state.auth.loading || !formState.optionDocument"
-        autocomplete="off"
-      />
+      <a-input type="text" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'"
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off" />
     </a-form-item>
 
     <!--Type-->
     <a-form-item :name="name">
-      <a-input
-        :type="valueformat"
-        v-model:value="formState[name]"
-        :placeholder="placeholder2"
-        autocomplete="off"
-        :disabled="this.$store.state.auth.loading || !formState.optionDocument"
-        :pattern="patternformat"
-        :title="tittleformat"
-        @focus="togglePicker()"
-      />
+      <a-input :type="valueformat" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off"
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument" :pattern="patternformat"
+        :title="tittleformat" @focus="togglePicker()" />
     </a-form-item>
 
     <!--Type Option-->
     <a-form-item>
-      <p
-        @click="doTypesWith((exchange = !exchange))"
-        class="link-style"
-        :disabled="this.$store.state.auth.loading"
-        value
-      >
+      <p @click="doTypesWith((exchange = !exchange))" class="link-style" :disabled="this.$store.state.auth.loading"
+        value>
         Registro con {{ placeholder3 }}
       </p>
     </a-form-item>
 
     <!--Button-->
     <a-form-item>
-      <a-button
-        key="submit"
-        htmlType="submit"
-        :disabled="this.$store.state.auth.loading"
-        >Crear cuenta
+      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Crear cuenta
       </a-button>
     </a-form-item>
   </a-form>
-
-  <span v-if="this.$store.state.auth.loading">
-    <img src="@/../public/img/assets/LoadingCircle.svg" />
-  </span>
   <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
 
   <hr />
@@ -79,10 +45,7 @@
   <div class="footer">
     <a-form-item>
       <h5>¿Ya tienes cuenta?</h5>
-      <a-button
-        v-on:click="$emit('exchange', 0)"
-        :disabled="this.$store.state.auth.loading"
-        >Iniciar sesión
+      <a-button v-on:click="$emit('exchange', 0)" :disabled="this.$store.state.auth.loading">Iniciar sesión
       </a-button>
     </a-form-item>
   </div>
@@ -95,7 +58,7 @@ import { h } from "vue";
 import { isDUI } from "sivar-utils";
 
 // import { Form } from "ant-design-vue";
-import { documentsType, documentName, agregarCaracter } from "@/utils/data";
+import { documentsType, documentName } from "@/utils/data";
 import { notification, Button } from "ant-design-vue";
 
 // const useForm = Form.useForm;
@@ -221,7 +184,6 @@ export default {
       rules,
       openNotification,
       documentsType,
-      agregarCaracter,
     };
   },
 
@@ -236,11 +198,6 @@ export default {
       if (this.placeholder === "DUI") {
         try {
           this.nameDocument = "dui";
-          this.formState.dui = this.agregarCaracter(
-            this.$store.state.auth.temporaryData.document,
-            "-",
-            8
-          );
         } catch (error) {
           //
         }
@@ -309,7 +266,7 @@ export default {
         await this.$store.dispatch("validateAccountPhone", data);
 
         if (this.$store.state.auth.validateAccountPhone.success) {
-          this.$emit("exchange", 3);
+          this.$emit("exchange", 2);
         } else {
           this.errorStatus = true;
           this.errorMessage = "El documento ya esta registrado";

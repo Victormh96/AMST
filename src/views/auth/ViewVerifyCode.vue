@@ -33,7 +33,7 @@
 
 <!--========Script========-->
 <script>
-import Navbar from "@/components/auth/partials/ComponentNavbarLogo.vue";
+import Navbar from "@/components/auth/ComponentNavbar.vue";
 
 export default {
   data() {

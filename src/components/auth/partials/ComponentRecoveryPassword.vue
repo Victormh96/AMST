@@ -2,33 +2,19 @@
   <!--Main-->
   <h2>Recupera tu contraseña</h2>
   <!--Formulario-->
-  <a-form
-    layout="vertical"
-    :rules="rules"
-    :model="formState"
-    @finish="onSubmit"
-  >
+  <a-form layout="vertical" :rules="rules" :model="formState" @finish="onSubmit">
     <!--Option-->
     <a-form-item name="documentType" class="mb-4 select">
-      <a-select
-        @change="doDocumentsWith"
-        placeholder="Seleccione documento"
-        v-model:value="formState.documentType"
+      <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.documentType"
         :options="
           documentsType.map((item) => ({ value: item.id, label: item.name }))
-        "
-      >
+        ">
       </a-select>
     </a-form-item>
     <!--Documents-->
     <a-form-item name="document" class="mb-4">
-      <a-input
-        type="tel"
-        v-model:value="formState.document"
-        :placeholder="placeholder || 'Documento'"
-        :disabled="!formState?.documentType"
-        autocomplete="off"
-      />
+      <a-input type="tel" v-model:value="formState.document" :placeholder="placeholder || 'Documento'"
+        :disabled="!formState?.documentType" autocomplete="off" />
     </a-form-item>
     <!--Button-->
     <a-form-item>
@@ -119,15 +105,15 @@ export default {
         documentType: values.documentType,
         document: values.document.replace("-", ""),
       };
-console.log(body)
+      console.log(body)
       await this.$store.dispatch("recoveyPassword", body)
-        try {
-          if (this.$store.state.auth.recoveryPassword.success) {
-            this.openNotification("");
-          }
-        } catch (error) {
-          //
+      try {
+        if (this.$store.state.auth.recoveryPassword.success) {
+          this.openNotification("");
         }
+      } catch (error) {
+        //
+      }
     },
   },
   emits: ["exchange"],

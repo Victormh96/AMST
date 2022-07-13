@@ -1,6 +1,6 @@
 import cryptoJS from "crypto-js"
 
-//Document Type
+//Document Types
 const documentsType = [
     {
         id: "DUI",
@@ -32,7 +32,7 @@ const documentName = (item) => {
     return name
 }
 
-//Gender Type
+//Gender Types
 const genderName = (item) => {
     let name = null
     switch (item) {
@@ -65,6 +65,7 @@ const gender = (type) => {
     return type === 'M' ? 'o' : 'a'
 }
 
+//Decrypt
 const decryptPass =(encrypted)=>{
     const key_crypto = process.env.VUE_APP_AUTH_KEY_CRYPTO.toString();
     const bytes = cryptoJS.AES.decrypt(encrypted, key_crypto);

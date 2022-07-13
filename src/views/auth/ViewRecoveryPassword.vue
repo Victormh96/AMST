@@ -15,14 +15,8 @@
       <a-row v-else>
         <a-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="m-auto">
           <!--Formulario---->
-          <a-form
-            class="title"
-            layout="vertical"
-            autocomplete="off"
-            :rules="rules"
-            :model="formState"
-            @finish="onSubmit"
-          >
+          <a-form class="title" layout="vertical" autocomplete="off" :rules="rules" :model="formState"
+            @finish="onSubmit">
             <!--Main-->
             <h2>Restablecer Contraseña</h2>
 
@@ -30,41 +24,25 @@
               <!--Datos-->
               <a-col :xl="24" class="mb-5">
                 <a-form-item name="password">
-                  <a-input-password
-                    :disabled="this.$store.state.auth.loading"
-                    class="bordered"
-                    type="password"
-                    v-model:value="formState.password"
-                    placeholder="Contraseña"
-                  />
+                  <a-input-password :disabled="this.$store.state.auth.loading" class="bordered" type="password"
+                    v-model:value="formState.password" placeholder="Contraseña" />
                 </a-form-item>
               </a-col>
 
               <a-col :xl="24" class="mb-5">
                 <a-form-item name="repeat">
-                  <a-input-password
-                    :disabled="this.$store.state.auth.loading"
-                    type="password"
-                    v-model:value="formState.repeat"
-                    placeholder="Confirmar Contraseña"
-                  />
+                  <a-input-password :disabled="this.$store.state.auth.loading" type="password"
+                    v-model:value="formState.repeat" placeholder="Confirmar Contraseña" />
                 </a-form-item>
               </a-col>
             </a-row>
             <a-col :xl="24" class="mb-5 centered">
-              <span v-if="this.$store.state.auth.loading">
-                <img src="@/../public/img/assets/LoadingCircle.svg" />
-              </span>
+
               <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
             </a-col>
             <!--Button-->
             <div class="centered">
-              <a-button
-                :disabled="this.$store.state.auth.loading"
-                key="submit"
-                htmlType="submit"
-                >Guardar</a-button
-              >
+              <a-button :loading="this.$store.state.auth.loading" key="submit" htmlType="submit">Guardar</a-button>
             </div>
           </a-form>
         </a-col>
@@ -145,7 +123,7 @@ export default {
 
   methods: {
     async onSubmit(values) {
-       const { password } = values;
+      const { password } = values;
 
       this.errorStatus = false;
       try {
@@ -157,7 +135,7 @@ export default {
           password: password,
         };
 
-        
+
         await this.$store.dispatch("changePassword", body);
 
 

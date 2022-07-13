@@ -1,116 +1,86 @@
 <template>
   <!--Main-->
-  <h2>Inicio de sesión</h2>
-  <!--Formulario-->
+  <h2 class="mt-2 mb-5">Inicio de sesión</h2>
+
+  <!--Form-->
   <a-form layout="vertical" :model="formState" :rules="rules" @finish="onSubmit">
-    <!--Option-->
-    <a-form-item name="optionDocument" class="mb-4 select">
-      <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.optionDocument"
+    <!--Option Document-->
+    <a-form-item name="optionDocument" class="mb-4">
+      <a-select @change="doDocumentsWith" placeholder="Seleccione Documento" v-model:value="formState.optionDocument"
         :disabled="this.$store.state.auth.loading" :options="
-          documentsType.map((item) => ({ value: item.id, label: item.name }))
-        ">
+        documentsType.map((item) => ({ value: item.id, label: item.name }))">
       </a-select>
     </a-form-item>
-
     <!--Documents-->
     <a-form-item :name="nameDocument" class="mb-4">
       <a-input type="tel" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'"
         :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off" />
     </a-form-item>
-
     <!--Password-->
     <a-form-item name="password">
       <a-input-password type="password" v-model:value="formState.password" placeholder="Contraseña" :disabled="
-        this.$store.state.auth.loading || !formState.optionDocument
-      " autocomplete="off" />
+      this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off" />
     </a-form-item>
-    <!--Reset-->
-    <a-form-item>
-      <p @click="$emit('exchange', 2)" class="link-style">
+    <!--Reset Password-->
+    <a-form-item class="mt-1 mb-3 mr-3">
+      <p @click="$emit('exchange', 3)">
         ¿Olvidaste tu contraseña?
       </p>
     </a-form-item>
     <!--Button-->
     <a-form-item>
-      <a-button key="submit" htmlType="submit" :disabled="this.$store.state.auth.loading">Entrar</a-button>
+      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Entrar</a-button>
     </a-form-item>
-
-    <span v-if="this.$store.state.auth.loading">
-      <img src="@/../public/img/assets/LoadingCircle.svg">
-    </span>
-    <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
+    <!--Error-->
+    <div class="mt-2" v-if="errorStatus">
+      <strong>{{ errorMessage }}</strong>
+    </div>
   </a-form>
-
-  <hr />
+  <!--Divider-->
+  <hr>
   <!--Others-->
-  <div class="footer">
-    <a-form-item>
-      <h5>¿No tienes cuenta?</h5>
-      <a-button :disabled="this.$store.state.auth.loading" v-on:click="$emit('exchange', 1)">Crear cuenta</a-button>
-    </a-form-item>
-  </div>
+  <a-form-item>
+    <h5 class="mb-3">¿No tienes cuenta?</h5>
+    <a-button :disabled="this.$store.state.auth.loading" v-on:click="$emit('exchange', 1)">Crear cuenta</a-button>
+  </a-form-item>
 </template>
 
 <!--========Script========-->
 <script>
-import { isDUI } from "sivar-utils";
 import { documentsType, documentName } from "@/utils/data";
-
-const str = "test";
-const fakeDUI = "00000000-0";
-const validDUI = "02495046-3";
-
-isDUI(str); // false
-isDUI(fakeDUI); // false
-isDUI(validDUI); // true
 
 export default {
   data() {
     return {
+      //Error
       placeholder: null,
       errorStatus: false,
       errorMessage: null,
-      nameDocument: "",
+
+      //Form
       formState: {
         document: undefined,
         password: undefined,
       },
-    };
+      nameDocument: null
+    }
   },
 
   setup() {
     const rules = {
-      documento: [
-        {
-          type: "string",
-          required: true,
-          message: "Campo requerido",
-          trigger: "change",
-        },
-      ],
-      pasaporte: [
-        {
-          type: "string",
-          required: true,
-          message: "Campo requerido",
-          trigger: "change",
-        },
-      ],
       dui: [
         {
-          type: "string",
           required: true,
-          message: "Se requiere ingresar el número de DUI",
+          message: "Campo requerido",
           trigger: "blur",
         },
         {
-          required: true,
           pattern: /^[0-9]\d{7}-\d{1}$/gm,
           transform(value) {
             return value.trim();
           },
           message: "Formato Invalido",
-          trigger: "change",
+          trigger: "blur",
         },
       ],
       email: [
@@ -140,7 +110,7 @@ export default {
         },
         {
           min: 6,
-          message: "La contraseña debe tener 6 digitos como minimo",
+          message: "Debe tener 6 digitos como minimo",
           trigger: "blur",
         },
       ],
@@ -149,12 +119,14 @@ export default {
     return {
       rules,
       documentsType,
-    };
+    }
   },
+
   methods: {
     doDocumentsWith(item) {
-      console.log(item);
+      //falta cambiar a varios tipos de documentos
       this.placeholder = documentName(item);
+
       if (this.placeholder === "DUI") {
         this.nameDocument = "dui";
         return;
@@ -170,10 +142,9 @@ export default {
     },
 
     async onSubmit(values) {
-
       this.errorStatus = false;
 
-//falta cambiar a varios tipos de documentos
+      //falta cambiar a varios tipos de documentos
 
       const body = {
         documentType: values.optionDocument,

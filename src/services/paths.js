@@ -1,4 +1,4 @@
-//Endpoint
+//Env
 const url_base = process.env.VUE_APP_URL_BASE;
 
 //Prefix

@@ -6,9 +6,9 @@
                 <a-col :lg="8" :xl="8" class="text-left d-sm-none">
                     <div class="ubicacion">
                         <img src="@/../public/img/assets/shape.png" alt="location">
-                        <h5>2a Av. Norte y 1a C Poniente.<br />
+                        <h6>2a Av. Norte y 1a C Poniente.<br />
                             No. 2-3, Santa Tecla.<br />
-                            La Libertad, El Salvador</h5>
+                            La Libertad, El Salvador</h6>
                     </div>
                 </a-col>
                 <!--logo-->

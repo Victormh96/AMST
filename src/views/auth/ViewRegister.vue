@@ -15,14 +15,8 @@
       <a-row v-else>
         <a-col :xs="24" :sm="24" :md="24" :lg="14" :xl="15" class="m-auto">
           <!--Formulario---->
-          <a-form
-            class="title"
-            layout="vertical"
-            autocomplete="off"
-            :rules="rules"
-            :model="formState"
-            @finish="onSubmit"
-          >
+          <a-form class="title" layout="vertical" autocomplete="off" :rules="rules" :model="formState"
+            @finish="onSubmit">
             <!--Main-->
             <h2>Datos Personales</h2>
 
@@ -30,110 +24,62 @@
               <!--Datos-->
               <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
                 <a-form-item name="name">
-                  <a-input
-                    type="text"
-                    v-model:value="formState.name"
-                    placeholder="Nombre"
-                    :disabled="this.$store.state.auth.loading"
-                  />
+                  <a-input type="text" v-model:value="formState.name" placeholder="Nombre"
+                    :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
 
               <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
                 <a-form-item name="lastname">
-                  <a-input
-                    type="text"
-                    v-model:value="formState.lastname"
-                    placeholder="Apellido"
-                    :disabled="this.$store.state.auth.loading"
-                  />
+                  <a-input type="text" v-model:value="formState.lastname" placeholder="Apellido"
+                    :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
 
               <a-col v-if="validateEmail" :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
                 <a-form-item name="contact">
-                  <a-input
-                    :type="valueformat"
-                    v-model:value="formState.contact"
-                    placeholder="Número de contacto"
-                    :disabled="this.$store.state.auth.loading"
-                    :pattern="patternformat"
-                    :title="tittleformat"
-                    @focus="togglePicker()"
-                  />
+                  <a-input :type="valueformat" v-model:value="formState.contact" placeholder="Número de contacto"
+                    :disabled="this.$store.state.auth.loading" :pattern="patternformat" :title="tittleformat"
+                    @focus="togglePicker()" />
                 </a-form-item>
               </a-col>
 
-              <a-col
-                v-if="!validateEmail"
-                :xs="24"
-                :sm="24"
-                :md="12"
-                :lg="12"
-                :xl="12"
-                class="mb-5"
-              >
+              <a-col v-if="!validateEmail" :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
                 <a-form-item name="email">
-                  <a-input
-                    type="email"
-                    v-model:value="formState.email"
-                    placeholder="Correo Electrónico"
-                    :disabled="this.$store.state.auth.loading"
-                  />
+                  <a-input type="email" v-model:value="formState.email" placeholder="Correo Electrónico"
+                    :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
 
               <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
                 <!--Option-->
                 <a-form-item name="optiongender" class="select">
-                  <a-select
-                    placeholder="Genero"
-                    v-model:value="formState.optiongender"
-                    :options="
-                      genderType.map((item) => ({
-                        value: item.id,
-                        label: item.name,
-                      }))
-                    "
-                    :disabled="this.$store.state.auth.loading"
-                  >
+                  <a-select placeholder="Genero" v-model:value="formState.optiongender" :options="
+                    genderType.map((item) => ({
+                      value: item.id,
+                      label: item.name,
+                    }))
+                  " :disabled="this.$store.state.auth.loading">
                   </a-select>
                 </a-form-item>
               </a-col>
 
               <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
                 <a-form-item name="password">
-                  <a-input-password
-                    type="password"
-                    v-model:value="formState.password"
-                    placeholder="Contraseña"
-                    :disabled="this.$store.state.auth.loading"
-                  />
+                  <a-input-password type="password" v-model:value="formState.password" placeholder="Contraseña"
+                    :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
 
               <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
                 <a-form-item name="repeat">
-                  <a-input-password
-                    type="password"
-                    v-model:value="formState.repeat"
-                    placeholder="Confirmar Contraseña"
-                    :disabled="this.$store.state.auth.loading"
-                  />
+                  <a-input-password type="password" v-model:value="formState.repeat" placeholder="Confirmar Contraseña"
+                    :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
 
-              <a-col
-                :xs="24"
-                :sm="24"
-                :md="24"
-                :lg="24"
-                :xl="24"
-                class="mb-5 centered"
-              >
-                <span v-if="this.$store.state.auth.loading">
-                  <img src="@/../public/img/assets/LoadingCircle.svg" />
-                </span>
+              <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb-5 centered">
+
                 <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
               </a-col>
             </a-row>
