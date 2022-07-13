@@ -1,14 +1,15 @@
 <template>
-  <!--Main-->
-  <h2>Crear cuenta</h2>
-  <!--Formulario-->
+  <!--Title-->
+  <h2 class="mt-2 mb-4">Crear cuenta</h2>
+
+  <!--Form-->
   <a-form layout="vertical" :rules="rules" :model="formState" @finish="onSubmit">
-    <!--Option-->
+    <!--Option Document-->
     <a-form-item name="optionDocument" class="mb-4 select">
-      <a-select @change="doDocumentsWith" placeholder="Seleccione documento" v-model:value="formState.optionDocument"
+      <a-select @change="doDocumentsWith" placeholder="Seleccione Documento" v-model:value="formState.optionDocument"
         :options="
-          documentsType.map((item) => ({ value: item.id, label: item.name }))
-        " :disabled="this.$store.state.auth.loading">
+        documentsType.map((item) => ({ value: item.id, label: item.name }))"
+        :disabled="this.$store.state.auth.loading">
       </a-select>
     </a-form-item>
     <!--Documents-->
@@ -16,59 +17,42 @@
       <a-input type="text" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'"
         :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off" />
     </a-form-item>
-
-    <!--Type-->
+    <!--Method-->
     <a-form-item :name="name">
       <a-input :type="valueformat" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off"
         :disabled="this.$store.state.auth.loading || !formState.optionDocument" :pattern="patternformat"
         :title="tittleformat" @focus="togglePicker()" />
     </a-form-item>
-
-    <!--Type Option-->
-    <a-form-item>
-      <p @click="doTypesWith((exchange = !exchange))" class="link-style" :disabled="this.$store.state.auth.loading"
-        value>
-        Registro con {{ placeholder3 }}
+    <!--Method Option-->
+    <a-form-item class="mt-1 mb-3 mr-3">
+      <p @click="doTypesWith((exchange = !exchange))" class="link-style" :disabled="this.$store.state.auth.loading">
+        Registro {{ placeholder3 }}
       </p>
     </a-form-item>
-
     <!--Button-->
     <a-form-item>
-      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Crear cuenta
-      </a-button>
+      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Crear cuenta</a-button>
     </a-form-item>
   </a-form>
-  <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
-
-  <hr />
-  <!--Others-->
-  <div class="footer">
-    <a-form-item>
-      <h5>¿Ya tienes cuenta?</h5>
-      <a-button v-on:click="$emit('exchange', 0)" :disabled="this.$store.state.auth.loading">Iniciar sesión
-      </a-button>
-    </a-form-item>
+  <!--Error-->
+  <div class="mt-2" v-if="errorStatus">
+    <strong>{{ errorMessage }}</strong>
   </div>
+  <!--Divider-->
+  <hr>
+  <!--Others-->
+  <a-form-item>
+    <h5 class="mb-3">¿Ya tienes cuenta?</h5>
+    <a-button v-on:click="$emit('exchange', 0)" :disabled="this.$store.state.auth.loading">Iniciar sesión</a-button>
+  </a-form-item>
 </template>
 
 <!--========Script========-->
 <script>
-import { h } from "vue";
 
-import { isDUI } from "sivar-utils";
-
-// import { Form } from "ant-design-vue";
+//Revisar Codigo fuente
 import { documentsType, documentName } from "@/utils/data";
-import { notification, Button } from "ant-design-vue";
-
-// const useForm = Form.useForm;
-const str = "test";
-const fakeDUI = "00000000-0";
-const validDUI = "02495046-3";
-
-isDUI(str); // false
-isDUI(fakeDUI); // false
-isDUI(validDUI); // true
+import { notification } from "ant-design-vue";
 
 export default {
   data() {
@@ -77,6 +61,7 @@ export default {
       placeholder: null,
       errorStatus: false,
       errorMessage: null,
+
       //Type
       exchange: true,
       name: "email",
@@ -88,6 +73,7 @@ export default {
       patternformat: null,
       valueformat: null,
       tittleformat: null,
+
       formState: {
         document: null,
         email: null,
@@ -98,24 +84,11 @@ export default {
   },
 
   setup() {
-    const openNotification = (placement) => {
-      const key = `open${Date.now()}`;
-
+    const openNotification = () => {
       notification.open({
-        message: `Notificación ${placement}`,
-        description:
-          "Se ha enviado un correo electrónico a su cuenta con un código de verificación de 6 dígitos.",
-        placement,
-
-        btn: h(
-          Button,
-          {
-            onClick: () => notification.close(key),
-          },
-          "Reenviar"
-        ),
-        key,
-        onClose: close,
+        message: 'Alcaldia Santa Tecla',
+        description: 'Se ha enviado un correo electrónico a su cuenta con un código de verificación de 6 dígitos.',
+        placement: 'bottomRight',
       });
     };
 
@@ -147,13 +120,12 @@ export default {
         },
 
         {
-          validator: async (_, value) => {
-            if (!isDUI(value)) {
-              return Promise.reject();
-            }
+          pattern: /^[0-9]\d{7}-\d{1}$/gm,
+          transform(value) {
+            return value.trim();
           },
           message: "Formato Invalido",
-          trigger: "change",
+          trigger: "blur",
         },
       ],
 
@@ -188,40 +160,13 @@ export default {
   },
 
   mounted() {
-    this.setData();
+    this.setData()
   },
 
   methods: {
     doDocumentsWith(item) {
       this.placeholder = documentName(item);
-
-      if (this.placeholder === "DUI") {
-        try {
-          this.nameDocument = "dui";
-        } catch (error) {
-          //
-        }
-        return;
-      }
-      if (this.placeholder === "Pasaporte") {
-        try {
-          this.nameDocument = "Pasaporte";
-          this.formState.pasaporte =
-            this.$store.state.auth.temporaryData.pasaporte;
-        } catch (error) {
-          //
-        }
-        return;
-      } else {
-        try {
-          this.nameDocument = "document";
-          this.formState.document =
-            this.$store.state.auth.temporaryData.carneResidencia;
-        } catch (error) {
-          //
-        }
-        return;
-      }
+      this.nameDocument = documentName(item);
     },
 
     doTypesWith(item) {
@@ -243,27 +188,20 @@ export default {
 
     // metodo enviar
     async onSubmit(values) {
-      console.log(values);
 
-      const body = {
-        documentType: values.optionDocument,
-        document: values.dui?.replace("-", ""),
-        pasaporte: values?.pasaporte,
-        carneResidencia: values?.document,
-        email: values.email,
-        phone: values.phone,
-      };
-
-      await this.$store.dispatch("temporaryData", body);
-
+      let body = null
       if (this.name === "phone") {
-        const data = {
-          documentType: body.documentType,
-          document: body.document,
-          phone: body.phone.substring(4, 12),
+        body = {
+          documentType: values.optionDocument,
+          document: values.DUI
+            ? values.DUI.replace("-", "")
+            : values.pasaporte
+              ? values.pasaporte
+              : values.documento,
+          phone: values.phone.substring(4, 12),
         };
-
-        await this.$store.dispatch("validateAccountPhone", data);
+        await this.$store.dispatch("temporaryData", body);
+        await this.$store.dispatch("validateAccountPhone", body);
 
         if (this.$store.state.auth.validateAccountPhone.success) {
           this.$emit("exchange", 2);
@@ -273,11 +211,19 @@ export default {
         }
       } else {
         this.errorStatus = false;
-
-        body.type = 1;
-        body.active = 0;
-        body.action = 0;
-
+        body = {
+          documentType: values.optionDocument,
+          document: values.DUI
+            ? values.DUI.replace("-", "")
+            : values.pasaporte
+              ? values.pasaporte
+              : values.documento,
+          email: values.email,
+          type: 1,
+          active: 0,
+          action: 0,
+        };
+        await this.$store.dispatch("temporaryData", body);
         await this.$store.dispatch("createAccount", body);
 
         this.errorStatus = this.$store.state.auth.error;
@@ -290,44 +236,22 @@ export default {
             this.errorMessage = "Error Interno de Servidor";
           }
         } else {
-          this.openNotification("");
+          this.openNotification();
         }
       }
     },
 
     setData() {
       try {
-        const documentType = this.$store.state.auth.temporaryData.documentType;
-        console.log(documentType);
 
-        this.doDocumentsWith(documentType);
+        this.$store.state.auth.temporaryData.documentType ? this.doDocumentsWith(this.$store.state.auth.temporaryData.documentType) : null
 
-        switch (documentType) {
-          case "DUI":
-            this.formState.optionDocument = "DUI";
-            this.formState.nameDocument = "dui";
-            break;
-          case "PST":
-            this.formState.optionDocument = "Pasaporte";
-            this.formState.nameDocument = "pasaporte";
-            break;
-          case "CDR":
-            this.nameDocument = "document";
-            break;
-        }
       } catch (error) {
+
         //
       }
+      
     },
-
-    /*
-     * trigger input is @focus="togglePicker()" @focus is native event vue
-     * togglePicker is method
-     * trigger event are click and focus or onfocus (They are the same) documentation event ->https://cutt.ly/1K4OvEy
-     * valueformat variable is definid anteriorly (charge tel or text)
-     * matter tel validate
-     * event blur is used clear input
-     */
 
     togglePicker() {
       if (this.name === "phone") {

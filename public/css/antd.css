@@ -76,19 +76,14 @@ html[data-theme="Dark-Mode"] {
 /* ============================================================*/
 /* Html
 /* ============================================================*/
-
-.centered {
+.d-flex {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
-.righted {
+.d-flex-right {
     display: flex;
+    align-items: center;
     justify-content: right;
-    align-items: right;
-    text-align: right;
 }
 
 .w-100 {
@@ -96,6 +91,15 @@ html[data-theme="Dark-Mode"] {
     max-width: 100% !important;
     min-width: 100% !important;
 }
+
+.timeCount {
+    min-width: 25px;
+}
+
+.d-none {
+    display: none;
+}
+
 
 .loading {
     margin-top: 90px;
@@ -106,22 +110,9 @@ html[data-theme="Dark-Mode"] {
     font-weight: 500;
 }
 
-.timeCount {
-    min-width: 25px;
-}
-
-.color-code-text {
-    font-size: 14px;
-    padding-top: 10px;
-    color: var(--bluesky);
-}
 
 .danger {
     color: var(--required) !important;
-}
-
-.hidden {
-    visibility: hidden;
 }
 
 .i-tel {
@@ -5383,7 +5374,7 @@ textarea.ant-input {
     touch-action: manipulation;
     padding: 4px 15px;
     width: 100%;
-    font-size: .95rem;
+    font-size: 1rem;
     font-weight: 600;
     background: var(--bluesky);
     color: var(--white);
@@ -9953,6 +9944,8 @@ a.ant-btn-sm {
 }
 
 .ant-dropdown-menu {
+    width: 180px;
+    float: right;
     position: relative;
     margin: 0;
     padding: 4px 0;
@@ -9962,7 +9955,7 @@ a.ant-btn-sm {
     background-clip: padding-box;
     border-radius: 2px;
     outline: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
     -webkit-transform: translate3d(0, 0, 0);
 }
 
@@ -10001,7 +9994,7 @@ a.ant-btn-sm {
     padding: 5px 12px;
     color: rgba(0, 0, 0, 0.85);
     font-weight: normal;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 22px;
     white-space: nowrap;
     cursor: pointer;
@@ -24010,11 +24003,6 @@ not all and (min-resolution: 0.001dpcm) {
     animation-name: diffZoomIn2 !important;
 }
 
-.ant-form-item-has-error .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
-    background-color: #fff;
-    border-color: #ff4d4f !important;
-}
-
 .ant-form-item-has-error .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input).ant-select-open .ant-select-selector,
 .ant-form-item-has-error .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input).ant-select-focused .ant-select-selector {
     border-color: #b50c1c;
@@ -27092,7 +27080,7 @@ textarea.ant-mentions {
     line-height: 1.5715;
     word-wrap: break-word;
     text-align: center;
-    padding: 30px 50px 35px 50px;
+    padding: 30px 45px 35px 45px;
 }
 
 
@@ -27306,6 +27294,7 @@ textarea.ant-mentions {
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
 }
 
 .ant-notification-notice-message {
@@ -27314,6 +27303,7 @@ textarea.ant-mentions {
     color: rgba(0, 0, 0, 0.85);
     font-size: 16px;
     line-height: 24px;
+    font-weight: 600;
 }
 
 .ant-notification-notice-message-single-line-auto-margin {
@@ -27330,7 +27320,7 @@ textarea.ant-mentions {
 }
 
 .ant-notification-notice-description {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .ant-notification-notice-closable .ant-notification-notice-message {
@@ -27377,6 +27367,7 @@ textarea.ant-mentions {
     right: 22px;
     color: rgba(0, 0, 0, 0.45);
     outline: none;
+    display: none;
 }
 
 .ant-notification-notice-close:hover {
@@ -33596,7 +33587,6 @@ div.ant-typography-edit-content.ant-typography-rtl {
     -webkit-animation-name: uploadAnimateInlineOut;
     animation-name: uploadAnimateInlineOut;
 }
-
 
 /*===Phone===**/
 

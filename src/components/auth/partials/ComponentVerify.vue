@@ -1,32 +1,37 @@
 <template>
-  <h2>Se ha enviado un código</h2>
-  <!--Formulario-->
-  <a-form layout="vertical" :model="formState" :rules="rules" @finish="VerifyCode">
-    <div class="mb-3">
-      <p class="color-code-text">
-        Introdúcelo para verificar el número
-        {{ phone }}
-        <i class="fa-solid fa-pencil i-tel" />
-      </p>
-    </div>
-    <a-form-item name="code" class="mb-1">
-      <a-input type="text" v-model:value="formState.code" placeholder="Código de verificación" />
+  <!--Title-->
+  <h2 class="mt-2 mb-4">Se ha enviado un código</h2>
+
+  <!--Form-->
+  <a-form layout="vertical" :model="formState" @finish="VerifyCode">
+    <!--Alert-->
+    <a-form-item class="mb-4 content">
+      <small>
+        Introdúcelo para verificar
+        <div>
+          {{ this.$store.state.auth.temporaryData.phone }}
+        </div>
+      </small>
     </a-form-item>
-    <!--Dropdown List-->
-    <a-dropdown :trigger="['click']" :disabled="timerCount > 0 ? true : false">
-      <div class="component link-style righted" @click.prevent>
-        <div :class="[timerCount > 0 && 'danger']">¿No recibiste un SMS?</div>
-        <div class="mr-1 timeCount" :class="[timerCount === 0 && 'hidden']">
+    <!--Code-->
+    <a-form-item name="code" class="mb-1">
+      <a-input type="tel" v-model:value="formState.code" placeholder="Código de verificación" />
+    </a-form-item>
+    <!--Dropdown-->
+    <a-dropdown :trigger="['click']" :disabled="timerCount > 0 ? true : false" class="mt-2 mb-3 mr-3">
+      <div class="d-flex-right" @click.prevent>
+        <div :class="[timerCount > 0 && 'danger']" class="sms">¿No recibiste un SMS?</div>
+        <div class="mr-1 ml-1 timeCount" :class="[timerCount === 0 && 'd-none']">
           {{ timerCount }}
         </div>
         <div>
-          <i class="fa-regular fa-clock" :class="[timerCount === 0 && 'hidden']" />
+          <i class="fa-regular fa-clock" :class="[timerCount === 0 && 'd-none']" />
         </div>
       </div>
       <template #overlay>
         <a-menu>
           <a-menu-item key="0">
-            <a v-on:click="sendCode(1)">Volver a enviar SMS</a>
+            <a v-on:click="sendCode(1)">Reenviar SMS</a>
           </a-menu-item>
           <a-menu-item key="1">
             <a v-on:click="$emit('exchange', 1)">Usar correo</a>
@@ -37,20 +42,24 @@
     <!--Button-->
     <a-button key="submit" htmlType="submit">Siguiente</a-button>
   </a-form>
-  <hr />
-  <!--Others-->
-  <div class="footer">
-    <h5>¿Ya tienes cuenta?</h5>
-    <a-button v-on:click="$emit('exchange', 0)">Iniciar sesión</a-button>
+  <!--Error-->
+  <div class="mt-2" v-if="errorStatus">
+    <strong>{{ errorMessage }}</strong>
   </div>
-
+  <!--Divider-->
+  <hr>
+  <!--Others-->
+  <a-form-item>
+    <h5 class="mb-3">¿Ya tienes cuenta?</h5>
+    <a-button v-on:click="$emit('exchange', 0)">Iniciar sesión</a-button>
+  </a-form-item>
+  <!--Recaptcha-->
   <div id="recaptcha-container"></div>
 </template>
 
 <!--========Script========-->
 <script>
 import { reactive } from "vue";
-import { Form } from "ant-design-vue";
 import {
   getAuth,
   RecaptchaVerifier,
@@ -59,14 +68,14 @@ import {
 } from "firebase/auth";
 
 const auth = getAuth();
-const useForm = Form.useForm;
 
 export default {
   data() {
     return {
       thing: 0,
       timerCount: 20,
-      tel: localStorage.getItem("phone"),
+      errorStatus: false,
+      errorMessage: null,
     };
   },
 
@@ -86,55 +95,27 @@ export default {
   setup() {
     const formState = reactive({
       code: null,
-      phone: null
     });
 
-    const rules = {
-      code: [
-        {
-          required: true,
-          message: "Campo requerido",
-          trigger: "change",
-        },
-        {
-          pattern: /^([0-9]{6})$/g,
-          transform(value) {
-            return value.trim();
-          },
-          message: "Se requiere ingresar un código de 6 dígitos",
-          trigger: "change",
-        },
-      ],
-    };
-
-    const { resetFields } = useForm(formState, reactive({}));
-
     return {
-      formState,
-      rules,
-      resetFields,
-    };
+      formState
+    }
   },
 
   mounted() {
     this.Recaptcha();
     this.sendCode();
-    this.phone = this.$store.state.auth.temporaryData.phone;
   },
 
   methods: {
     async sendCode(index = 0) {
-      const phoneNumber = this.$store.state.auth.temporaryData.phone;
-
+      const phoneNumber = "+503" + this.$store.state.auth.temporaryData.phone;
       const appVerifier = window?.recaptchaVerifier;
-
-
-
 
       if (phoneNumber) {
         if (index === 1) {
           this.RecaptchaReset();
-          this.timerCount = 60;
+          this.timerCount = 40;
         }
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
           .then((confirmationResult) => {
@@ -142,19 +123,18 @@ export default {
           })
           .catch((error) => {
             this.RecaptchaReset();
-            console.log("codigo no enviado", error);
+            this.errorStatus = true
+            this.errorMessage = "Codigo no valido"
+            console.log(error);
           });
       }
-
     },
 
-    async VerifyCode(values) {
+    VerifyCode(values) {
       const code = values.code;
       window.confirmationResult
         .confirm(code)
         .then((result) => {
-          console.log("codigo exitoso", result);
-
           this.$store
             .dispatch("temporaryDataUid", result.user.uid)
             .then(() =>
@@ -163,14 +143,14 @@ export default {
                 this.$store.state.auth.temporaryData
               )
             );
-
+          signOut(auth);
           this.$router.replace({ name: "Register" });
         })
         .catch((error) => {
-          console.log("codigo no valido", error);
+          this.errorStatus = true
+          this.errorMessage = "Codigo no valido"
+          console.log(error);
         });
-
-      await signOut(auth);
     },
 
     Recaptcha() {
@@ -179,7 +159,7 @@ export default {
         {
           size: "invisible",
           callback: (response) => {
-            console.log("codigo enviado", response);
+            console.log(response);
           },
         },
         auth
@@ -192,6 +172,7 @@ export default {
       });
     },
   },
+
   emits: ["exchange"],
 };
 </script>

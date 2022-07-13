@@ -4,6 +4,7 @@ import store from './store'
 import router from "./router"
 import { createApp } from 'vue'
 import Antd from 'ant-design-vue'
+import VueTheMask from 'vue-the-mask'
 
 //Css
 import '../public/css/antd.css'
@@ -15,5 +16,5 @@ const app = createApp(App)
 app.use(store)
     .use(router)
     .use(Antd)
+    .use(VueTheMask)
     .mount('#app')
-

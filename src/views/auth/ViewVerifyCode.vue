@@ -77,6 +77,7 @@ export default {
               this.$router.push("/recuperar");
             }
             if (action == "create") {
+
               this.$router.push("/register");
             }
           }, 2500);
@@ -84,20 +85,20 @@ export default {
           if (!this.$store.state.auth.validateAccount.success) {
             this.message = this.$store.state.auth.validateAccount.message;
             setTimeout(() => {
-              // this.$router.push("/");
+              this.$router.push("/");
             }, 3500);
           } else {
             this.message = "Error en la validación";
             setTimeout(() => {
-              //this.$router.push("/");
+              this.$router.push("/");
             }, 3500);
           }
         }
       } catch (error) {
-        //this.$router.push("/");
+        this.$router.push("/");
       }
     } else {
-      //this.$router.push("/");
+      this.$router.push("/");
     }
   },
 

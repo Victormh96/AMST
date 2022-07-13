@@ -9,7 +9,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.$emit('loading', true)
-        }, 450)
+        }, 500)
     },
 };
 </script>

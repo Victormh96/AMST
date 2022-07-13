@@ -6,29 +6,30 @@
   <Navbar />
 
   <!--Main-->
-  <a-layout-content id="register">
+  <a-layout-content id="auth">
     <div class="container">
       <!--Skeleton-->
-      <a-skeleton active :paragraph="{ rows: 9 }" v-if="loading" />
+      <Skeleton @loading="loading" v-if="(!skeleton)" />
 
       <!--Row-->
       <a-row v-else>
         <a-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="m-auto">
-          <!--Formulario---->
+          <!--Form---->
           <a-form class="title" layout="vertical" autocomplete="off" :rules="rules" :model="formState"
             @finish="onSubmit">
-            <!--Main-->
-            <h2>Restablecer Contraseña</h2>
+            <!--Title-->
+            <h2 class="mb-5 text-center">Restablecer Contraseña</h2>
 
-            <a-row class="mb">
-              <!--Datos-->
+            <!--Row-->
+            <a-row>
+              <!--Password-->
               <a-col :xl="24" class="mb-5">
                 <a-form-item name="password">
-                  <a-input-password :disabled="this.$store.state.auth.loading" class="bordered" type="password"
+                  <a-input-password :disabled="this.$store.state.auth.loading" type="password"
                     v-model:value="formState.password" placeholder="Contraseña" />
                 </a-form-item>
               </a-col>
-
+              <!--Password Repeat-->
               <a-col :xl="24" class="mb-5">
                 <a-form-item name="repeat">
                   <a-input-password :disabled="this.$store.state.auth.loading" type="password"
@@ -37,7 +38,6 @@
               </a-col>
             </a-row>
             <a-col :xl="24" class="mb-5 centered">
-
               <p class="error-login" v-if="errorStatus">{{ errorMessage }}</p>
             </a-col>
             <!--Button-->
@@ -57,24 +57,26 @@
 <!--========Script========-->
 <script>
 import { reactive } from "vue";
-import { Form } from "ant-design-vue";
+import { Form, notification, message } from "ant-design-vue";
 import Navbar from "@/components/public/ComponentNavbar.vue";
 import Footer from "@/components/public/ComponentFooter.vue";
+import Skeleton from '@/components/auth/ComponentSkeleton.vue'
 
 const useForm = Form.useForm;
 
 export default {
   data() {
     return {
-      loading: true,
       errorStatus: false,
       errorMessage: null,
-    };
+      skeleton: false,
+    }
   },
 
   components: {
     Navbar,
     Footer,
+    Skeleton
   },
 
   setup() {
@@ -82,6 +84,21 @@ export default {
       password: null,
       repeat: null,
     });
+
+    const openNotification = () => {
+      notification.open({
+        message: 'Alcaldia Santa Tecla',
+        description: 'La contraseña fue restablecida con exito',
+        placement: 'bottomRight',
+      });
+    };
+
+    const openMessage = () => {
+      message.success(
+        'La contraseña fue restablecida con exito',
+        4,
+      );
+    };
 
     const { resetFields } = useForm(formState, reactive({}));
 
@@ -118,6 +135,8 @@ export default {
       formState,
       rules,
       resetFields,
+      openNotification,
+      openMessage
     };
   },
 
@@ -130,7 +149,8 @@ export default {
         const body = {
           email: this.$store.state.auth.validateAccount.data[0].email,
           document: this.$store.state.auth.validateAccount.data[0].document,
-          documentType: this.$store.state.auth.validateAccount.data[0].documentType,
+          documentType:
+            this.$store.state.auth.validateAccount.data[0].documentType,
           token: this.$store.state.auth.validateAccount.data[0].token,
           password: password,
         };
@@ -138,19 +158,28 @@ export default {
 
         await this.$store.dispatch("changePassword", body);
 
+        if (!this.$store.state.auth.error) {
+          this.openNotification();
+          this.openMessage()
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 3500);
 
 
+
+        } else {
+          this.errorMessage = "Error " + this.$store.state.auth.errorChangePassword;
+        }
         this.errorStatus = this.$store.state.auth.error;
       } catch (error) {
-        this.errorMessage = "Error Interno de servidor"
+        this.errorMessage = "Error " + this.$store.state.auth.errorChangePassword;
       }
     },
+
+    loading(item) {
+      this.skeleton = item
+    }
   },
 
-  mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
-  },
 };
 </script>

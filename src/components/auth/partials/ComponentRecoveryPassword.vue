@@ -20,6 +20,11 @@
     <a-form-item>
       <a-button key="submit" htmlType="submit">Enviar</a-button>
     </a-form-item>
+
+    <!--Error-->
+    <div class="mt-2" v-if="errorStatus">
+      <strong>{{ errorMessage }}</strong>
+    </div>
   </a-form>
   <hr />
   <!--Others-->
@@ -33,8 +38,8 @@
 
 <!--========Script========-->
 <script>
-import { h, reactive } from "vue";
-import { Form, notification, Button } from "ant-design-vue";
+import {  reactive } from "vue";
+import { Form, notification } from "ant-design-vue";
 import { documentsType, documentName } from "@/utils/data";
 
 const useForm = Form.useForm;
@@ -44,6 +49,8 @@ export default {
     return {
       //Document
       placeholder: null,
+      errorStatus: false,
+      errorMessage: null,
       //Type
       exchange: true,
       name: "email",
@@ -55,26 +62,15 @@ export default {
     const formState = reactive({
       document: null,
     });
-    const openNotification = (placement) => {
-      const key = `open${Date.now()}`;
 
+    const openNotification = () => {
       notification.open({
-        message: `Notificación ${placement}`,
-        description:
-          "Se ha enviado un correo electrónico a su cuenta con un código de verificación de 6 dígitos.",
-        placement,
-
-        btn: h(
-          Button,
-          {
-            onClick: () => notification.close(key),
-          },
-          "Reenviar"
-        ),
-        key,
-        onClose: close,
+        message: 'Alcaldia Santa Tecla',
+        description: 'Se ha enviado un correo electrónico a su cuenta con un código de verificación de 6 dígitos.',
+        placement: 'bottomRight',
       });
     };
+
     const rules = {
       document: [
         {
@@ -101,6 +97,7 @@ export default {
       this.placeholder = documentName(item);
     },
     async onSubmit(values) {
+      this.errorStatus = false
       const body = {
         documentType: values.documentType,
         document: values.document.replace("-", ""),
@@ -109,10 +106,11 @@ export default {
       await this.$store.dispatch("recoveyPassword", body)
       try {
         if (this.$store.state.auth.recoveryPassword.success) {
-          this.openNotification("");
+          this.openNotification();
         }
       } catch (error) {
-        //
+         this.errorStatus = this.$store.state.auth.error;
+        this.errorMessage = "Error, No existe el documento solicitado"
       }
     },
   },

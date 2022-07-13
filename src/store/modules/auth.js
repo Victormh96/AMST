@@ -148,10 +148,6 @@ export default {
       state.validateAccount = null;
     },
 
-    getUser(state) {
-      return state.user
-    }
-
   },
 
   actions: {
@@ -279,6 +275,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             commit("validateAccount", response.data);
+            commit("temporaryData", response.data.data[0]);
           } else {
             console.error("Error ", response);
             commit("errorValidate", "Iniciar Sesion");
@@ -294,12 +291,12 @@ export default {
     async validateAccountPhone({ commit }, body) {
       try {
         
-
       await axios
         .post(validateAccountPhone(), body)
         .then((response) => {
           if (response.status === 200) {
             commit("validateAccountPhone", response.data);
+            singOutGoogle()
           }
         })
         .catch((err) => {
@@ -358,8 +355,6 @@ export default {
           .then((res) => {
             commit("changePassword", res);
 
-            //router.push("/");
-
           })
           .catch((error) => {
             commit("errorChangePassword", error.response);
@@ -380,8 +375,10 @@ export default {
             error: true,
             message: error,
           };
+          
           commit("errorChangePassword", response);
         });
+        await singOutGoogle();
       } catch (errorGlobal) {
         commit("errorChangePassword", errorGlobal);
       }
