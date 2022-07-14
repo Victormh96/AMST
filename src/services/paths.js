@@ -4,7 +4,7 @@ const url_base = process.env.VUE_APP_URL_BASE;
 //Prefix
 const auth = 'api/cuenta';
 
-//Routes
+//Routes Auth
 export const LogInSesion = () => `${url_base}/${auth}/iniciar-sesion`;
 
 export const recoveyPassword = () => `${url_base}/${auth}/recuperar-password`;

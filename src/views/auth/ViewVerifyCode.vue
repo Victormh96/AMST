@@ -2,8 +2,6 @@
   <!--Title-->
   <title>Alcaldia Municipal Santa Tecla</title>
 
-  <!--Navbar-->
-  <Navbar />
 
   <!--Main-->
   <a-layout-content id="">
@@ -33,7 +31,6 @@
 
 <!--========Script========-->
 <script>
-import Navbar from "@/components/auth/ComponentNavbar.vue";
 
 export default {
   data() {
@@ -44,7 +41,6 @@ export default {
   },
 
   components: {
-    Navbar,
   },
 
   setup() {

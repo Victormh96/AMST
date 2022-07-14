@@ -7,11 +7,11 @@
     <!--Row-->
     <div id="auth" class="w-100" v-else>
       <!--Login-->
-      <Login @exchange="exchange" v-if="changes === 2" />
+      <Login @exchange="exchange" v-if="changes === 0" />
       <!--Register-->
       <Register @exchange="exchange" v-else-if="changes === 1" />
       <!--Verify Account-->
-      <Verify @exchange="exchange" v-else-if="changes === 0" />
+      <Verify @exchange="exchange" v-else-if="changes === 2" />
       <!--Recovery Password-->
       <RecoveryPassword @exchange="exchange" v-else-if="changes === 3" />
     </div>

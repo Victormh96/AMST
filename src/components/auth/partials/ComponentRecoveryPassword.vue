@@ -4,7 +4,7 @@
 
   <!--Form-->
   <a-form layout="vertical" :model="formState" :rules="rules" @finish="onSubmit">
-    <!--Option Document-->
+    <!--Type Document-->
     <a-form-item name="documentType" class="mb-4">
       <a-select @change="doDocumentsWith" placeholder="Seleccione Documento" v-model:value="formState.documentType"
         :disabled="this.$store.state.auth.loading" :options="
@@ -37,8 +37,8 @@
 
 <!--========Script========-->
 <script>
-import { notification } from "ant-design-vue";
-import { documentsType, documentName } from "@/utils/data";
+import { notification } from "ant-design-vue"
+import { documentsType, documentName } from "@/utils/data"
 
 export default {
   data() {
@@ -120,7 +120,7 @@ export default {
         documentType: values.documentType,
         document: values.DUI ? values.DUI.replace("-", "") : (values.pasaporte ? values.pasaporte : values.documento)
       }
-      
+
       await this.$store.dispatch("recoveyPassword", body)
 
       try {

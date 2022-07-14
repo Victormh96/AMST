@@ -2,11 +2,8 @@
   <!--Title-->
   <title>Alcaldia Municipal Santa Tecla</title>
 
-  <!--Navbar-->
-  <Navbar />
-
   <!--Main-->
-  <a-layout-content id="auth">
+  <a-layout-content id="auth" class="mt-0">
     <div class="container">
       <!--Skeleton-->
       <Skeleton @loading="loading" v-if="(!skeleton)" />
@@ -83,7 +80,7 @@
             </div>
             <!--Button-->
             <a-form-item class="text-center">
-              <a-button key="submit" htmlType="submit" class="save">Guardar</a-button>
+              <a-button key="submit" htmlType="submit" class="button-md">Guardar</a-button>
             </a-form-item>
           </a-form>
         </a-col>
@@ -99,13 +96,11 @@
 <script>
 import { reactive } from "vue"
 import { genderType, genderName } from "@/utils/data"
-import Navbar from "@/components/auth/ComponentNavbar.vue"
 import Footer from "@/components/auth/ComponentFooter.vue"
 import Skeleton from '@/components/auth/ComponentSkeleton.vue'
 
 export default {
   components: {
-    Navbar,
     Footer,
     Skeleton
   },
@@ -254,7 +249,7 @@ export default {
       try {
         if (this.validateEmail) {
           this.email = this.$store.state.auth.temporaryData.email;
-          this.contact = values.contact;
+          this.contact = values.contact.substring(7, 16).replace("-", "");
         } else {
           this.email = values.email;
           this.contact = this.$store.state.auth.temporaryData.phone;

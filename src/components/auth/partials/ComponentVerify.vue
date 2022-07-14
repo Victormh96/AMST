@@ -3,7 +3,7 @@
   <h2 class="mt-2 mb-4">Se ha enviado un código</h2>
 
   <!--Form-->
-  <a-form layout="vertical" :model="formState" @finish="VerifyCode">
+  <a-form layout="vertical" :rules="rules" :model="formState" @finish="VerifyCode">
     <!--Alert-->
     <a-form-item class="mb-4 content">
       <small>
@@ -15,7 +15,8 @@
     </a-form-item>
     <!--Code-->
     <a-form-item name="code" class="mb-1">
-      <a-input type="tel" v-model:value="formState.code" placeholder="Código de verificación" v-mask="'######'" />
+      <a-input type="tel" v-model:value="formState.code" placeholder="Código de verificación" v-mask="'######'"
+        autocomplete="off" />
     </a-form-item>
     <!--Dropdown-->
     <a-dropdown :trigger="['click']" :disabled="timerCount > 0 ? true : false" class="mt-2 mb-3 mr-3">
@@ -53,21 +54,22 @@
     <h5 class="mb-3">¿Ya tienes cuenta?</h5>
     <a-button v-on:click="$emit('exchange', 0)">Iniciar sesión</a-button>
   </a-form-item>
-  <!--Recaptcha
-  <div id="recaptcha-container"></div>-->
+  <!--Recaptcha-->
+  <div id="recaptcha-container"></div>
 </template>
 
 <!--========Script========-->
 <script>
-import { reactive } from "vue";
+import { reactive } from "vue"
 import {
   getAuth,
   RecaptchaVerifier,
   signInWithPhoneNumber,
-  signOut,
-} from "firebase/auth";
+  signOut
 
-const auth = getAuth();
+} from "firebase/auth"
+
+const auth = getAuth()
 
 export default {
   data() {
@@ -80,7 +82,7 @@ export default {
       thing: 0,
 
       //Counter
-      timerCount: 20
+      timerCount: 30
     }
   },
 
@@ -89,7 +91,7 @@ export default {
       handler(value) {
         if (value > 0) {
           setTimeout(() => {
-            this.timerCount--;
+            this.timerCount--
           }, 1000);
         }
       },
@@ -102,37 +104,52 @@ export default {
       code: null
     })
 
+    const rules = {
+      code: [
+        {
+          required: true,
+          message: "Campo requerido",
+          trigger: "blur",
+        },
+        {
+          pattern: /^[0-9]{6}$/gm,
+          message: "Formato Invalido",
+          trigger: "blur",
+        },
+      ],
+    }
+
     return {
+      rules,
       formState
     }
   },
 
   mounted() {
-    this.Recaptcha();
-    this.sendCode();
+    this.Recaptcha()
+    this.sendCode()
   },
 
   methods: {
     async sendCode(index = 0) {
       const phoneNumber = "+503" + this.$store.state.auth.temporaryData.phone
-
       const appVerifier = window?.recaptchaVerifier
 
       if (phoneNumber) {
         if (index === 1) {
           this.RecaptchaReset()
-          this.timerCount = 40
+          this.timerCount = 30
+          this.errorStatus = false
         }
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
           .then((confirmationResult) => {
             window.confirmationResult = confirmationResult
-            this.errorStatus = false
           })
           .catch((error) => {
             this.RecaptchaReset();
             this.errorStatus = true
             this.errorMessage = "Codigo no enviado"
-            console.log(error);
+            console.log(error)
           });
       }
     },

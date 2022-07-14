@@ -99,12 +99,13 @@
     color: #ffffff;
     background: #407EC9;
     border-radius: 5px;
-    padding: 8px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     width: 80%;
     margin: auto;
 }
+
 #auth small div {
     font-size: .75rem;
     font-weight: 500;
@@ -112,10 +113,10 @@
     background: #ffffff;
     border-radius: 5px;
     margin: 0 0 0 8px;
-    padding: 0 6px;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
 }
-
-
 
 /* ============================================================*/
 /* Footer

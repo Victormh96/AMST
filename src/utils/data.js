@@ -66,7 +66,7 @@ const gender = (type) => {
 }
 
 //Decrypt
-const decryptPass =(encrypted)=>{
+const decryptPass = (encrypted) => {
     const key_crypto = process.env.VUE_APP_AUTH_KEY_CRYPTO.toString();
     const bytes = cryptoJS.AES.decrypt(encrypted, key_crypto);
     return bytes.toString(cryptoJS.enc.Utf8);

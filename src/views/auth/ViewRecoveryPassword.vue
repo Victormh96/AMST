@@ -95,8 +95,8 @@ export default {
 
     const openMessage = () => {
       message.success(
-        'La contraseña fue restablecida con exito',
-        4,
+        'La Contraseña Fue Restablecida Con Exito',
+        6,
       );
     };
 

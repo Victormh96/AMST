@@ -54,8 +54,8 @@
 
 <!--========Script========-->
 <script>
-import Modal from "@/components/auth/ComponentAuth.vue";
-import Theme from "@/components/public/ComponentTheme.vue";
+import Modal from "@/components/auth/ComponentAuth.vue"
+import Theme from "@/components/public/ComponentTheme.vue"
 
 export default {
   components: {
@@ -72,8 +72,8 @@ export default {
 
   methods: {
     doChangeWith(item) {
-      this.modal = true;
-      this.change = item;
+      this.modal = true
+      this.change = item
     },
   },
 };

@@ -77,9 +77,6 @@ export default {
         },
         {
           pattern: /^[0-9]\d{7}-\d{1}$/gm,
-          transform(value) {
-            return value.trim();
-          },
           message: "Formato Invalido",
           trigger: "blur",
         },
@@ -139,9 +136,9 @@ export default {
       this.errorStatus = this.$store.state.auth.error
 
       try {
-        this.errorMessage = this.$store.state.auth.errorLogin.message;
+        this.errorMessage = this.$store.state.auth.errorLogin.message
       } catch (error) {
-        this.errorMessage = "Error Interno de Servidor";
+        this.errorMessage = "Error Interno de Servidor"
       }
     },
   },

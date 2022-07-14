@@ -15,18 +15,23 @@
     <!--Documents-->
     <a-form-item :name="nameDocument" class="mb-4">
       <a-input type="text" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'"
-        :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off" />
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off"
+        v-mask="nameDocument == 'DUI' ? '########-#' : 'X'.repeat(30)" />
     </a-form-item>
-    <!--Method-->
-    <a-form-item :name="name">
-      <a-input :type="valueformat" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off"
-        :disabled="this.$store.state.auth.loading || !formState.optionDocument" :pattern="patternformat"
-        :title="tittleformat" />
+    <!--Email-->
+    <a-form-item name="email" v-if="(validation)">
+      <a-input type="text" v-model:value="formState.email" placeholder="Email" autocomplete="off"
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument" />
+    </a-form-item>
+    <!--Phone-->
+    <a-form-item name="phone" v-else>
+      <a-input type="tel" v-model:value="formState.phone" placeholder="Teléfono" autocomplete="off"
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument" v-mask="'(+503) ####-####'" />
     </a-form-item>
     <!--Method Option-->
-    <a-form-item class="mt-1 mb-3 mr-3">
+    <a-form-item class="mb-3 mr-3">
       <p @click="doTypesWith((exchange = !exchange))" :disabled="this.$store.state.auth.loading">
-        Registro {{ placeholder3 }}
+        Registrar | {{ title }}
       </p>
     </a-form-item>
     <!--Button-->
@@ -49,38 +54,32 @@
 
 <!--========Script========-->
 <script>
-
-//Revisar Codigo fuente
-import { documentsType, documentName } from "@/utils/data";
-import { notification } from "ant-design-vue";
+import { notification } from "ant-design-vue"
+import { documentsType, documentName } from "@/utils/data"
 
 export default {
   data() {
     return {
-      //Document
-      placeholder: null,
+      //Error
       errorStatus: false,
       errorMessage: null,
 
-      //Type
-      exchange: true,
-      name: "email",
-      placeholder2: "Email",
-      placeholder3: "Teléfono",
-      placeholder4: "Seleccione un documento",
-      typeDocument: "",
-      nameDocument: "document",
-      patternformat: null,
-      valueformat: null,
-      tittleformat: null,
-
+      //Form
       formState: {
-        document: null,
         email: null,
         phone: null,
-        optionDocument: null,
+        document: null,
       },
-    };
+
+      //Dynamic
+      placeholder: null,
+      nameDocument: 'DUI',
+      validation: true,
+      title: 'Teléfono',
+
+      //Modal
+      exchange: true
+    }
   },
 
   setup() {
@@ -89,42 +88,35 @@ export default {
         message: 'Alcaldia Santa Tecla',
         description: 'Se ha enviado un correo electrónico a su cuenta con un código de verificación de 6 dígitos.',
         placement: 'bottomRight',
-      });
-    };
+      })
+    }
 
     const rules = {
-      document: [
+      DUI: [
         {
-          type: "string",
           required: true,
           message: "Campo requerido",
-          trigger: "change",
+          trigger: "blur",
+        },
+        {
+          pattern: /^[0-9]\d{7}-\d{1}$/gm,
+          message: "Formato Invalido",
+          trigger: "blur",
         },
       ],
 
       pasaporte: [
         {
-          type: "string",
           required: true,
           message: "Campo requerido",
-          trigger: "change",
+          trigger: "blur",
         },
       ],
 
-      dui: [
+      documento: [
         {
-          type: "string",
           required: true,
-          message: "Se requiere ingresar el número de DUI",
-          trigger: "blur",
-        },
-
-        {
-          pattern: /^[0-9]\d{7}-\d{1}$/gm,
-          transform(value) {
-            return value.trim();
-          },
-          message: "Formato Invalido",
+          message: "Campo requerido",
           trigger: "blur",
         },
       ],
@@ -133,13 +125,13 @@ export default {
         {
           required: true,
           message: "Campo requerido",
-          trigger: "change",
+          trigger: "blur",
         },
 
         {
           type: "email",
           message: "Email no valido",
-          trigger: "change",
+          trigger: "blur",
         },
       ],
 
@@ -147,16 +139,22 @@ export default {
         {
           required: true,
           message: "Campo requerido",
-          trigger: "change",
+          trigger: "blur",
+        },
+        {
+
+          pattern: /^\([+][0-9]{3}\)([ .-])[0-9]{4}-[0-9]{4}$/gm,
+          message: "Formato Invalido",
+          trigger: "blur",
         },
       ],
-    };
+    }
 
     return {
       rules,
-      openNotification,
       documentsType,
-    };
+      openNotification
+    }
   },
 
   mounted() {
@@ -165,94 +163,81 @@ export default {
 
   methods: {
     doDocumentsWith(item) {
-      this.placeholder = documentName(item);
-      this.nameDocument = documentName(item);
+      this.placeholder = documentName(item)
+      this.nameDocument = documentName(item)
     },
 
     doTypesWith(item) {
-      if (item == true) {
-        this.name = "email";
-        this.placeholder2 = "Email";
-        this.placeholder3 = "Teléfono";
-      } else if (item == false) {
-        this.name = "phone";
-        this.placeholder2 = "Teléfono";
-        this.placeholder3 = "Email";
-        this.patternformat = "\\+(503)[0-9]{8}";
-        this.valueformat = "tel";
-        this.tittleformat = "El formato debe de ser +503XXXXXXXX";
+      if (item) {
+        this.validation = true
+        this.title = "Teléfono"
+      } else {
+        this.validation = false
+        this.title = "Email"
       }
-      //Others
-      // this.resetFields();
     },
 
-    // metodo enviar
     async onSubmit(values) {
-
       let body = null
-      if (this.name === "phone") {
+
+      if (!this.validation) {
         body = {
           documentType: values.optionDocument,
-          document: values.DUI
-            ? values.DUI.replace("-", "")
-            : values.pasaporte
-              ? values.pasaporte
-              : values.documento,
-          phone: values.phone.substring(4, 12),
-        };
-        await this.$store.dispatch("temporaryData", body);
-        await this.$store.dispatch("validateAccountPhone", body);
+          document: values.DUI ? values.DUI.replace("-", "") : values.pasaporte ? values.pasaporte : values.documento,
+          phone: values.phone.substring(7, 16).replace("-", ""),
+        }
+
+        await this.$store.dispatch("temporaryData", body)
+
+        await this.$store.dispatch("validateAccountPhone", body)
 
         if (this.$store.state.auth.validateAccountPhone.success) {
-          this.$emit("exchange", 2);
+          this.$emit("exchange", 2)
         } else {
-          this.errorStatus = true;
-          this.errorMessage = "El documento ya esta registrado";
+          this.errorStatus = true
+          this.errorMessage = "El documento ya esta registrado"
         }
+
       } else {
-        this.errorStatus = false;
+        this.errorStatus = false
+
         body = {
           documentType: values.optionDocument,
-          document: values.DUI
-            ? values.DUI.replace("-", "")
-            : values.pasaporte
-              ? values.pasaporte
-              : values.documento,
+          document: values.DUI ? values.DUI.replace("-", "") : values.pasaporte ? values.pasaporte : values.documento,
           email: values.email,
           type: 1,
           active: 0,
-          action: 0,
-        };
-        await this.$store.dispatch("temporaryData", body);
-        await this.$store.dispatch("createAccount", body);
+          action: 0
+        }
 
-        this.errorStatus = this.$store.state.auth.error;
+        await this.$store.dispatch("temporaryData", body)
+
+        await this.$store.dispatch("createAccount", body)
+
+        this.errorStatus = this.$store.state.auth.error
 
         if (this.errorStatus) {
           try {
             this.errorMessage =
-              this.$store.state.auth.errorCreateAccount.message;
+              this.$store.state.auth.errorCreateAccount.message
           } catch (error) {
-            this.errorMessage = "Error Interno de Servidor";
+            this.errorMessage = "Error Interno de Servidor"
           }
         } else {
-          this.openNotification();
+          this.openNotification()
         }
       }
     },
 
     setData() {
       try {
-
         this.$store.state.auth.temporaryData.documentType ? this.doDocumentsWith(this.$store.state.auth.temporaryData.documentType) : null
-
       } catch (error) {
-
         //
       }
-
     },
   },
+
   emits: ["exchange"],
 };
 </script>

@@ -77,11 +77,7 @@ const loginGoogle = async (user) => {
 //Sign Out
 const singOutGoogle = async () => {
     try {
-        await signOut(firebaseAuth).then(
-            (res) => {
-                console.log(res)
-            }
-        );
+        await signOut(firebaseAuth).then()
     } catch (error) {
         console.log(error);
     }
