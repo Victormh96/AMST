@@ -93,12 +93,22 @@ html[data-theme="Dark-Mode"] {
 }
 
 .timeCount {
+    font-size: .8rem;
     min-width: 25px;
 }
 
 .d-none {
     display: none;
 }
+
+.danger {
+    color: var(--required) !important;
+}
+
+.button-xs {
+    width: 30%;
+}
+
 
 
 .loading {
@@ -108,11 +118,6 @@ html[data-theme="Dark-Mode"] {
 .loading-text {
     color: var(--blue);
     font-weight: 500;
-}
-
-
-.danger {
-    color: var(--required) !important;
 }
 
 .i-tel {
@@ -3841,6 +3846,10 @@ html {
     padding: 6px 25px;
     border: 2px solid var(--greylight);
     text-align: left;
+}
+
+.ant-form-item-has-error .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    border: 2px solid var(--required);
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector::after {
@@ -32305,6 +32314,10 @@ li.ant-select-tree-treenode-disabled>.ant-select-tree-node-content-wrapper:hover
     left: 0;
     width: 100%;
     height: 66.67%;
+}
+
+.fa-clock {
+    font-size: 12px;
 }
 
 .ant-tree ol,

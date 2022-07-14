@@ -8,14 +8,14 @@
     <a-form-item name="optionDocument" class="mb-4">
       <a-select @change="doDocumentsWith" placeholder="Seleccione Documento" v-model:value="formState.optionDocument"
         :disabled="this.$store.state.auth.loading" :options="
-          documentsType.map((item) => ({ value: item.id, label: item.name }))
-        ">
+        documentsType.map((item) => ({ value: item.id, label: item.name }))">
       </a-select>
     </a-form-item>
     <!--Documents-->
     <a-form-item :name="nameDocument" class="mb-4">
       <a-input type="tel" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'"
-        :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off" />
+        :disabled="this.$store.state.auth.loading || !formState.optionDocument" autocomplete="off"
+        v-mask="nameDocument == 'DUI' ? '########-#' : 'X'.repeat(30)" />
     </a-form-item>
     <!--Password-->
     <a-form-item name="password">
@@ -30,13 +30,13 @@
     <a-form-item>
       <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Entrar</a-button>
     </a-form-item>
-    <!--Error-->
-    <div class="mt-2" v-if="errorStatus">
-      <strong>{{ errorMessage }}</strong>
-    </div>
   </a-form>
+  <!--Error-->
+  <div class="mt-2" v-if="errorStatus">
+    <strong>{{ errorMessage }}</strong>
+  </div>
   <!--Divider-->
-  <hr />
+  <hr>
   <!--Others-->
   <a-form-item>
     <h5 class="mb-3">¿No tienes cuenta?</h5>
@@ -46,13 +46,12 @@
 
 <!--========Script========-->
 <script>
-import { documentsType, documentName } from "@/utils/data";
+import { documentsType, documentName } from "@/utils/data"
 
 export default {
   data() {
     return {
       //Error
-      placeholder: null,
       errorStatus: false,
       errorMessage: null,
 
@@ -60,10 +59,12 @@ export default {
       formState: {
         document: undefined,
         password: undefined,
-
       },
-      nameDocument: null,
-    };
+
+      //Dynamic
+      placeholder: null,
+      nameDocument: 'DUI',
+    }
   },
 
   setup() {
@@ -83,42 +84,23 @@ export default {
           trigger: "blur",
         },
       ],
-      documento: [
-        {
-          type: "string",
-          required: true,
-          message: "Campo requerido",
-          trigger: "change",
-        },
-      ],
 
       pasaporte: [
         {
-          type: "string",
           required: true,
           message: "Campo requerido",
-          trigger: "change",
+          trigger: "blur",
         },
       ],
-      email: [
+
+      documento: [
         {
           required: true,
           message: "Campo requerido",
-          trigger: "change",
-        },
-        {
-          type: "email",
-          message: "Email no valido",
-          trigger: "change",
+          trigger: "blur",
         },
       ],
-      phone: [
-        {
-          required: true,
-          message: "Campo requerido",
-          trigger: "change",
-        },
-      ],
+
       password: [
         {
           required: true,
@@ -127,34 +109,35 @@ export default {
         },
         {
           min: 6,
-          message: "Debe tener 6 digitos como minimo",
+          message: "Minimo 6 caracteres",
           trigger: "blur",
         },
       ],
-    };
+    }
 
     return {
       rules,
-      documentsType,
-    };
+      documentsType
+    }
   },
 
   methods: {
-    //Revisar Codigo fuente
     doDocumentsWith(item) {
-      this.placeholder = documentName(item);
+      this.placeholder = documentName(item)
       this.nameDocument = documentName(item)
     },
 
     async onSubmit(values) {
-      this.errorStatus = false;
       const body = {
         documentType: values.optionDocument,
         document: values.DUI ? values.DUI.replace("-", "") : (values.pasaporte ? values.pasaporte : values.documento),
         password: values.password,
-      };
-      await this.$store.dispatch("LogInSesion", body);
-      this.errorStatus = this.$store.state.auth.error;
+      }
+
+      await this.$store.dispatch("LogInSesion", body)
+
+      this.errorStatus = this.$store.state.auth.error
+
       try {
         this.errorMessage = this.$store.state.auth.errorLogin.message;
       } catch (error) {
@@ -162,6 +145,7 @@ export default {
       }
     },
   },
+
   emits: ["exchange"],
 };
 </script>

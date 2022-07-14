@@ -112,10 +112,15 @@ export default {
 
   data() {
     return {
-      validateEmail: null,
+      //Error
       errorStatus: false,
       errorMessage: null,
-      skeleton: false,
+
+      //Dynamic
+      validateEmail: null,
+
+      //Skeleton
+      skeleton: false
     }
   },
 
@@ -129,6 +134,7 @@ export default {
 
   setup() {
     const formState = reactive({
+      //Form
       name: null,
       sexo: null,
       email: null,

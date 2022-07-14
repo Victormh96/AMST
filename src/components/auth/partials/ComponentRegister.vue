@@ -21,11 +21,11 @@
     <a-form-item :name="name">
       <a-input :type="valueformat" v-model:value="formState[name]" :placeholder="placeholder2" autocomplete="off"
         :disabled="this.$store.state.auth.loading || !formState.optionDocument" :pattern="patternformat"
-        :title="tittleformat" @focus="togglePicker()" />
+        :title="tittleformat" />
     </a-form-item>
     <!--Method Option-->
     <a-form-item class="mt-1 mb-3 mr-3">
-      <p @click="doTypesWith((exchange = !exchange))" class="link-style" :disabled="this.$store.state.auth.loading">
+      <p @click="doTypesWith((exchange = !exchange))" :disabled="this.$store.state.auth.loading">
         Registro {{ placeholder3 }}
       </p>
     </a-form-item>
@@ -250,27 +250,7 @@ export default {
 
         //
       }
-      
-    },
 
-    togglePicker() {
-      if (this.name === "phone") {
-        if (this.valueformat == "tel") {
-          var telefono = document.querySelector('input[type="tel"]');
-          telefono.addEventListener("click", (event) => {
-            event.target.value = "+503";
-          });
-          telefono.addEventListener("focus", (event) => {
-            event.target.value = "+503";
-          });
-          telefono.addEventListener("onfocus", (event) => {
-            event.target.value = "+503";
-          });
-          telefono.addEventListener("blur", (event) => {
-            event.target.style.background = "";
-          });
-        }
-      }
     },
   },
   emits: ["exchange"],
