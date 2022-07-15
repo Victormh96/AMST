@@ -13,14 +13,17 @@
 
       <!--Row-->
       <a-row v-else>
+        <!--Text-->
         <a-col :lg="24" :xl="24" class="m-auto">
           <h1 v-if="(sexo === 'M' || sexo === 'U')">¡Bienvenido Tecleño!</h1>
           <h1 v-else>¡Bienvenida Tecleña!</h1>
-          <h5>{{ nombre }}</h5>
+          <h5>{{ nombre }}Victor Hernandez</h5>
         </a-col>
+        <!--Items-->
         <Item v-for="index in 8" :key="index" :index="index.toString()" />
       </a-row>
     </div>
+    <h2 class="draw">Titulo</h2>
   </a-layout-content>
 
   <!--Footer-->
@@ -29,30 +32,31 @@
 
 <!--========Script========-->
 <script>
-import Item from "@/components/user/ComponentItem.vue";
+import Item from "@/components/user/ComponentItem.vue"
 import Navbar from '@/components/user/ComponentNavbar.vue'
 import Footer from '@/components/user/ComponentFooter.vue'
 import Skeleton from '@/components/user/ComponentSkeleton.vue'
 
 export default {
+  components: {
+    Item,
+    Navbar,
+    Footer,
+    Skeleton
+  },
+
   data() {
     return {
-      nombre: null,
       sexo: null,
-      skeleton: false,
-    };
+      nombre: null,
+      skeleton: false
+    }
   },
+
   created() {
     const { names, lastNames, sex } = this.$store.state.auth.user
     this.nombre = names + " " + lastNames
     this.sexo = sex
-
-  },
-  components: {
-    Navbar,
-    Footer,
-    Item,
-    Skeleton
   },
 
   methods: {

@@ -11,16 +11,16 @@
         <!--Menu-->
         <a-col :lg="8" :xl="8" class="m-auto text-center d-sm-none">
           <a href="" target="_blank">
-            <img src="@/../public/img/assets/dahsboard/shape.png" class="notify mr-5">
+            <img src="@/../public/img/dahsboard/shapex9.png" class="notify mr-5">
           </a>
 
           <a href="tel:0000-0000" target="_blank">
-            <img src="@/../public/img/assets/dahsboard/shape2.png" class="notify mr-5">
+            <img src="@/../public/img/dahsboard/shapex10.png" class="notify mr-5">
           </a>
 
           <a-dropdown :trigger="['click']">
             <a class="ant-dropdown-link" @click.prevent>
-              <img src="@/../public/img/assets/dahsboard/shape3.png" class="notify" />
+              <img src="@/../public/img/dahsboard/shapex11.png" class="notify" />
             </a>
             <template #overlay>
               <a-menu>
