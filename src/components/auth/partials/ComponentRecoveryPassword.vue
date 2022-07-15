@@ -19,7 +19,9 @@
     </a-form-item>
     <!--Button-->
     <a-form-item>
-      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Enviar</a-button>
+      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading" class="button-xl">
+        Enviar
+      </a-button>
     </a-form-item>
   </a-form>
   <!--Error-->
@@ -31,7 +33,9 @@
   <!--Others-->
   <a-form-item>
     <h5 class="mb-3">¿Ya tienes cuenta?</h5>
-    <a-button :disabled="this.$store.state.auth.loading" v-on:click="$emit('exchange', 0)">Iniciar sesión</a-button>
+    <a-button :disabled="this.$store.state.auth.loading" v-on:click="$emit('exchange', 0)" class="button-xl">
+      Iniciar sesión
+    </a-button>
   </a-form-item>
 </template>
 
@@ -116,6 +120,8 @@ export default {
     },
 
     async onSubmit(values) {
+      this.errorStatus = false
+
       const body = {
         documentType: values.documentType,
         document: values.DUI ? values.DUI.replace("-", "") : (values.pasaporte ? values.pasaporte : values.documento)

@@ -15,8 +15,8 @@
           <router-link :to="{ name: 'Home' }"> Privacidad </router-link>
         </a-col>
         <a-col :lg="8" :xl="8" class="m-auto text-center d-sm-none">
-          <span class="pr-3" @click="doChangeWith(0)">Iniciar sesión</span>
-          <span @click="doChangeWith(1)" class="blue-button-xs">Crear cuenta</span>
+          <span class="pr-3 span-xs" @click="doChangeWith(0)">Iniciar sesión</span>
+          <span @click="doChangeWith(1)" class="button-xs">Crear cuenta</span>
         </a-col>
         <!--Theme-->
         <a-col :xs="10" :sm="10" :md="10" :lg="1" :xl="1" class="m-auto text-right">

@@ -41,7 +41,9 @@
       </template>
     </a-dropdown>
     <!--Button-->
-    <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Siguiente</a-button>
+    <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading" class="button-xl">
+      Siguiente
+    </a-button>
   </a-form>
   <!--Error-->
   <div class="mt-2" v-if="errorStatus">
@@ -52,7 +54,7 @@
   <!--Others-->
   <a-form-item>
     <h5 class="mb-3">¿Ya tienes cuenta?</h5>
-    <a-button v-on:click="$emit('exchange', 0)">Iniciar sesión</a-button>
+    <a-button v-on:click="$emit('exchange', 0)" class="button-xl">Iniciar sesión</a-button>
   </a-form-item>
   <!--Recaptcha-->
   <div id="recaptcha-container"></div>
@@ -132,6 +134,8 @@ export default {
 
   methods: {
     async sendCode(index = 0) {
+      this.errorStatus = false
+
       const phoneNumber = "+503" + this.$store.state.auth.temporaryData.phone
       const appVerifier = window?.recaptchaVerifier
 
@@ -139,7 +143,6 @@ export default {
         if (index === 1) {
           this.RecaptchaReset()
           this.timerCount = 30
-          this.errorStatus = false
         }
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
           .then((confirmationResult) => {
@@ -155,7 +158,10 @@ export default {
     },
 
     VerifyCode(values) {
+      this.errorStatus = false
+
       const code = values.code
+
       window.confirmationResult
         .confirm(code)
         .then((result) => {
@@ -167,8 +173,8 @@ export default {
                 this.$store.state.auth.temporaryData
               )
             )
-          signOut(auth);
-          this.$router.replace({ name: "Register" })
+          signOut(auth)
+          this.$router.push("/registrar-datos-cuenta")
         })
         .catch((error) => {
           this.errorStatus = true

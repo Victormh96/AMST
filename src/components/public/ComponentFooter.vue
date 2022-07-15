@@ -20,7 +20,7 @@
                 <!--Redes-->
                 <a-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="m-auto text-right text-middle">
                     <div class="social-media">
-                        <a href="tel:0000-0000" target="_blank">
+                        <a href="tel:0000-0000">
                             <i class="fa-solid fa-phone"></i>
                         </a>
                         <a href="https://es-la.facebook.com/SantaTeclaSV" target="_blank">

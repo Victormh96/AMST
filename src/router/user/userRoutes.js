@@ -2,7 +2,7 @@
 const userRoutes = [
     {
         path: "/dashboard",
-        name: "dashboard",
+        name: "Dashboard",
         component: () => import("@/views/user/ViewDashboard.vue"),
         meta: {
             requiresAuth: true

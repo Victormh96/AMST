@@ -3,7 +3,7 @@
   <title>Alcaldia Municipal Santa Tecla</title>
 
   <!--Main-->
-  <a-layout-content id="auth" class="mt-0">
+  <a-layout-content id="auth" class="mt-0 layout-max">
     <div class="container">
       <!--Skeleton-->
       <Skeleton @loading="loading" v-if="(!skeleton)" />
@@ -15,26 +15,26 @@
           <a-form class="title" layout="vertical" autocomplete="off" :rules="rules" :model="formState"
             @finish="onSubmit">
             <!--Title-->
-            <h2 class="mb-5 text-center">Datos Personales</h2>
+            <h2 class="mb-6 text-center">Datos Personales</h2>
 
             <!--Row-->
             <a-row>
               <!--Name-->
-              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-6">
                 <a-form-item name="name">
                   <a-input type="text" v-model:value="formState.name" placeholder="Nombre"
                     :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
               <!--Lastname-->
-              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-6">
                 <a-form-item name="lastname">
                   <a-input type="text" v-model:value="formState.lastname" placeholder="Apellido"
                     :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
               <!--Phone-->
-              <a-col v-if="validateEmail" :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+              <a-col v-if="validateEmail" :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-6">
                 <a-form-item name="contact">
                   <a-input type="tel" v-model:value="formState.contact" placeholder="Número de contacto"
                     :disabled="this.$store.state.auth.loading" :pattern="patternformat" :title="tittleformat"
@@ -42,14 +42,14 @@
                 </a-form-item>
               </a-col>
               <!--Email-->
-              <a-col v-if="!validateEmail" :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+              <a-col v-if="!validateEmail" :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-6">
                 <a-form-item name="email">
                   <a-input type="text" v-model:value="formState.email" placeholder="Correo Electrónico"
                     :disabled="this.$store.state.auth.loading" />
                 </a-form-item>
               </a-col>
               <!--Gender-->
-              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-6">
                 <a-form-item name="optiongender" class="select">
                   <a-select placeholder="Genero" v-model:value="formState.optiongender" :options="
                   genderType.map((item) => ({
@@ -60,14 +60,14 @@
                 </a-form-item>
               </a-col>
               <!--Password-->
-              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-6">
                 <a-form-item name="password">
                   <a-input-password type="password" v-model:value="formState.password" placeholder="Contraseña"
                     :disabled="this.$store.state.auth.loading" autocomplete="off" />
                 </a-form-item>
               </a-col>
               <!--Password Repeat-->
-              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-5">
+              <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mb-6">
                 <a-form-item name="repeat">
                   <a-input-password type="password" v-model:value="formState.repeat" placeholder="Confirmar Contraseña"
                     :disabled="this.$store.state.auth.loading" autocomplete="off" />
@@ -80,7 +80,8 @@
             </div>
             <!--Button-->
             <a-form-item class="text-center">
-              <a-button key="submit" htmlType="submit" class="button-md">Guardar</a-button>
+              <a-button key="submit" htmlType="submit" class="button-md" :loading="this.$store.state.auth.loading">
+                Guardar</a-button>
             </a-form-item>
           </a-form>
         </a-col>
@@ -246,13 +247,15 @@ export default {
 
   methods: {
     onSubmit(values) {
+      this.errorStatus = false
+
       try {
         if (this.validateEmail) {
-          this.email = this.$store.state.auth.temporaryData.email;
-          this.contact = values.contact.substring(7, 16).replace("-", "");
+          this.email = this.$store.state.auth.temporaryData.email
+          this.contact = values.contact.substring(7, 16).replace("-", "")
         } else {
-          this.email = values.email;
-          this.contact = this.$store.state.auth.temporaryData.phone;
+          this.email = values.email
+          this.contact = this.$store.state.auth.temporaryData.phone
         }
       } catch (error) {
         console.log(error);
@@ -266,18 +269,18 @@ export default {
         document: this.$store.state.auth.temporaryData.document,
         email: this.email,
         phone: this.contact,
-        password: values.password,
+        password: values.password
       }
 
-      this.$store.dispatch("RegisterData", data);
+      this.$store.dispatch("RegisterData", data)
 
-      this.errorStatus = this.$store.state.auth.error;
+      this.errorStatus = this.$store.state.auth.error
 
       if (this.errorStatus) {
         try {
-          this.errorMessage = this.$store.state.auth.errorRegisterData;
+          this.errorMessage = this.$store.state.auth.errorRegisterData
         } catch (error) {
-          this.errorMessage = "Error Interno de Servidor";
+          this.errorMessage = "Error Interno de Servidor"
         }
       }
     },

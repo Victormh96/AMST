@@ -105,20 +105,6 @@ html[data-theme="Dark-Mode"] {
     color: var(--required) !important;
 }
 
-.button-xs {
-    width: 30%;
-}
-
-
-
-.loading {
-    margin-top: 90px;
-}
-
-.loading-text {
-    color: var(--blue);
-    font-weight: 500;
-}
 
 .i-tel {
     margin-left: 7px;
@@ -360,6 +346,10 @@ html[data-theme="Dark-Mode"] {
     margin-bottom: 2rem !important;
 }
 
+.mb-6 {
+    margin-bottom: 3rem !important;
+}
+
 .ml-0 {
     margin-left: 0 !important;
 }
@@ -413,7 +403,7 @@ html[data-theme="Dark-Mode"] {
 }
 
 /* Button */
-.blue-button-lg {
+.button-lg {
     font-size: 1.3rem;
     border: 2px solid #407EC9;
     font-weight: bold;
@@ -421,38 +411,64 @@ html[data-theme="Dark-Mode"] {
     color: #ffffff;
     text-align: center;
     display: block;
-    width: 260px;
-    padding: 12px 0;
+    width: 270px;
+    padding: 10px 0;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.5s ease;
 }
 
-.blue-button-xs {
+.button-xs {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0 8px;
     background: #407EC9;
+    color: #ffffff;
     border: 2px solid #407EC9;
-    color: #ffffff !important;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border-radius: 50px;
     transition: all 0.5s ease;
     cursor: pointer;
 }
 
-.blue-button-lg:hover,
-.blue-button-xs:hover {
+.button-md {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 50px;
+    display: block;
+    width: 280px;
+    margin: auto;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.button-xl {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 50px;
+    display: block;
+    width: 100%;
+    margin: auto;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.span-xs {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--bluesky);
+    margin: 0 8px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.button-lg:hover,
+.button-xs:hover {
     color: #407EC9 !important;
     border: 2px solid #407EC9;
     background: #ffffff;
-}
-
-/*===Responsive===**/
-@media (max-width: 1199px) {
-    .blue-button-xs {
-        margin: auto auto 50px 0;
-    }
-}
-.button-md{
-    width: 40% !important;
 }
 
 /* stylelint-disable at-rule-no-unknown */
@@ -5369,29 +5385,9 @@ textarea.ant-input {
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
 
 .ant-btn {
-    line-height: 1.5715;
-    position: relative;
-    display: inline-block;
-    white-space: nowrap;
-    text-align: center;
-    background-image: none;
+    color: #FFFFFF;
+    background: #407EC9;
     border: 2px solid #407EC9;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    touch-action: manipulation;
-    padding: 4px 15px;
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 600;
-    background: var(--bluesky);
-    color: var(--white);
-    border-radius: 50px;
-    height: 45px;
 }
 
 .ant-btn>.anticon {
@@ -25954,12 +25950,12 @@ textarea.ant-input-number {
 }
 
 .ant-spin-lg .ant-spin-dot {
-    font-size: 32px;
+    font-size: 100px;
 }
 
 .ant-spin-lg .ant-spin-dot i {
-    width: 14px;
-    height: 14px;
+    width: 35px;
+    height: 35px;
 }
 
 .ant-spin.ant-spin-show-text .ant-spin-text {
@@ -33206,6 +33202,10 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .ant-upload-list::after {
     display: table;
     content: '';
+}
+
+.layout-max {
+    min-height: calc(100vh - 184px) !important;
 }
 
 .ant-upload-list::after {

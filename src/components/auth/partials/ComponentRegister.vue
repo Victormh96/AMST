@@ -36,7 +36,9 @@
     </a-form-item>
     <!--Button-->
     <a-form-item>
-      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading">Crear cuenta</a-button>
+      <a-button key="submit" htmlType="submit" :loading="this.$store.state.auth.loading" class="button-xl">
+        Crear cuenta
+      </a-button>
     </a-form-item>
   </a-form>
   <!--Error-->
@@ -48,7 +50,9 @@
   <!--Others-->
   <a-form-item>
     <h5 class="mb-3">¿Ya tienes cuenta?</h5>
-    <a-button v-on:click="$emit('exchange', 0)" :disabled="this.$store.state.auth.loading">Iniciar sesión</a-button>
+    <a-button v-on:click="$emit('exchange', 0)" :disabled="this.$store.state.auth.loading" class="button-xl">
+      Iniciar sesión
+    </a-button>
   </a-form-item>
 </template>
 
@@ -87,7 +91,7 @@ export default {
       notification.open({
         message: 'Alcaldia Santa Tecla',
         description: 'Se ha enviado un correo electrónico a su cuenta con un código de verificación de 6 dígitos.',
-        placement: 'bottomRight',
+        placement: 'bottomRight'
       })
     }
 
@@ -178,6 +182,8 @@ export default {
     },
 
     async onSubmit(values) {
+      this.errorStatus = false
+
       let body = null
 
       if (!this.validation) {
@@ -199,8 +205,6 @@ export default {
         }
 
       } else {
-        this.errorStatus = false
-
         body = {
           documentType: values.optionDocument,
           document: values.DUI ? values.DUI.replace("-", "") : values.pasaporte ? values.pasaporte : values.documento,
