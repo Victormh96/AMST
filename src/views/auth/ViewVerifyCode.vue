@@ -83,25 +83,35 @@ export default {
         if (this.$store.state.auth.validateAccount.success) {
           setTimeout(() => {
             if (action == "recovery") {
-              this.$router.push("/recuperar-contrasena");
+               this.$router.push({
+                name: 'Recuperar',
+                params: {
+                  code: code
+                }
+              })
             }
             if (action == "create") {
-              this.$router.push("/registrar-datos-cuenta");
+              this.$router.push({
+                name: 'Registrar',
+                params: {
+                  code: code
+                }
+              })
             }
-          }, 2500)
+          }, 1500)
         } else {
           if (!this.$store.state.auth.validateAccount.success) {
             this.message = this.$store.state.auth.validateAccount.message
             this.openNotification(this.message)
             setTimeout(() => {
               this.$router.push("/")
-            }, 3500)
+            }, 1500)
           } else {
             this.message = "Error en la validación"
             this.openNotification(this.message)
             setTimeout(() => {
               this.$router.push("/")
-            }, 3500)
+            }, 1500)
           }
         }
       } catch (error) {

@@ -3,11 +3,13 @@ const authRoutes = [
     {
         path: "/registrar-datos-cuenta",
         name: "Registrar",
+        props: true,
         component: () => import("@/views/auth/ViewRegister.vue"),
     },
     {
         path: "/recuperar-contrasena",
         name: "Recuperar",
+        props: true,
         component: () => import("@/views/auth/ViewRecoveryPassword.vue"),
     },
     {

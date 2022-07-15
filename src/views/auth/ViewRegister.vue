@@ -96,6 +96,7 @@
 <!--========Script========-->
 <script>
 import { reactive } from "vue"
+import { notification } from "ant-design-vue"
 import { genderType, genderName } from "@/utils/data"
 import Footer from "@/components/auth/ComponentFooter.vue"
 import Skeleton from '@/components/auth/ComponentSkeleton.vue'
@@ -128,7 +129,22 @@ export default {
     }
   },
 
+  created() {
+    if (this.code === undefined) {
+      this.openNotification()
+      this.$router.push("/")
+    }
+  },
+
   setup() {
+    const openNotification = () => {
+      notification.open({
+        message: 'Alcaldia Santa Tecla',
+        description: 'No existe proceso de registro',
+        placement: 'bottomRight',
+      })
+    }
+
     const formState = reactive({
       //Form
       name: null,
@@ -242,6 +258,7 @@ export default {
       formState,
       genderType,
       genderName,
+      openNotification
     }
   },
 
@@ -289,6 +306,8 @@ export default {
       this.skeleton = item
     }
   },
+
+  props: ['code']
 };
 </script>
 

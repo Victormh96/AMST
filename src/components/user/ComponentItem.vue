@@ -2,8 +2,9 @@
   <!--Colletions-->
   <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6" class="text-center">
     <a href="" target="_blank">
-      <img :src="src" :class="style"/>
+      <img :src="src" />
     </a>
+    <strong :class="width" class="mt-3 mb-6">{{ text }}</strong>
   </a-col>
 </template>
 
@@ -14,8 +15,12 @@ export default {
     return {
       src: null,
       text: null,
-      style: null
+      width: null
     }
+  },
+
+  mounted() {
+    this.SetData(this.index)
   },
 
   methods: {
@@ -23,50 +28,46 @@ export default {
       switch (index) {
         case "1":
           this.text = "Pago En Linea"
-          this.src = require("../../../public/img/dahsboard/shape.png")
-          this.style = "mb-5"
+          this.src = require("../../../public/img/dashboard/shape.png")
+          this.width = "w-1"
           break
         case "2":
           this.text = "Emisión EstadoDe Cuenta"
-          this.src = require("../../../public/img/dahsboard/shapex2.png")
-          this.style = "mb-5"
+          this.src = require("../../../public/img/dashboard/shapex2.png")
+          this.width = "w-2"
           break
         case "3":
           this.text = "Solvencias"
-          this.src = require("../../../public/img/dahsboard/shapex3.png")
-          this.style = "mb-5"
+          this.src = require("../../../public/img/dashboard/shapex3.png")
+          this.width = "w-1"
           break
         case "4":
           this.text = "Calificación"
-          this.src = require("../../../public/img/dahsboard/shapex4.png")
-          this.style = "mb-5"
+          this.src = require("../../../public/img/dashboard/shapex4.png")
+          this.width = "w-1"
           break
         case "5":
           this.text = "Licencias"
-          this.src = require("../../../public/img/dahsboard/shapex5.png")
-          this.style = "mb-5"
+          this.src = require("../../../public/img/dashboard/shapex5.png")
+          this.width = "w-1"
           break
         case "6":
           this.text = "Constancia Contribuyente  De Inmueble"
-          this.src = require("../../../public/img/dahsboard/shapex6.png")
-          this.style = "mb-5"
+          this.src = require("../../../public/img/dashboard/shapex6.png")
+          this.width = "w-3"
           break
         case "7":
           this.text = "Traspaso Inmueble"
-          this.src = require("../../../public/img/dahsboard/shapex7.png")
-          this.style = "mb-5"
+          this.src = require("../../../public/img/dashboard/shapex7.png")
+          this.width = "w-1"
           break
         case "8":
           this.text = "Reserva Espacios Publicos"
-          this.src = require("../../../public/img/dahsboard/shapex8.png")
-          this.style = "mb-0"
+          this.src = require("../../../public/img/dashboard/shapex8.png")
+          this.width = "w-2"
           break
       }
     },
-  },
-
-  mounted() {
-    this.SetData(this.index)
   },
 
   props: ['index'],

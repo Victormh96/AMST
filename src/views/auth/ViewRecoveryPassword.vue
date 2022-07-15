@@ -23,14 +23,14 @@
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb-6">
                 <a-form-item name="password">
                   <a-input-password :disabled="this.$store.state.auth.loading" type="password"
-                    v-model:value="formState.password" placeholder="Contraseña" autocomplete="off"/>
+                    v-model:value="formState.password" placeholder="Contraseña" autocomplete="off" />
                 </a-form-item>
               </a-col>
               <!--Password Repeat-->
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" class="mb-6">
                 <a-form-item name="repeat">
                   <a-input-password :disabled="this.$store.state.auth.loading" type="password"
-                    v-model:value="formState.repeat" placeholder="Confirmar Contraseña" autocomplete="off"/>
+                    v-model:value="formState.repeat" placeholder="Confirmar Contraseña" autocomplete="off" />
                 </a-form-item>
               </a-col>
             </a-row>
@@ -76,17 +76,22 @@ export default {
       skeleton: false
     }
   },
-
+  created() {
+    if (this.code === undefined) {
+      this.openNotification('No existe proceso de recuperación de cuenta')
+      this.$router.push("/")
+    }
+  },
   setup() {
     const formState = reactive({
       password: null,
       repeat: null,
     });
 
-    const openNotification = () => {
+    const openNotification  = (index) => {
       notification.open({
         message: 'Alcaldia Santa Tecla',
-        description: 'La contraseña fue restablecida con exito',
+        description: index,
         placement: 'bottomRight',
       })
     }
@@ -145,10 +150,10 @@ export default {
         await this.$store.dispatch("changePassword", body)
 
         if (!this.$store.state.auth.error) {
-          this.openNotification()
+          this.openNotification('La contraseña fue restablecida con exito')
           setTimeout(() => {
             this.$router.push("/")
-          }, 3500)
+          }, 1500)
         } else {
           this.errorMessage = "Error " + this.$store.state.auth.errorChangePassword
         }
@@ -162,5 +167,6 @@ export default {
       this.skeleton = item
     }
   },
+  props: ['code']
 };
 </script>

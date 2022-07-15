@@ -13,7 +13,7 @@
     </a-form-item>
     <!--Documents-->
     <a-form-item :name="nameDocument" class="mb-4">
-      <a-input type="tel" v-model:value="formState[nameDocument]" :placeholder="placeholder || 'Documento'"
+      <a-input type="tel" v-model:value="formState[nameDocument]" placeholder="Documento"
         :disabled="this.$store.state.auth.loading || !formState.documentType" autocomplete="off"
         v-mask="nameDocument == 'DUI' ? '########-#' : 'X'.repeat(30)" />
     </a-form-item>
@@ -58,7 +58,6 @@ export default {
       },
 
       //Dynamic
-      placeholder: null,
       nameDocument: 'DUI',
 
       //Modal
@@ -115,7 +114,6 @@ export default {
 
   methods: {
     doDocumentsWith(item) {
-      this.placeholder = documentName(item)
       this.nameDocument = documentName(item)
     },
 

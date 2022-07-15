@@ -174,7 +174,12 @@ export default {
               )
             )
           signOut(auth)
-          this.$router.push("/registrar-datos-cuenta")
+          this.$router.push({
+            name: 'Registrar',
+            params: {
+              code: code
+            }
+          })
         })
         .catch((error) => {
           this.errorStatus = true
