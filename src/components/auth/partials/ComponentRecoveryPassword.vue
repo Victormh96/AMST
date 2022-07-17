@@ -1,6 +1,6 @@
 <template>
   <!--Title-->
-  <h2 class="mt-2 mb-4">Recupera contraseña</h2>
+  <h2 class="mt-2 mb-4">Recupera cuenta</h2>
 
   <!--Form-->
   <a-form layout="vertical" :model="formState" :rules="rules" @finish="onSubmit">

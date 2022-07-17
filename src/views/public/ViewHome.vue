@@ -19,7 +19,7 @@
             Ahora puedes pagar tus impuestos, generar estado de cuentas,
             solicitar solvencias y mucho más.
           </p>
-          <span class="button-lg">Información</span>
+          <span class="button-lg mb-xs-1">Información</span>
         </a-col>
         <a-col :xs="24" :sm="24" :md="24" :lg="10" :xl="10" class="text-left text-middle">
           <img src="@/../public/img/assets/shapex3.png" alt="amst" class="animation">

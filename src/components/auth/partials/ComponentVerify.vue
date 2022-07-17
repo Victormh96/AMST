@@ -30,7 +30,7 @@
         </div>
       </div>
       <template #overlay>
-        <a-menu>
+        <a-menu class="verify">
           <a-menu-item key="0">
             <a v-on:click="sendCode(1)">Reenviar SMS</a>
           </a-menu-item>
