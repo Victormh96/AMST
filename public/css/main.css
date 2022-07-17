@@ -48,10 +48,17 @@
     }
 }
 
+/*===Phone Landscape===**/
+@media (max-width: 920px) and (orientation: landscape) {
+    #home h1 {
+        margin: 10px 0 0 0;
+    }
+}
+
 /*===Ipad===**/
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    h1 {
-        width: 510px;
+    #home h1 {
+        width: 520px;
     }
 }
 
@@ -224,6 +231,13 @@
 
 /*===Phone===**/
 @media (max-width: 575.98px) {
+    #footer .social-media a {
+        margin: 0 10px;
+    }
+}
+
+/*===Ipad===**/
+@media (min-width: 992px) and (max-width: 1199.98px) {
     #footer .social-media a {
         margin: 0 10px;
     }

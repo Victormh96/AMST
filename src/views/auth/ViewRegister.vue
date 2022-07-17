@@ -79,7 +79,7 @@
               <strong>{{ errorMessage }}</strong>
             </div>
             <!--Button-->
-            <a-form-item class="text-center">
+            <a-form-item class="text-center mb-xs-3">
               <a-button key="submit" htmlType="submit" class="button-md" :loading="this.$store.state.auth.loading">
                 Guardar</a-button>
             </a-form-item>
@@ -311,3 +311,23 @@ export default {
 };
 </script>
 
+<!--========Style========-->
+<style scoped>
+@media (max-width: 575.98px) {
+  .layout-max {
+    min-height: calc(100vh - 90px) !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .ant-layout-content:after {
+    bottom: -180px !important;
+  }
+}
+
+@media (max-width: 920px) and (orientation: landscape) {
+  .ant-layout-content:after {
+    bottom: -180px !important;
+  }
+}
+</style>

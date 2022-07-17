@@ -10,7 +10,7 @@
 
       <!--Row-->
       <a-row v-else>
-        <a-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="m-auto">
+        <a-col :xs="24" :sm="24" :md="16" :lg="10" :xl="8" class="m-auto">
           <!--Form---->
           <a-form class="title" layout="vertical" autocomplete="off" :rules="rules" :model="formState"
             @finish="onSubmit">
@@ -76,19 +76,21 @@ export default {
       skeleton: false
     }
   },
+
   created() {
     if (this.code === undefined) {
       this.openNotification('No existe proceso de recuperación de cuenta')
       this.$router.push("/")
     }
   },
+
   setup() {
     const formState = reactive({
       password: null,
       repeat: null,
     });
 
-    const openNotification  = (index) => {
+    const openNotification = (index) => {
       notification.open({
         message: 'Alcaldia Santa Tecla',
         description: index,
@@ -170,3 +172,18 @@ export default {
   props: ['code']
 };
 </script>
+
+<!--========Style========-->
+<style scoped>
+@media (max-width: 992px) {
+  .ant-layout-content:after {
+    bottom: -180px !important;
+  }
+}
+
+@media (max-width: 920px) and (orientation: landscape) {
+  .ant-layout-content:after {
+    bottom: -180px !important;
+  }
+}
+</style>

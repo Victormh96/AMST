@@ -336,7 +336,7 @@ html[data-theme="Dark-Mode"] {
 }
 
 /*===Phone===**/
-@media (max-width: 575.98px) {
+@media (max-width: 992px) {
     .mb-xs-1 {
         margin-bottom: 3rem !important;
     }
@@ -346,6 +346,12 @@ html[data-theme="Dark-Mode"] {
     }
 }
 
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .mb-xs-3 {
+        margin-bottom: 2rem !important;
+    }
+}
 .ml-0 {
     margin-left: 0 !important;
 }
@@ -440,6 +446,13 @@ html[data-theme="Dark-Mode"] {
     margin: auto;
     transition: all 0.5s ease;
     cursor: pointer;
+}
+
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .button-md {
+        font-size: 1.2rem;
+    }
 }
 
 .button-xl {
@@ -557,8 +570,6 @@ h2 {
 @media (max-width: 575.98px) {
     h2 {
         font-size: 2rem;
-        font-weight: 700;
-        color: var(--blue);
     }
 }
 
@@ -25299,11 +25310,11 @@ textarea.ant-input-number {
 
 @media (max-width: 992px) {
     .ant-layout-content {
-        min-height: calc(100vh - 350px);
+        min-height: calc(100vh - 370px);
     }
 
     .ant-layout-content:after {
-        bottom: -200px;
+        bottom: -220px;
         width: 180px;
         height: 370px;
     }
@@ -33250,7 +33261,13 @@ div.ant-typography-edit-content.ant-typography-rtl {
 }
 
 .layout-max {
-    min-height: calc(100vh - 184px) !important;
+    min-height: calc(100vh - 184px) !important;}
+
+/*===Phone===**/
+@media (max-width: 575.98px) {
+    .layout-max {
+        min-height: calc(93vh - 184px) !important;;
+    }
 }
 
 .ant-upload-list::after {

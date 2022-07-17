@@ -5,11 +5,9 @@
   <!--Main-->
   <a-layout-content id="auth" class="mt-0 layout-max text-center">
     <div class="container">
-      <!--Skeleton-->
-      <Skeleton @loading="loading" v-if="(!skeleton)" />
 
       <!--Row-->
-      <a-row v-else>
+      <a-row>
         <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
           <a-spin size="large" />
         </a-col>
@@ -25,12 +23,10 @@
 <script>
 import { notification } from "ant-design-vue"
 import Footer from "@/components/auth/ComponentFooter.vue"
-import Skeleton from '@/components/auth/ComponentSkeleton.vue'
 
 export default {
   components: {
-    Footer,
-    Skeleton
+    Footer
   },
 
   data() {
@@ -83,7 +79,7 @@ export default {
         if (this.$store.state.auth.validateAccount.success) {
           setTimeout(() => {
             if (action == "recovery") {
-               this.$router.push({
+              this.$router.push({
                 name: 'Recuperar',
                 params: {
                   code: code
@@ -133,3 +129,18 @@ export default {
   },
 };
 </script>
+
+<!--========Style========-->
+<style scoped>
+@media (max-width: 992px) {
+  .ant-layout-content:after {
+    bottom: -180px !important;
+  }
+}
+
+@media (max-width: 920px) and (orientation: landscape) {
+  .ant-layout-content:after {
+    bottom: -180px !important;
+  }
+}
+</style>
