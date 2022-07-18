@@ -3,7 +3,7 @@
   <title>Alcaldia Municipal Santa Tecla</title>
 
   <!--Main-->
-  <a-layout-content id="auth" class="mt-0 layout-max text-center">
+  <a-layout-content id="auth" class="mt-0 layout-auth text-center">
     <div class="container">
 
       <!--Row-->
@@ -129,18 +129,3 @@ export default {
   },
 };
 </script>
-
-<!--========Style========-->
-<style scoped>
-@media (max-width: 992px) {
-  .ant-layout-content:after {
-    bottom: -180px !important;
-  }
-}
-
-@media (max-width: 920px) and (orientation: landscape) {
-  .ant-layout-content:after {
-    bottom: -180px !important;
-  }
-}
-</style>

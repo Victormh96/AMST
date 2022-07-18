@@ -15,9 +15,9 @@
       <a-row v-else>
         <!--Text-->
         <a-col :lg="24" :xl="24">
-          <h1 class="mb-1 mt-3" v-if="(sexo === 'M' || sexo === 'U')">¡Bienvenido Tecleño!</h1>
-          <h1 class="mb-1 mt-3" v-else>¡Bienvenida Tecleña!</h1>
-          <h3 class="mb-6 mt-0 ml-4">{{ nombre }}</h3>
+          <h1 class="mb-2 mt-3" v-if="(sexo === 'M' || sexo === 'U')">¡Bienvenido Tecleño!</h1>
+          <h1 class="mb-2 mt-3" v-else>¡Bienvenida Tecleña!</h1>
+          <h3 class="mb-6 mt-0">{{ nombre }}</h3>
         </a-col>
         <!--Items-->
         <Item v-for="index in 8" :key="index" :index="index.toString()" />

@@ -4,7 +4,7 @@
       <a-row>
         <!--Logo-->
         <a-col :xs="14" :sm="13" :md="13" :lg="15" :xl="15" class="text-left">
-          <router-link :to="{ name: 'Home' }">
+          <router-link :to="{ name: 'Dashboard' }">
             <img src="@/../public/img/iconox2.png" alt="Alcaldia Municipal Santa Tecla" />
           </router-link>
         </a-col>
@@ -41,7 +41,7 @@
         <!--Responsive Menu-->
         <a-menu class="d-lg-none">
           <a-menu-item>
-            <router-link :to="{ name: 'Home' }">
+            <router-link :to="{ name: 'Dashboard' }">
               <i class="fa-solid fa-house"></i>
             </router-link>
           </a-menu-item>

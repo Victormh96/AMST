@@ -3,7 +3,7 @@
   <title>Alcaldia Municipal Santa Tecla</title>
 
   <!--Main-->
-  <a-layout-content id="auth" class="mt-0 layout-max">
+  <a-layout-content id="auth" class="mt-0 layout-auth">
     <div class="container">
       <!--Skeleton-->
       <Skeleton @loading="loading" v-if="(!skeleton)" />
@@ -314,20 +314,8 @@ export default {
 <!--========Style========-->
 <style scoped>
 @media (max-width: 575.98px) {
-  .layout-max {
-    min-height: calc(100vh - 90px) !important;
-  }
-}
-
-@media (max-width: 992px) {
-  .ant-layout-content:after {
-    bottom: -180px !important;
-  }
-}
-
-@media (max-width: 920px) and (orientation: landscape) {
-  .ant-layout-content:after {
-    bottom: -180px !important;
+  .layout-auth {
+    margin-top: 20px !important;
   }
 }
 </style>
